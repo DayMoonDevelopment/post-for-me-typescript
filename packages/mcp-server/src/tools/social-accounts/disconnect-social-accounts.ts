@@ -38,8 +38,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: PostForMe, args: Record<string, unknown> | undefined) => {
-  const { id, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.socialAccounts.disconnect(id)));
+  const { id, jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.socialAccounts.disconnect(id)));
 };
 
 export default { metadata, tool, handler };
