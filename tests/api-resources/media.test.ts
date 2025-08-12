@@ -8,7 +8,7 @@ const client = new PostForMe({
 });
 
 describe('resource media', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('createUploadURL', async () => {
     const responsePromise = client.media.createUploadURL();
     const rawResponse = await responsePromise.asResponse();
