@@ -1,17 +1,17 @@
 {
   "name": "post-for-me-mcp",
-  "version": "0.0.1-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "The official MCP Server for the Post For Me API",
-  "author": "Post For Me <>",
+  "author": "Post For Me <postforme@daymoon.dev>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/post-for-me-typescript.git",
+    "url": "git+https://github.com/DayMoonDevelopment/post-for-me-typescript.git",
     "directory": "packages/mcp-server"
   },
-  "homepage": "https://github.com/stainless-sdks/post-for-me-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/DayMoonDevelopment/post-for-me-typescript/tree/main/packages/mcp-server#readme",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "private": false,
