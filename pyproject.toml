@@ -35,8 +35,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/stainless-sdks/post-for-me-python"
-Repository = "https://github.com/stainless-sdks/post-for-me-python"
+Homepage = "https://github.com/DayMoonDevelopment/post-for-me-typescript"
+Repository = "https://github.com/DayMoonDevelopment/post-for-me-typescript"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.8"]
@@ -125,7 +125,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/stainless-sdks/post-for-me-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/DayMoonDevelopment/post-for-me-typescript/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
