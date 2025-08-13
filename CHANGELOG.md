@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-08-13)
+
+Full Changelog: [v0.1.0-alpha.1...v1.0.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v0.1.0-alpha.1...v1.0.0)
+
+### Chores
+
+* update SDK settings ([5ef669c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5ef669c401b7fb29aae87e0fb944cdf13bccf7b3))
+
 ## 0.1.0-alpha.1 (2025-08-13)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
