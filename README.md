@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Post For Me REST API from server-side TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [api.postforme.dev](https://api.postforme.dev/docs). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -29,9 +29,13 @@ const client = new PostForMe({
   apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted
 });
 
-const response = await client.media.createUploadURL();
+const socialPost = await client.socialPosts.create({
+  caption: 'My first post!',
+  social_accounts: ['sa_1234'],
+  media: [{ url: 'https://picsum.photos/1080' }],
+});
 
-console.log(response.media_url);
+console.log(socialPost.id);
 ```
 
 ### Request & Response types
@@ -46,7 +50,12 @@ const client = new PostForMe({
   apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted
 });
 
-const response: PostForMe.MediaCreateUploadURLResponse = await client.media.createUploadURL();
+const params: PostForMe.SocialPostCreateParams = {
+  caption: 'My first post!',
+  social_accounts: ['sa_1234'],
+  media: [{ url: 'https://picsum.photos/1080' }],
+};
+const socialPost: PostForMe.SocialPost = await client.socialPosts.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -59,15 +68,21 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.media.createUploadURL().catch(async (err) => {
-  if (err instanceof PostForMe.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+const socialPost = await client.socialPosts
+  .create({
+    caption: 'My first post!',
+    social_accounts: ['sa_1234'],
+    media: [{ url: 'https://picsum.photos/1080' }],
+  })
+  .catch(async (err) => {
+    if (err instanceof PostForMe.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
@@ -99,7 +114,7 @@ const client = new PostForMe({
 });
 
 // Or, configure per-request:
-await client.media.createUploadURL({
+await client.socialPosts.create({ caption: 'My first post!', social_accounts: ['sa_1234'], media: [{ url: 'https://picsum.photos/1080' }] }, {
   maxRetries: 5,
 });
 ```
@@ -116,7 +131,7 @@ const client = new PostForMe({
 });
 
 // Override per-request:
-await client.media.createUploadURL({
+await client.socialPosts.create({ caption: 'My first post!', social_accounts: ['sa_1234'], media: [{ url: 'https://picsum.photos/1080' }] }, {
   timeout: 5 * 1000,
 });
 ```
@@ -139,13 +154,25 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new PostForMe();
 
-const response = await client.media.createUploadURL().asResponse();
+const response = await client.socialPosts
+  .create({
+    caption: 'My first post!',
+    social_accounts: ['sa_1234'],
+    media: [{ url: 'https://picsum.photos/1080' }],
+  })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.media.createUploadURL().withResponse();
+const { data: socialPost, response: raw } = await client.socialPosts
+  .create({
+    caption: 'My first post!',
+    social_accounts: ['sa_1234'],
+    media: [{ url: 'https://picsum.photos/1080' }],
+  })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response.media_url);
+console.log(socialPost.id);
 ```
 
 ### Logging
@@ -225,7 +252,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.media.createUploadURL({
+client.socialPosts.create({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',

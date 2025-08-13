@@ -306,13 +306,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['POST_FOR_ME_BASE_URL'] = ''; // empty
       const client = new PostForMe({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.example.com');
+      expect(client.baseURL).toEqual('https://api.postforme.dev');
     });
 
     test('blank env variable', () => {
       process.env['POST_FOR_ME_BASE_URL'] = '  '; // blank
       const client = new PostForMe({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.example.com');
+      expect(client.baseURL).toEqual('https://api.postforme.dev');
     });
 
     test('in request options', () => {
