@@ -8,10 +8,10 @@
   "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/post-for-me-typescript.git",
+    "url": "git+https://github.com/DayMoonDevelopment/post-for-me-typescript.git",
     "directory": "packages/mcp-server"
   },
-  "homepage": "https://github.com/stainless-sdks/post-for-me-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/DayMoonDevelopment/post-for-me-typescript/tree/main/packages/mcp-server#readme",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "private": false,
