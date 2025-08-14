@@ -473,6 +473,11 @@ export interface TiktokConfiguration {
   disclose_your_brand?: boolean | null;
 
   /**
+   * Flag content as AI generated on TikTok
+   */
+  is_ai_generated?: boolean | null;
+
+  /**
    * Overrides the `media` from the post
    */
   media?: Array<string> | null;
@@ -1221,15 +1226,7 @@ export interface SocialPostListParams {
    * Filter by platforms. Multiple values imply OR logic.
    */
   platform?: Array<
-    | 'bluesky'
-    | 'facebook'
-    | 'instagram'
-    | 'linkedin'
-    | 'pinterest'
-    | 'threads'
-    | 'tiktok'
-    | 'twitter'
-    | 'youtube'
+    'bluesky' | 'facebook' | 'instagram' | 'linkedin' | 'pinterest' | 'threads' | 'tiktok' | 'x' | 'youtube'
   >;
 
   /**

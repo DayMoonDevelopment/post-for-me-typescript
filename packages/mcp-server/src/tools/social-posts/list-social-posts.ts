@@ -50,7 +50,7 @@ export const tool: Tool = {
             'pinterest',
             'threads',
             'tiktok',
-            'twitter',
+            'x',
             'youtube',
           ],
         },
