@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1 (2025-08-14)
+
+Full Changelog: [v1.0.0...v1.0.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.0.0...v1.0.1)
+
+### Chores
+
+* **mcp:** minor cleanup of types and package.json ([d96116f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d96116fdd741d9832eb7ec37c88572dc09e18bd2))
+
 ## 1.0.0 (2025-08-13)
 
 Full Changelog: [v0.1.0-alpha.1...v1.0.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v0.1.0-alpha.1...v1.0.0)
