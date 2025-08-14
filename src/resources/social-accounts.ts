@@ -60,9 +60,24 @@ export interface SocialAccount {
   id: string;
 
   /**
+   * The access token of the social account
+   */
+  access_token: string;
+
+  /**
+   * The access token expiration date of the social account
+   */
+  access_token_expires_at: string;
+
+  /**
    * The external id of the social account
    */
   external_id: string | null;
+
+  /**
+   * The metadata of the social account
+   */
+  metadata: unknown | null;
 
   /**
    * The platform of the social account
@@ -70,9 +85,24 @@ export interface SocialAccount {
   platform: string;
 
   /**
+   * The refresh token of the social account
+   */
+  refresh_token: string | null;
+
+  /**
+   * The refresh token expiration date of the social account
+   */
+  refresh_token_expires_at: string | null;
+
+  /**
    * Status of the account
    */
   status: 'connected' | 'disconnected';
+
+  /**
+   * The platform's id of the social account
+   */
+  user_id: string;
 
   /**
    * The platform's username of the social account
@@ -129,9 +159,24 @@ export interface SocialAccountDisconnectResponse {
   id: string;
 
   /**
+   * The access token of the social account
+   */
+  access_token: string;
+
+  /**
+   * The access token expiration date of the social account
+   */
+  access_token_expires_at: string;
+
+  /**
    * The external id of the social account
    */
   external_id: string | null;
+
+  /**
+   * The metadata of the social account
+   */
+  metadata: unknown | null;
 
   /**
    * The platform of the social account
@@ -139,9 +184,24 @@ export interface SocialAccountDisconnectResponse {
   platform: string;
 
   /**
+   * The refresh token of the social account
+   */
+  refresh_token: string | null;
+
+  /**
+   * The refresh token expiration date of the social account
+   */
+  refresh_token_expires_at: string | null;
+
+  /**
    * Status of the account
    */
   status: 'disconnected';
+
+  /**
+   * The platform's id of the social account
+   */
+  user_id: string;
 
   /**
    * The platform's username of the social account
@@ -186,7 +246,7 @@ export interface SocialAccountListParams {
 
   /**
    * Filter by platform(s). Multiple values imply OR logic (e.g.,
-   * ?platform=x&platform=twitter).
+   * ?platform=x&platform=facebook).
    */
   platform?: Array<string>;
 

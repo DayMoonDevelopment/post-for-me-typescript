@@ -342,6 +342,10 @@ export const tool: Tool = {
             type: 'boolean',
             description: 'Disclose your brand on TikTok',
           },
+          is_ai_generated: {
+            type: 'boolean',
+            description: 'Flag content as AI generated on TikTok',
+          },
           media: {
             type: 'array',
             description: 'Overrides the `media` from the post',
