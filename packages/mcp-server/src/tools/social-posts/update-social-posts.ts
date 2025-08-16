@@ -66,6 +66,7 @@ export const tool: Tool = {
                 caption: {
                   type: 'object',
                   description: 'Overrides the `caption` from the post',
+                  additionalProperties: true,
                 },
                 disclose_branded_content: {
                   type: 'boolean',
@@ -130,10 +131,12 @@ export const tool: Tool = {
             thumbnail_timestamp_ms: {
               type: 'object',
               description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+              additionalProperties: true,
             },
             thumbnail_url: {
               type: 'object',
               description: 'Public URL of the thumbnail for the media',
+              additionalProperties: true,
             },
           },
           required: ['url'],
@@ -150,6 +153,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -167,6 +171,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -184,6 +189,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -201,6 +207,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -225,6 +232,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               link: {
                 type: 'string',
@@ -246,6 +254,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               location: {
                 type: 'string',
@@ -274,6 +283,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -291,6 +301,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -333,6 +344,7 @@ export const tool: Tool = {
           caption: {
             type: 'object',
             description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
           },
           disclose_branded_content: {
             type: 'boolean',
