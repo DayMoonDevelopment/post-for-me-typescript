@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.1 (2025-08-16)
+
+Full Changelog: [v1.1.0...v1.1.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.1.0...v1.1.1)
+
+### Bug Fixes
+
+* **mcp:** generate additionalProperties=true for map schemas to avoid validation issues ([b334997](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b334997b63bd2085851a8b918a44e08dcd90043c))
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v20.17.58 ([9f1fcad](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9f1fcadbd23881f1b6ca11c6a75539f960cfb71c))
+* **internal:** formatting change ([cf98882](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cf9888273b9c5feff1630de44cdd7c81a5ba2183))
+* **mcp:** document remote server in README.md ([4d61875](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4d61875571b2d3dd50302521a1f7997664aa2490))
+* **mcp:** update README ([dba0c29](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/dba0c2971111c4e292e87b662e5ce2f57db5b8e9))
+
 ## 1.1.0 (2025-08-14)
 
 Full Changelog: [v1.0.1...v1.1.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.0.1...v1.1.0)
