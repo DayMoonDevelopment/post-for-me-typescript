@@ -80,17 +80,17 @@ export const tool: Tool = {
                   type: 'string',
                   description: 'Pinterest post link',
                 },
-                location: {
-                  type: 'string',
-                  description: 'Threads post location',
-                  enum: ['reels', 'timeline'],
-                },
                 media: {
                   type: 'array',
                   description: 'Overrides the `media` from the post',
                   items: {
                     type: 'string',
                   },
+                },
+                placement: {
+                  type: 'string',
+                  description: 'Post placement for Facebook/Instagram/Threads',
+                  enum: ['reels', 'timeline', 'stories'],
                 },
                 privacy_status: {
                   type: 'string',
@@ -180,6 +180,11 @@ export const tool: Tool = {
                   type: 'string',
                 },
               },
+              placement: {
+                type: 'string',
+                description: 'Facebook post placement',
+                enum: ['reels', 'stories', 'timeline'],
+              },
             },
           },
           instagram: {
@@ -191,12 +196,24 @@ export const tool: Tool = {
                 description: 'Overrides the `caption` from the post',
                 additionalProperties: true,
               },
+              collaborators: {
+                type: 'array',
+                description: 'Instagram usernames to be tagged as a collaborator',
+                items: {
+                  type: 'string',
+                },
+              },
               media: {
                 type: 'array',
                 description: 'Overrides the `media` from the post',
                 items: {
                   type: 'string',
                 },
+              },
+              placement: {
+                type: 'string',
+                description: 'Instagram post placement',
+                enum: ['reels', 'stories', 'timeline'],
               },
             },
           },
@@ -256,17 +273,17 @@ export const tool: Tool = {
                 description: 'Overrides the `caption` from the post',
                 additionalProperties: true,
               },
-              location: {
-                type: 'string',
-                description: 'Threads post location',
-                enum: ['reels', 'timeline'],
-              },
               media: {
                 type: 'array',
                 description: 'Overrides the `media` from the post',
                 items: {
                   type: 'string',
                 },
+              },
+              placement: {
+                type: 'string',
+                description: 'Threads post placement',
+                enum: ['reels', 'timeline'],
               },
             },
           },
