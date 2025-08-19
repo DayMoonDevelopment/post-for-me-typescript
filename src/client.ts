@@ -731,10 +731,12 @@ export class PostForMe {
   socialPostResults: API.SocialPostResults = new API.SocialPostResults(this);
   socialAccounts: API.SocialAccounts = new API.SocialAccounts(this);
 }
+
 PostForMe.Media = Media;
 PostForMe.SocialPosts = SocialPosts;
 PostForMe.SocialPostResults = SocialPostResults;
 PostForMe.SocialAccounts = SocialAccounts;
+
 export declare namespace PostForMe {
   export type RequestOptions = Opts.RequestOptions;
 

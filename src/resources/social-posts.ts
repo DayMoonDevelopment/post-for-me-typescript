@@ -148,14 +148,14 @@ export namespace CreateSocialPost {
       link?: string | null;
 
       /**
-       * Threads post location
-       */
-      location?: 'reels' | 'timeline' | null;
-
-      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Post placement for Facebook/Instagram/Threads
+       */
+      placement?: 'reels' | 'timeline' | 'stories' | null;
 
       /**
        * Sets the privacy status for TikTok (private, public)
@@ -270,6 +270,11 @@ export namespace CreateSocialPost {
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Facebook post placement
+       */
+      placement?: 'reels' | 'stories' | 'timeline' | null;
     }
 
     /**
@@ -282,9 +287,19 @@ export namespace CreateSocialPost {
       caption?: unknown | null;
 
       /**
+       * Instagram usernames to be tagged as a collaborator
+       */
+      collaborators?: Array<string> | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Instagram post placement
+       */
+      placement?: 'reels' | 'stories' | 'timeline' | null;
     }
 
     /**
@@ -337,14 +352,14 @@ export namespace CreateSocialPost {
       caption?: unknown | null;
 
       /**
-       * Threads post location
-       */
-      location?: 'reels' | 'timeline' | null;
-
-      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Threads post placement
+       */
+      placement?: 'reels' | 'timeline' | null;
     }
 
     /**
@@ -632,14 +647,14 @@ export namespace SocialPostCreateParams {
       link?: string | null;
 
       /**
-       * Threads post location
-       */
-      location?: 'reels' | 'timeline' | null;
-
-      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Post placement for Facebook/Instagram/Threads
+       */
+      placement?: 'reels' | 'timeline' | 'stories' | null;
 
       /**
        * Sets the privacy status for TikTok (private, public)
@@ -754,6 +769,11 @@ export namespace SocialPostCreateParams {
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Facebook post placement
+       */
+      placement?: 'reels' | 'stories' | 'timeline' | null;
     }
 
     /**
@@ -766,9 +786,19 @@ export namespace SocialPostCreateParams {
       caption?: unknown | null;
 
       /**
+       * Instagram usernames to be tagged as a collaborator
+       */
+      collaborators?: Array<string> | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Instagram post placement
+       */
+      placement?: 'reels' | 'stories' | 'timeline' | null;
     }
 
     /**
@@ -821,14 +851,14 @@ export namespace SocialPostCreateParams {
       caption?: unknown | null;
 
       /**
-       * Threads post location
-       */
-      location?: 'reels' | 'timeline' | null;
-
-      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Threads post placement
+       */
+      placement?: 'reels' | 'timeline' | null;
     }
 
     /**
@@ -970,14 +1000,14 @@ export namespace SocialPostUpdateParams {
       link?: string | null;
 
       /**
-       * Threads post location
-       */
-      location?: 'reels' | 'timeline' | null;
-
-      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Post placement for Facebook/Instagram/Threads
+       */
+      placement?: 'reels' | 'timeline' | 'stories' | null;
 
       /**
        * Sets the privacy status for TikTok (private, public)
@@ -1092,6 +1122,11 @@ export namespace SocialPostUpdateParams {
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Facebook post placement
+       */
+      placement?: 'reels' | 'stories' | 'timeline' | null;
     }
 
     /**
@@ -1104,9 +1139,19 @@ export namespace SocialPostUpdateParams {
       caption?: unknown | null;
 
       /**
+       * Instagram usernames to be tagged as a collaborator
+       */
+      collaborators?: Array<string> | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Instagram post placement
+       */
+      placement?: 'reels' | 'stories' | 'timeline' | null;
     }
 
     /**
@@ -1159,14 +1204,14 @@ export namespace SocialPostUpdateParams {
       caption?: unknown | null;
 
       /**
-       * Threads post location
-       */
-      location?: 'reels' | 'timeline' | null;
-
-      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
+
+      /**
+       * Threads post placement
+       */
+      placement?: 'reels' | 'timeline' | null;
     }
 
     /**

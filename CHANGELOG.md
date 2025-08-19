@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.2.0 (2025-08-19)
+
+Full Changelog: [v1.1.0...v1.2.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.1.0...v1.2.0)
+
+### Features
+
+* **api:** api update ([0626dc3](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/0626dc3391c2a5814df4713b1f1e798ea4aff948))
+* **mcp:** parse query string as mcp client options in mcp server ([e61b572](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/e61b5724fed199ac3b5d852d2ce5644e080c4176))
+
+
+### Bug Fixes
+
+* **mcp:** generate additionalProperties=true for map schemas to avoid validation issues ([b334997](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b334997b63bd2085851a8b918a44e08dcd90043c))
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v20.17.58 ([9f1fcad](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9f1fcadbd23881f1b6ca11c6a75539f960cfb71c))
+* **internal:** formatting change ([cf98882](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cf9888273b9c5feff1630de44cdd7c81a5ba2183))
+* **internal:** refactor array check ([b21b225](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b21b225bc9d212ccd6631ff99bc20d844d2e8dfa))
+* **mcp:** document remote server in README.md ([4d61875](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4d61875571b2d3dd50302521a1f7997664aa2490))
+* **mcp:** update README ([dba0c29](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/dba0c2971111c4e292e87b662e5ce2f57db5b8e9))
+
 ## 1.1.0 (2025-08-14)
 
 Full Changelog: [v1.0.1...v1.1.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.0.1...v1.1.0)

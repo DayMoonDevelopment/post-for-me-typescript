@@ -63,6 +63,7 @@ export const tool: Tool = {
                 caption: {
                   type: 'object',
                   description: 'Overrides the `caption` from the post',
+                  additionalProperties: true,
                 },
                 disclose_branded_content: {
                   type: 'boolean',
@@ -76,17 +77,17 @@ export const tool: Tool = {
                   type: 'string',
                   description: 'Pinterest post link',
                 },
-                location: {
-                  type: 'string',
-                  description: 'Threads post location',
-                  enum: ['reels', 'timeline'],
-                },
                 media: {
                   type: 'array',
                   description: 'Overrides the `media` from the post',
                   items: {
                     type: 'string',
                   },
+                },
+                placement: {
+                  type: 'string',
+                  description: 'Post placement for Facebook/Instagram/Threads',
+                  enum: ['reels', 'timeline', 'stories'],
                 },
                 privacy_status: {
                   type: 'string',
@@ -127,10 +128,12 @@ export const tool: Tool = {
             thumbnail_timestamp_ms: {
               type: 'object',
               description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+              additionalProperties: true,
             },
             thumbnail_url: {
               type: 'object',
               description: 'Public URL of the thumbnail for the media',
+              additionalProperties: true,
             },
           },
           required: ['url'],
@@ -147,6 +150,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -164,6 +168,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -171,6 +176,11 @@ export const tool: Tool = {
                 items: {
                   type: 'string',
                 },
+              },
+              placement: {
+                type: 'string',
+                description: 'Facebook post placement',
+                enum: ['reels', 'stories', 'timeline'],
               },
             },
           },
@@ -181,6 +191,14 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
+              },
+              collaborators: {
+                type: 'array',
+                description: 'Instagram usernames to be tagged as a collaborator',
+                items: {
+                  type: 'string',
+                },
               },
               media: {
                 type: 'array',
@@ -188,6 +206,11 @@ export const tool: Tool = {
                 items: {
                   type: 'string',
                 },
+              },
+              placement: {
+                type: 'string',
+                description: 'Instagram post placement',
+                enum: ['reels', 'stories', 'timeline'],
               },
             },
           },
@@ -198,6 +221,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -222,6 +246,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               link: {
                 type: 'string',
@@ -243,11 +268,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
-              },
-              location: {
-                type: 'string',
-                description: 'Threads post location',
-                enum: ['reels', 'timeline'],
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -255,6 +276,11 @@ export const tool: Tool = {
                 items: {
                   type: 'string',
                 },
+              },
+              placement: {
+                type: 'string',
+                description: 'Threads post placement',
+                enum: ['reels', 'timeline'],
               },
             },
           },
@@ -271,6 +297,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -288,6 +315,7 @@ export const tool: Tool = {
               caption: {
                 type: 'object',
                 description: 'Overrides the `caption` from the post',
+                additionalProperties: true,
               },
               media: {
                 type: 'array',
@@ -330,6 +358,7 @@ export const tool: Tool = {
           caption: {
             type: 'object',
             description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
           },
           disclose_branded_content: {
             type: 'boolean',
