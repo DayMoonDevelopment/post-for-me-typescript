@@ -143,6 +143,17 @@ export namespace CreateSocialPost {
       disclose_your_brand?: boolean | null;
 
       /**
+       * Flag content as AI generated on TikTok
+       */
+      is_ai_generated?: boolean | null;
+
+      /**
+       * Will create a draft upload to TikTok, posting will need to be completed from
+       * within the app
+       */
+      is_draft?: boolean | null;
+
+      /**
        * Pinterest post link
        */
       link?: string | null;
@@ -493,6 +504,12 @@ export interface TiktokConfiguration {
   is_ai_generated?: boolean | null;
 
   /**
+   * Will create a draft upload to TikTok, posting will need to be completed from
+   * within the app
+   */
+  is_draft?: boolean | null;
+
+  /**
    * Overrides the `media` from the post
    */
   media?: Array<string> | null;
@@ -640,6 +657,17 @@ export namespace SocialPostCreateParams {
        * Disclose your brand on TikTok
        */
       disclose_your_brand?: boolean | null;
+
+      /**
+       * Flag content as AI generated on TikTok
+       */
+      is_ai_generated?: boolean | null;
+
+      /**
+       * Will create a draft upload to TikTok, posting will need to be completed from
+       * within the app
+       */
+      is_draft?: boolean | null;
 
       /**
        * Pinterest post link
@@ -993,6 +1021,17 @@ export namespace SocialPostUpdateParams {
        * Disclose your brand on TikTok
        */
       disclose_your_brand?: boolean | null;
+
+      /**
+       * Flag content as AI generated on TikTok
+       */
+      is_ai_generated?: boolean | null;
+
+      /**
+       * Will create a draft upload to TikTok, posting will need to be completed from
+       * within the app
+       */
+      is_draft?: boolean | null;
 
       /**
        * Pinterest post link
