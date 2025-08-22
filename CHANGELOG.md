@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.3.0 (2025-08-22)
+
+Full Changelog: [v1.2.0...v1.3.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.2.0...v1.3.0)
+
+### Features
+
+* **api:** api update ([4709e9c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4709e9cccd5e7709c584c284edbb48707c8a1ef4))
+* **mcp:** add code execution tool ([a485a63](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a485a63dcbc0caed0e6cf1502aa1f80d15574a01))
+* **mcp:** add option to infer mcp client ([30258b0](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/30258b0ecb4994eb35fd861b7ead0b9c4ee0f798))
+
+
+### Chores
+
+* add package to package.json ([d6d3022](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d6d3022bb2074396d0b677939cd0b4e07c586969))
+* **client:** qualify global Blob ([f09060e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/f09060e8c25895162fe51de427103802dbae6288))
+* **internal:** codegen related update ([92e0ef9](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/92e0ef94e2438373d96e80f86ff3dc29c4196851))
+* **internal:** make mcp-server publishing public by defaut ([a975375](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a9753750e1cac905200a02480ff5f5c18733b429))
+* **mcp:** add cors to oauth metadata route ([41af2c7](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/41af2c75d633057420a54cf7a33a5c9afc0fbfb4))
+* **mcp:** update package.json ([5903e32](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5903e321f6d75d677f8f633b1c6f16b7b379b009))
+* **mcp:** update types ([9fe2a19](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9fe2a19bf02723d786d96a0c725c39923c840988))
+
 ## 1.2.0 (2025-08-19)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.1.0...v1.2.0)
