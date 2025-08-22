@@ -73,6 +73,15 @@ export const tool: Tool = {
                   type: 'boolean',
                   description: 'Disclose your brand on TikTok',
                 },
+                is_ai_generated: {
+                  type: 'boolean',
+                  description: 'Flag content as AI generated on TikTok',
+                },
+                is_draft: {
+                  type: 'boolean',
+                  description:
+                    'Will create a draft upload to TikTok, posting will need to be completed from within the app',
+                },
                 link: {
                   type: 'string',
                   description: 'Pinterest post link',
@@ -371,6 +380,11 @@ export const tool: Tool = {
           is_ai_generated: {
             type: 'boolean',
             description: 'Flag content as AI generated on TikTok',
+          },
+          is_draft: {
+            type: 'boolean',
+            description:
+              'Will create a draft upload to TikTok, posting will need to be completed from within the app',
           },
           media: {
             type: 'array',
