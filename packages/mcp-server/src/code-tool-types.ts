@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from 'post-for-me/client';
+import { ClientOptions } from 'post-for-me';
 
 export type WorkerInput = {
   opts: ClientOptions;
