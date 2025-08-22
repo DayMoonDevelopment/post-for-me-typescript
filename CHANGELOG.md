@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0 (2025-08-22)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **api:** api update ([10a9644](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/10a9644ad32b4c59d06676f075b4ae1f9a354273))
+
 ## 1.3.0 (2025-08-22)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.2.0...v1.3.0)
