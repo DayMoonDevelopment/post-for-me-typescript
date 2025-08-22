@@ -26,6 +26,10 @@ export const tool: Tool = {
         type: 'string',
         description: 'The social account provider',
       },
+      external_id: {
+        type: 'string',
+        description: 'Your unique identifier for the social account',
+      },
       platform_data: {
         type: 'object',
         description: 'Additional data needed for the provider',

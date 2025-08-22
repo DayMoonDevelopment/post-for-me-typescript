@@ -264,6 +264,11 @@ export interface SocialAccountCreateAuthURLParams {
   platform: string;
 
   /**
+   * Your unique identifier for the social account
+   */
+  external_id?: string;
+
+  /**
    * Additional data needed for the provider
    */
   platform_data?: SocialAccountCreateAuthURLParams.PlatformData;

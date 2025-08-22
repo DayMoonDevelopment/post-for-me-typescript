@@ -78,6 +78,7 @@ describe('resource socialAccounts', () => {
   test.skip('createAuthURL: required and optional params', async () => {
     const response = await client.socialAccounts.createAuthURL({
       platform: 'platform',
+      external_id: 'external_id',
       platform_data: {
         bluesky: { app_password: 'app_password', handle: 'handle' },
         linkedin: { connection_type: 'personal' },
