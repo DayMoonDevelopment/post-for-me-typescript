@@ -35,7 +35,13 @@ import {
   SocialPostResults,
 } from './resources/social-post-results';
 import {
+  BlueskyConfigurationDto,
   CreateSocialPost,
+  FacebookConfigurationDto,
+  InstagramConfigurationDto,
+  LinkedinConfigurationDto,
+  PinterestConfigurationDto,
+  PlatformConfigurationsDto,
   SocialPost,
   SocialPostCreateParams,
   SocialPostDeleteResponse,
@@ -43,7 +49,10 @@ import {
   SocialPostListResponse,
   SocialPostUpdateParams,
   SocialPosts,
+  ThreadsConfigurationDto,
   TiktokConfiguration,
+  TwitterConfigurationDto,
+  YoutubeConfigurationDto,
 } from './resources/social-posts';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -744,9 +753,18 @@ export declare namespace PostForMe {
 
   export {
     SocialPosts as SocialPosts,
+    type BlueskyConfigurationDto as BlueskyConfigurationDto,
     type CreateSocialPost as CreateSocialPost,
+    type FacebookConfigurationDto as FacebookConfigurationDto,
+    type InstagramConfigurationDto as InstagramConfigurationDto,
+    type LinkedinConfigurationDto as LinkedinConfigurationDto,
+    type PinterestConfigurationDto as PinterestConfigurationDto,
+    type PlatformConfigurationsDto as PlatformConfigurationsDto,
     type SocialPost as SocialPost,
+    type ThreadsConfigurationDto as ThreadsConfigurationDto,
     type TiktokConfiguration as TiktokConfiguration,
+    type TwitterConfigurationDto as TwitterConfigurationDto,
+    type YoutubeConfigurationDto as YoutubeConfigurationDto,
     type SocialPostListResponse as SocialPostListResponse,
     type SocialPostDeleteResponse as SocialPostDeleteResponse,
     type SocialPostCreateParams as SocialPostCreateParams,

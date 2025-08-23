@@ -149,197 +149,7 @@ export const tool: Tool = {
         },
       },
       platform_configurations: {
-        type: 'object',
-        description: 'Platform-specific configurations for the post',
-        properties: {
-          bluesky: {
-            type: 'object',
-            description: 'Bluesky configuration',
-            properties: {
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-            },
-          },
-          facebook: {
-            type: 'object',
-            description: 'Facebook configuration',
-            properties: {
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-              placement: {
-                type: 'string',
-                description: 'Facebook post placement',
-                enum: ['reels', 'stories', 'timeline'],
-              },
-            },
-          },
-          instagram: {
-            type: 'object',
-            description: 'Instagram configuration',
-            properties: {
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              collaborators: {
-                type: 'array',
-                description: 'Instagram usernames to be tagged as a collaborator',
-                items: {
-                  type: 'string',
-                },
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-              placement: {
-                type: 'string',
-                description: 'Instagram post placement',
-                enum: ['reels', 'stories', 'timeline'],
-              },
-            },
-          },
-          linkedin: {
-            type: 'object',
-            description: 'LinkedIn configuration',
-            properties: {
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-            },
-          },
-          pinterest: {
-            type: 'object',
-            description: 'Pinterest configuration',
-            properties: {
-              board_ids: {
-                type: 'array',
-                description: 'Pinterest board IDs',
-                items: {
-                  type: 'string',
-                },
-              },
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              link: {
-                type: 'string',
-                description: 'Pinterest post link',
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-            },
-          },
-          threads: {
-            type: 'object',
-            description: 'Threads configuration',
-            properties: {
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-              placement: {
-                type: 'string',
-                description: 'Threads post placement',
-                enum: ['reels', 'timeline'],
-              },
-            },
-          },
-          tiktok: {
-            $ref: '#/$defs/tiktok_configuration',
-          },
-          tiktok_business: {
-            $ref: '#/$defs/tiktok_configuration',
-          },
-          x: {
-            type: 'object',
-            description: 'Twitter configuration',
-            properties: {
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-            },
-          },
-          youtube: {
-            type: 'object',
-            description: 'YouTube configuration',
-            properties: {
-              caption: {
-                type: 'object',
-                description: 'Overrides the `caption` from the post',
-                additionalProperties: true,
-              },
-              media: {
-                type: 'array',
-                description: 'Overrides the `media` from the post',
-                items: {
-                  type: 'string',
-                },
-              },
-              title: {
-                type: 'string',
-                description: 'Overrides the `title` from the post',
-              },
-            },
-          },
-        },
+        $ref: '#/$defs/platform_configurations_dto',
       },
       scheduled_at: {
         type: 'string',
@@ -349,6 +159,176 @@ export const tool: Tool = {
     },
     required: ['caption', 'social_accounts'],
     $defs: {
+      platform_configurations_dto: {
+        type: 'object',
+        properties: {
+          bluesky: {
+            $ref: '#/$defs/bluesky_configuration_dto',
+          },
+          facebook: {
+            $ref: '#/$defs/facebook_configuration_dto',
+          },
+          instagram: {
+            $ref: '#/$defs/instagram_configuration_dto',
+          },
+          linkedin: {
+            $ref: '#/$defs/linkedin_configuration_dto',
+          },
+          pinterest: {
+            $ref: '#/$defs/pinterest_configuration_dto',
+          },
+          threads: {
+            $ref: '#/$defs/threads_configuration_dto',
+          },
+          tiktok: {
+            $ref: '#/$defs/tiktok_configuration',
+          },
+          tiktok_business: {
+            $ref: '#/$defs/tiktok_configuration',
+          },
+          x: {
+            $ref: '#/$defs/twitter_configuration_dto',
+          },
+          youtube: {
+            $ref: '#/$defs/youtube_configuration_dto',
+          },
+        },
+      },
+      bluesky_configuration_dto: {
+        type: 'object',
+        properties: {
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
+          },
+        },
+      },
+      facebook_configuration_dto: {
+        type: 'object',
+        properties: {
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
+          },
+          placement: {
+            type: 'string',
+            description: 'Facebook post placement',
+            enum: ['reels', 'stories', 'timeline'],
+          },
+        },
+      },
+      instagram_configuration_dto: {
+        type: 'object',
+        properties: {
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          collaborators: {
+            type: 'array',
+            description: 'Instagram usernames to be tagged as a collaborator',
+            items: {
+              type: 'string',
+            },
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
+          },
+          placement: {
+            type: 'string',
+            description: 'Instagram post placement',
+            enum: ['reels', 'stories', 'timeline'],
+          },
+        },
+      },
+      linkedin_configuration_dto: {
+        type: 'object',
+        properties: {
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
+          },
+        },
+      },
+      pinterest_configuration_dto: {
+        type: 'object',
+        properties: {
+          board_ids: {
+            type: 'array',
+            description: 'Pinterest board IDs',
+            items: {
+              type: 'string',
+            },
+          },
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          link: {
+            type: 'string',
+            description: 'Pinterest post link',
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
+          },
+        },
+      },
+      threads_configuration_dto: {
+        type: 'object',
+        properties: {
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
+          },
+          placement: {
+            type: 'string',
+            description: 'Threads post placement',
+            enum: ['reels', 'timeline'],
+          },
+        },
+      },
       tiktok_configuration: {
         type: 'object',
         properties: {
@@ -396,6 +376,44 @@ export const tool: Tool = {
           privacy_status: {
             type: 'string',
             description: 'Sets the privacy status for TikTok (private, public)',
+          },
+          title: {
+            type: 'string',
+            description: 'Overrides the `title` from the post',
+          },
+        },
+      },
+      twitter_configuration_dto: {
+        type: 'object',
+        properties: {
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
+          },
+        },
+      },
+      youtube_configuration_dto: {
+        type: 'object',
+        properties: {
+          caption: {
+            type: 'object',
+            description: 'Overrides the `caption` from the post',
+            additionalProperties: true,
+          },
+          media: {
+            type: 'array',
+            description: 'Overrides the `media` from the post',
+            items: {
+              type: 'string',
+            },
           },
           title: {
             type: 'string',

@@ -19,9 +19,18 @@ export {
 } from './social-post-results';
 export {
   SocialPosts,
+  type BlueskyConfigurationDto,
   type CreateSocialPost,
+  type FacebookConfigurationDto,
+  type InstagramConfigurationDto,
+  type LinkedinConfigurationDto,
+  type PinterestConfigurationDto,
+  type PlatformConfigurationsDto,
   type SocialPost,
+  type ThreadsConfigurationDto,
   type TiktokConfiguration,
+  type TwitterConfigurationDto,
+  type YoutubeConfigurationDto,
   type SocialPostListResponse,
   type SocialPostDeleteResponse,
   type SocialPostCreateParams,

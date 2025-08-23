@@ -12,9 +12,18 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/social-posts.ts">BlueskyConfigurationDto</a></code>
 - <code><a href="./src/resources/social-posts.ts">CreateSocialPost</a></code>
+- <code><a href="./src/resources/social-posts.ts">FacebookConfigurationDto</a></code>
+- <code><a href="./src/resources/social-posts.ts">InstagramConfigurationDto</a></code>
+- <code><a href="./src/resources/social-posts.ts">LinkedinConfigurationDto</a></code>
+- <code><a href="./src/resources/social-posts.ts">PinterestConfigurationDto</a></code>
+- <code><a href="./src/resources/social-posts.ts">PlatformConfigurationsDto</a></code>
 - <code><a href="./src/resources/social-posts.ts">SocialPost</a></code>
+- <code><a href="./src/resources/social-posts.ts">ThreadsConfigurationDto</a></code>
 - <code><a href="./src/resources/social-posts.ts">TiktokConfiguration</a></code>
+- <code><a href="./src/resources/social-posts.ts">TwitterConfigurationDto</a></code>
+- <code><a href="./src/resources/social-posts.ts">YoutubeConfigurationDto</a></code>
 - <code><a href="./src/resources/social-posts.ts">SocialPostListResponse</a></code>
 - <code><a href="./src/resources/social-posts.ts">SocialPostDeleteResponse</a></code>
 

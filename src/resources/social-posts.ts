@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as SocialPostsAPI from './social-posts';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -46,6 +45,18 @@ export class SocialPosts extends APIResource {
   }
 }
 
+export interface BlueskyConfigurationDto {
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
+
+  /**
+   * Overrides the `media` from the post
+   */
+  media?: Array<string> | null;
+}
+
 export interface CreateSocialPost {
   /**
    * Caption text for the post
@@ -80,7 +91,7 @@ export interface CreateSocialPost {
   /**
    * Platform-specific configurations for the post
    */
-  platform_configurations?: CreateSocialPost.PlatformConfigurations | null;
+  platform_configurations?: PlatformConfigurationsDto | null;
 
   /**
    * Scheduled date and time for the post, setting to null or undefined will post
@@ -196,218 +207,131 @@ export namespace CreateSocialPost {
      */
     thumbnail_url?: unknown | null;
   }
+}
+
+export interface FacebookConfigurationDto {
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
 
   /**
-   * Platform-specific configurations for the post
+   * Overrides the `media` from the post
    */
-  export interface PlatformConfigurations {
-    /**
-     * Bluesky configuration
-     */
-    bluesky?: PlatformConfigurations.Bluesky | null;
+  media?: Array<string> | null;
 
-    /**
-     * Facebook configuration
-     */
-    facebook?: PlatformConfigurations.Facebook | null;
+  /**
+   * Facebook post placement
+   */
+  placement?: 'reels' | 'stories' | 'timeline' | null;
+}
 
-    /**
-     * Instagram configuration
-     */
-    instagram?: PlatformConfigurations.Instagram | null;
+export interface InstagramConfigurationDto {
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
 
-    /**
-     * LinkedIn configuration
-     */
-    linkedin?: PlatformConfigurations.Linkedin | null;
+  /**
+   * Instagram usernames to be tagged as a collaborator
+   */
+  collaborators?: Array<string> | null;
 
-    /**
-     * Pinterest configuration
-     */
-    pinterest?: PlatformConfigurations.Pinterest | null;
+  /**
+   * Overrides the `media` from the post
+   */
+  media?: Array<string> | null;
 
-    /**
-     * Threads configuration
-     */
-    threads?: PlatformConfigurations.Threads | null;
+  /**
+   * Instagram post placement
+   */
+  placement?: 'reels' | 'stories' | 'timeline' | null;
+}
 
-    /**
-     * TikTok configuration
-     */
-    tiktok?: SocialPostsAPI.TiktokConfiguration | null;
+export interface LinkedinConfigurationDto {
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
 
-    /**
-     * TikTok configuration
-     */
-    tiktok_business?: SocialPostsAPI.TiktokConfiguration | null;
+  /**
+   * Overrides the `media` from the post
+   */
+  media?: Array<string> | null;
+}
 
-    /**
-     * Twitter configuration
-     */
-    x?: PlatformConfigurations.X | null;
+export interface PinterestConfigurationDto {
+  /**
+   * Pinterest board IDs
+   */
+  board_ids?: Array<string> | null;
 
-    /**
-     * YouTube configuration
-     */
-    youtube?: PlatformConfigurations.Youtube | null;
-  }
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
 
-  export namespace PlatformConfigurations {
-    /**
-     * Bluesky configuration
-     */
-    export interface Bluesky {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
+  /**
+   * Pinterest post link
+   */
+  link?: string | null;
 
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
+  /**
+   * Overrides the `media` from the post
+   */
+  media?: Array<string> | null;
+}
 
-    /**
-     * Facebook configuration
-     */
-    export interface Facebook {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
+export interface PlatformConfigurationsDto {
+  /**
+   * Bluesky configuration
+   */
+  bluesky?: BlueskyConfigurationDto | null;
 
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
+  /**
+   * Facebook configuration
+   */
+  facebook?: FacebookConfigurationDto | null;
 
-      /**
-       * Facebook post placement
-       */
-      placement?: 'reels' | 'stories' | 'timeline' | null;
-    }
+  /**
+   * Instagram configuration
+   */
+  instagram?: InstagramConfigurationDto | null;
 
-    /**
-     * Instagram configuration
-     */
-    export interface Instagram {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
+  /**
+   * LinkedIn configuration
+   */
+  linkedin?: LinkedinConfigurationDto | null;
 
-      /**
-       * Instagram usernames to be tagged as a collaborator
-       */
-      collaborators?: Array<string> | null;
+  /**
+   * Pinterest configuration
+   */
+  pinterest?: PinterestConfigurationDto | null;
 
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
+  /**
+   * Threads configuration
+   */
+  threads?: ThreadsConfigurationDto | null;
 
-      /**
-       * Instagram post placement
-       */
-      placement?: 'reels' | 'stories' | 'timeline' | null;
-    }
+  /**
+   * TikTok configuration
+   */
+  tiktok?: TiktokConfiguration | null;
 
-    /**
-     * LinkedIn configuration
-     */
-    export interface Linkedin {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
+  /**
+   * TikTok configuration
+   */
+  tiktok_business?: TiktokConfiguration | null;
 
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
+  /**
+   * Twitter configuration
+   */
+  x?: TwitterConfigurationDto | null;
 
-    /**
-     * Pinterest configuration
-     */
-    export interface Pinterest {
-      /**
-       * Pinterest board IDs
-       */
-      board_ids?: Array<string> | null;
-
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Pinterest post link
-       */
-      link?: string | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * Threads configuration
-     */
-    export interface Threads {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Threads post placement
-       */
-      placement?: 'reels' | 'timeline' | null;
-    }
-
-    /**
-     * Twitter configuration
-     */
-    export interface X {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * YouTube configuration
-     */
-    export interface Youtube {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Overrides the `title` from the post
-       */
-      title?: string | null;
-    }
-  }
+  /**
+   * YouTube configuration
+   */
+  youtube?: YoutubeConfigurationDto | null;
 }
 
 export interface SocialPost {
@@ -467,6 +391,23 @@ export interface SocialPost {
   updated_at: string;
 }
 
+export interface ThreadsConfigurationDto {
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
+
+  /**
+   * Overrides the `media` from the post
+   */
+  media?: Array<string> | null;
+
+  /**
+   * Threads post placement
+   */
+  placement?: 'reels' | 'timeline' | null;
+}
+
 export interface TiktokConfiguration {
   /**
    * Allow comments on TikTok
@@ -518,6 +459,35 @@ export interface TiktokConfiguration {
    * Sets the privacy status for TikTok (private, public)
    */
   privacy_status?: string | null;
+
+  /**
+   * Overrides the `title` from the post
+   */
+  title?: string | null;
+}
+
+export interface TwitterConfigurationDto {
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
+
+  /**
+   * Overrides the `media` from the post
+   */
+  media?: Array<string> | null;
+}
+
+export interface YoutubeConfigurationDto {
+  /**
+   * Overrides the `caption` from the post
+   */
+  caption?: unknown | null;
+
+  /**
+   * Overrides the `media` from the post
+   */
+  media?: Array<string> | null;
 
   /**
    * Overrides the `title` from the post
@@ -596,7 +566,7 @@ export interface SocialPostCreateParams {
   /**
    * Platform-specific configurations for the post
    */
-  platform_configurations?: SocialPostCreateParams.PlatformConfigurations | null;
+  platform_configurations?: PlatformConfigurationsDto | null;
 
   /**
    * Scheduled date and time for the post, setting to null or undefined will post
@@ -712,218 +682,6 @@ export namespace SocialPostCreateParams {
      */
     thumbnail_url?: unknown | null;
   }
-
-  /**
-   * Platform-specific configurations for the post
-   */
-  export interface PlatformConfigurations {
-    /**
-     * Bluesky configuration
-     */
-    bluesky?: PlatformConfigurations.Bluesky | null;
-
-    /**
-     * Facebook configuration
-     */
-    facebook?: PlatformConfigurations.Facebook | null;
-
-    /**
-     * Instagram configuration
-     */
-    instagram?: PlatformConfigurations.Instagram | null;
-
-    /**
-     * LinkedIn configuration
-     */
-    linkedin?: PlatformConfigurations.Linkedin | null;
-
-    /**
-     * Pinterest configuration
-     */
-    pinterest?: PlatformConfigurations.Pinterest | null;
-
-    /**
-     * Threads configuration
-     */
-    threads?: PlatformConfigurations.Threads | null;
-
-    /**
-     * TikTok configuration
-     */
-    tiktok?: SocialPostsAPI.TiktokConfiguration | null;
-
-    /**
-     * TikTok configuration
-     */
-    tiktok_business?: SocialPostsAPI.TiktokConfiguration | null;
-
-    /**
-     * Twitter configuration
-     */
-    x?: PlatformConfigurations.X | null;
-
-    /**
-     * YouTube configuration
-     */
-    youtube?: PlatformConfigurations.Youtube | null;
-  }
-
-  export namespace PlatformConfigurations {
-    /**
-     * Bluesky configuration
-     */
-    export interface Bluesky {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * Facebook configuration
-     */
-    export interface Facebook {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Facebook post placement
-       */
-      placement?: 'reels' | 'stories' | 'timeline' | null;
-    }
-
-    /**
-     * Instagram configuration
-     */
-    export interface Instagram {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Instagram usernames to be tagged as a collaborator
-       */
-      collaborators?: Array<string> | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Instagram post placement
-       */
-      placement?: 'reels' | 'stories' | 'timeline' | null;
-    }
-
-    /**
-     * LinkedIn configuration
-     */
-    export interface Linkedin {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * Pinterest configuration
-     */
-    export interface Pinterest {
-      /**
-       * Pinterest board IDs
-       */
-      board_ids?: Array<string> | null;
-
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Pinterest post link
-       */
-      link?: string | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * Threads configuration
-     */
-    export interface Threads {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Threads post placement
-       */
-      placement?: 'reels' | 'timeline' | null;
-    }
-
-    /**
-     * Twitter configuration
-     */
-    export interface X {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * YouTube configuration
-     */
-    export interface Youtube {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Overrides the `title` from the post
-       */
-      title?: string | null;
-    }
-  }
 }
 
 export interface SocialPostUpdateParams {
@@ -960,7 +718,7 @@ export interface SocialPostUpdateParams {
   /**
    * Platform-specific configurations for the post
    */
-  platform_configurations?: SocialPostUpdateParams.PlatformConfigurations | null;
+  platform_configurations?: PlatformConfigurationsDto | null;
 
   /**
    * Scheduled date and time for the post, setting to null or undefined will post
@@ -1076,218 +834,6 @@ export namespace SocialPostUpdateParams {
      */
     thumbnail_url?: unknown | null;
   }
-
-  /**
-   * Platform-specific configurations for the post
-   */
-  export interface PlatformConfigurations {
-    /**
-     * Bluesky configuration
-     */
-    bluesky?: PlatformConfigurations.Bluesky | null;
-
-    /**
-     * Facebook configuration
-     */
-    facebook?: PlatformConfigurations.Facebook | null;
-
-    /**
-     * Instagram configuration
-     */
-    instagram?: PlatformConfigurations.Instagram | null;
-
-    /**
-     * LinkedIn configuration
-     */
-    linkedin?: PlatformConfigurations.Linkedin | null;
-
-    /**
-     * Pinterest configuration
-     */
-    pinterest?: PlatformConfigurations.Pinterest | null;
-
-    /**
-     * Threads configuration
-     */
-    threads?: PlatformConfigurations.Threads | null;
-
-    /**
-     * TikTok configuration
-     */
-    tiktok?: SocialPostsAPI.TiktokConfiguration | null;
-
-    /**
-     * TikTok configuration
-     */
-    tiktok_business?: SocialPostsAPI.TiktokConfiguration | null;
-
-    /**
-     * Twitter configuration
-     */
-    x?: PlatformConfigurations.X | null;
-
-    /**
-     * YouTube configuration
-     */
-    youtube?: PlatformConfigurations.Youtube | null;
-  }
-
-  export namespace PlatformConfigurations {
-    /**
-     * Bluesky configuration
-     */
-    export interface Bluesky {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * Facebook configuration
-     */
-    export interface Facebook {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Facebook post placement
-       */
-      placement?: 'reels' | 'stories' | 'timeline' | null;
-    }
-
-    /**
-     * Instagram configuration
-     */
-    export interface Instagram {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Instagram usernames to be tagged as a collaborator
-       */
-      collaborators?: Array<string> | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Instagram post placement
-       */
-      placement?: 'reels' | 'stories' | 'timeline' | null;
-    }
-
-    /**
-     * LinkedIn configuration
-     */
-    export interface Linkedin {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * Pinterest configuration
-     */
-    export interface Pinterest {
-      /**
-       * Pinterest board IDs
-       */
-      board_ids?: Array<string> | null;
-
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Pinterest post link
-       */
-      link?: string | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * Threads configuration
-     */
-    export interface Threads {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Threads post placement
-       */
-      placement?: 'reels' | 'timeline' | null;
-    }
-
-    /**
-     * Twitter configuration
-     */
-    export interface X {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-    }
-
-    /**
-     * YouTube configuration
-     */
-    export interface Youtube {
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<string> | null;
-
-      /**
-       * Overrides the `title` from the post
-       */
-      title?: string | null;
-    }
-  }
 }
 
 export interface SocialPostListParams {
@@ -1321,9 +867,18 @@ export interface SocialPostListParams {
 
 export declare namespace SocialPosts {
   export {
+    type BlueskyConfigurationDto as BlueskyConfigurationDto,
     type CreateSocialPost as CreateSocialPost,
+    type FacebookConfigurationDto as FacebookConfigurationDto,
+    type InstagramConfigurationDto as InstagramConfigurationDto,
+    type LinkedinConfigurationDto as LinkedinConfigurationDto,
+    type PinterestConfigurationDto as PinterestConfigurationDto,
+    type PlatformConfigurationsDto as PlatformConfigurationsDto,
     type SocialPost as SocialPost,
+    type ThreadsConfigurationDto as ThreadsConfigurationDto,
     type TiktokConfiguration as TiktokConfiguration,
+    type TwitterConfigurationDto as TwitterConfigurationDto,
+    type YoutubeConfigurationDto as YoutubeConfigurationDto,
     type SocialPostListResponse as SocialPostListResponse,
     type SocialPostDeleteResponse as SocialPostDeleteResponse,
     type SocialPostCreateParams as SocialPostCreateParams,
