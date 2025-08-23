@@ -58,6 +58,7 @@ Types:
 
 Methods:
 
+- <code title="post /v1/social-accounts">client.socialAccounts.<a href="./src/resources/social-accounts.ts">create</a>({ ...params }) -> SocialAccount</code>
 - <code title="get /v1/social-accounts/{id}">client.socialAccounts.<a href="./src/resources/social-accounts.ts">retrieve</a>(id) -> SocialAccount</code>
 - <code title="patch /v1/social-accounts/{id}">client.socialAccounts.<a href="./src/resources/social-accounts.ts">update</a>(id, { ...params }) -> SocialAccount</code>
 - <code title="get /v1/social-accounts">client.socialAccounts.<a href="./src/resources/social-accounts.ts">list</a>({ ...params }) -> SocialAccountListResponse</code>

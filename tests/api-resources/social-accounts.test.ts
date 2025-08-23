@@ -9,6 +9,38 @@ const client = new PostForMe({
 
 describe('resource socialAccounts', () => {
   // Prism tests are disabled
+  test.skip('create: only required params', async () => {
+    const responsePromise = client.socialAccounts.create({
+      access_token: 'access_token',
+      access_token_expires_at: '2019-12-27T18:11:19.117Z',
+      platform: 'facebook',
+      user_id: 'user_id',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism tests are disabled
+  test.skip('create: required and optional params', async () => {
+    const response = await client.socialAccounts.create({
+      access_token: 'access_token',
+      access_token_expires_at: '2019-12-27T18:11:19.117Z',
+      platform: 'facebook',
+      user_id: 'user_id',
+      external_id: 'external_id',
+      metadata: {},
+      refresh_token: 'refresh_token',
+      refresh_token_expires_at: '2019-12-27T18:11:19.117Z',
+      username: 'username',
+    });
+  });
+
+  // Prism tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.socialAccounts.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
