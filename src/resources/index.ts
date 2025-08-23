@@ -7,6 +7,7 @@ export {
   type SocialAccountListResponse,
   type SocialAccountCreateAuthURLResponse,
   type SocialAccountDisconnectResponse,
+  type SocialAccountCreateParams,
   type SocialAccountUpdateParams,
   type SocialAccountListParams,
   type SocialAccountCreateAuthURLParams,
