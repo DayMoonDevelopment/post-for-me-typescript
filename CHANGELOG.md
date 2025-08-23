@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.1 (2025-08-23)
+
+Full Changelog: [v1.3.0...v1.3.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.3.0...v1.3.1)
+
+### Chores
+
+* sync repo ([58da825](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/58da825abe6a952c79f6425bd9fc1d8be3531d2b))
+
 ## 1.3.0 (2025-08-22)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.2.0...v1.3.0)
