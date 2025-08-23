@@ -7,6 +7,14 @@ import { path } from '../internal/utils/path';
 
 export class SocialAccounts extends APIResource {
   /**
+   * If a social account with the same platform and user_id already exists, it will
+   * be updated. If not, a new social account will be created.
+   */
+  create(body: SocialAccountCreateParams, options?: RequestOptions): APIPromise<SocialAccount> {
+    return this._client.post('/v1/social-accounts', { body, ...options });
+  }
+
+  /**
    * Get social account by ID
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<SocialAccount> {
@@ -209,6 +217,63 @@ export interface SocialAccountDisconnectResponse {
   username: string | null;
 }
 
+export interface SocialAccountCreateParams {
+  /**
+   * The access token of the social account
+   */
+  access_token: string;
+
+  /**
+   * The access token expiration date of the social account
+   */
+  access_token_expires_at: string;
+
+  /**
+   * The platform of the social account
+   */
+  platform:
+    | 'facebook'
+    | 'instagram'
+    | 'x'
+    | 'tiktok'
+    | 'youtube'
+    | 'pinterest'
+    | 'linkedin'
+    | 'bluesky'
+    | 'threads'
+    | 'tiktok_business';
+
+  /**
+   * The user id of the social account
+   */
+  user_id: string;
+
+  /**
+   * The external id of the social account
+   */
+  external_id?: string | null;
+
+  /**
+   * The metadata of the social account
+   */
+  metadata?: unknown;
+
+  /**
+   * The refresh token of the social account
+   */
+  refresh_token?: string | null;
+
+  /**
+   * The refresh token expiration date of the social account
+   */
+  refresh_token_expires_at?: string | null;
+
+  /**
+   * The platform's username of the social account
+   */
+  username?: string | null;
+}
+
 export interface SocialAccountUpdateParams {
   /**
    * The platform's external id of the social account
@@ -325,6 +390,7 @@ export declare namespace SocialAccounts {
     type SocialAccountListResponse as SocialAccountListResponse,
     type SocialAccountCreateAuthURLResponse as SocialAccountCreateAuthURLResponse,
     type SocialAccountDisconnectResponse as SocialAccountDisconnectResponse,
+    type SocialAccountCreateParams as SocialAccountCreateParams,
     type SocialAccountUpdateParams as SocialAccountUpdateParams,
     type SocialAccountListParams as SocialAccountListParams,
     type SocialAccountCreateAuthURLParams as SocialAccountCreateAuthURLParams,

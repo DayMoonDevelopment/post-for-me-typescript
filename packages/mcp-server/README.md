@@ -279,6 +279,7 @@ The following tools are available in this MCP server.
 
 ### Resource `social_accounts`:
 
+- `create_social_accounts` (`write`): If a social account with the same platform and user_id already exists, it will be updated. If not, a new social account will be created.
 - `retrieve_social_accounts` (`read`): Get social account by ID
 - `update_social_accounts` (`write`): Update social account
 - `list_social_accounts` (`read`): Get a paginated result for social accounts based on the applied filters
