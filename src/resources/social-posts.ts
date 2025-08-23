@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as SocialAccountsAPI from './social-accounts';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -343,7 +344,7 @@ export interface SocialPost {
   /**
    * Account-specific configurations for the post
    */
-  account_configurations: Array<unknown> | null;
+  account_configurations: Array<SocialPost.AccountConfiguration> | null;
 
   /**
    * Caption text for the post
@@ -363,12 +364,12 @@ export interface SocialPost {
   /**
    * Array of media URLs associated with the post
    */
-  media: unknown | null;
+  media: Array<SocialPost.Media> | null;
 
   /**
    * Platform-specific configurations for the post
    */
-  platform_configurations: unknown | null;
+  platform_configurations: PlatformConfigurationsDto | null;
 
   /**
    * Scheduled date and time for the post
@@ -378,7 +379,7 @@ export interface SocialPost {
   /**
    * Array of social account IDs for posting
    */
-  social_accounts: Array<string>;
+  social_accounts: Array<SocialAccountsAPI.SocialAccount>;
 
   /**
    * Current status of the post: draft, processed, scheduled, or processing
@@ -389,6 +390,115 @@ export interface SocialPost {
    * Timestamp when the post was last updated
    */
   updated_at: string;
+}
+
+export namespace SocialPost {
+  export interface AccountConfiguration {
+    /**
+     * Configuration for the social account
+     */
+    configuration: AccountConfiguration.Configuration;
+
+    /**
+     * ID of the social account, you want to apply the configuration to
+     */
+    social_account_id: string;
+  }
+
+  export namespace AccountConfiguration {
+    /**
+     * Configuration for the social account
+     */
+    export interface Configuration {
+      /**
+       * Allow comments on TikTok
+       */
+      allow_comment?: boolean | null;
+
+      /**
+       * Allow duets on TikTok
+       */
+      allow_duet?: boolean | null;
+
+      /**
+       * Allow stitch on TikTok
+       */
+      allow_stitch?: boolean | null;
+
+      /**
+       * Pinterest board IDs
+       */
+      board_ids?: Array<string> | null;
+
+      /**
+       * Overrides the `caption` from the post
+       */
+      caption?: unknown | null;
+
+      /**
+       * Disclose branded content on TikTok
+       */
+      disclose_branded_content?: boolean | null;
+
+      /**
+       * Disclose your brand on TikTok
+       */
+      disclose_your_brand?: boolean | null;
+
+      /**
+       * Flag content as AI generated on TikTok
+       */
+      is_ai_generated?: boolean | null;
+
+      /**
+       * Will create a draft upload to TikTok, posting will need to be completed from
+       * within the app
+       */
+      is_draft?: boolean | null;
+
+      /**
+       * Pinterest post link
+       */
+      link?: string | null;
+
+      /**
+       * Overrides the `media` from the post
+       */
+      media?: Array<string> | null;
+
+      /**
+       * Post placement for Facebook/Instagram/Threads
+       */
+      placement?: 'reels' | 'timeline' | 'stories' | null;
+
+      /**
+       * Sets the privacy status for TikTok (private, public)
+       */
+      privacy_status?: string | null;
+
+      /**
+       * Overrides the `title` from the post
+       */
+      title?: string | null;
+    }
+  }
+
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface ThreadsConfigurationDto {
