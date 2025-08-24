@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.2 (2025-08-24)
+
+Full Changelog: [v1.5.1...v1.5.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.1...v1.5.2)
+
+### Chores
+
+* **internal:** codegen related update ([afd9514](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/afd9514980d89122b5d57af9a680d2882cabafd6))
+
 ## 1.5.1 (2025-08-23)
 
 Full Changelog: [v1.5.0...v1.5.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.0...v1.5.1)
