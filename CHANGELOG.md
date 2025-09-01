@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.3 (2025-09-01)
+
+Full Changelog: [v1.5.2...v1.5.3](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.2...v1.5.3)
+
+### Chores
+
+* **internal:** update global Error reference ([52d67e2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/52d67e249726842eeadf5b6b0233db5706ce2922))
+
 ## 1.5.2 (2025-08-24)
 
 Full Changelog: [v1.5.1...v1.5.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.1...v1.5.2)
