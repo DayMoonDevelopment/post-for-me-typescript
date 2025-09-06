@@ -33,7 +33,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'post_for_me_api',
-      version: '1.5.3',
+      version: '1.6.0',
     },
     { capabilities: { tools: {}, logging: {} } },
   );

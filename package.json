@@ -1,6 +1,6 @@
 {
   "name": "post-for-me",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "The official TypeScript library for the Post For Me API",
   "author": "Post For Me <postforme@daymoon.dev>",
   "types": "dist/index.d.ts",
