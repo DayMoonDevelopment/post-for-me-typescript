@@ -206,7 +206,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
         },
@@ -223,7 +240,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
           placement: {
@@ -252,7 +286,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
           placement: {
@@ -274,7 +325,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
         },
@@ -302,7 +370,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
         },
@@ -319,7 +404,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
           placement: {
@@ -370,7 +472,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
           privacy_status: {
@@ -395,7 +514,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
         },
@@ -412,7 +548,24 @@ export const tool: Tool = {
             type: 'array',
             description: 'Overrides the `media` from the post',
             items: {
-              type: 'string',
+              type: 'object',
+              properties: {
+                url: {
+                  type: 'string',
+                  description: 'Public URL of the media',
+                },
+                thumbnail_timestamp_ms: {
+                  type: 'object',
+                  description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
+                  additionalProperties: true,
+                },
+                thumbnail_url: {
+                  type: 'object',
+                  description: 'Public URL of the thumbnail for the media',
+                  additionalProperties: true,
+                },
+              },
+              required: ['url'],
             },
           },
           title: {
