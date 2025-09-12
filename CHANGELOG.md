@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.6.0 (2025-09-12)
+
+Full Changelog: [v1.5.3...v1.6.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.3...v1.6.0)
+
+### Features
+
+* **api:** api update ([637d595](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/637d5954954874ed33d7e303b7037e0cedcf2327))
+* **mcp:** allow setting logging level ([9671d6c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9671d6cbca12c753c0734d50e0e5ddef29992d9d))
+* **mcp:** expose client options in `streamableHTTPApp` ([b0dec08](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b0dec08422738bb76d8b66771f9c9fd31ca0f12a))
+
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([b075176](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b075176e1df34d6dee746155ae0446ca94c3e397))
+* **mcp:** fix query options parsing ([bb43ab9](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/bb43ab96c295e520eaacac02ed997002ada6b292))
+* **mcp:** fix uploading dxt release assets ([fb9111e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/fb9111e5d9d38129d6c2b83087437dd9cf7f1643))
+
+
+### Chores
+
+* ci build action ([d8461e5](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d8461e5347a2cbc30bd1c573718dc8d585083b89))
+* **internal:** codegen related update ([38f16e9](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/38f16e92432f615b93ff1751108775a153a86cd4))
+* **internal:** codegen related update ([3d33698](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3d336985838903aafa801009be36fe1a4bf93483))
+* **mcp:** upload dxt as release asset ([a8a66db](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a8a66db7c1d67ef5dc48cbaf0c0de60c07cb8b80))
+
 ## 1.5.3 (2025-09-01)
 
 Full Changelog: [v1.5.2...v1.5.3](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.2...v1.5.3)
