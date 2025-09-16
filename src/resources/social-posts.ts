@@ -55,7 +55,26 @@ export interface BlueskyConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<BlueskyConfigurationDto.Media> | null;
+}
+
+export namespace BlueskyConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface CreateSocialPost {
@@ -219,12 +238,31 @@ export interface FacebookConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<FacebookConfigurationDto.Media> | null;
 
   /**
    * Facebook post placement
    */
   placement?: 'reels' | 'stories' | 'timeline' | null;
+}
+
+export namespace FacebookConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface InstagramConfigurationDto {
@@ -241,12 +279,31 @@ export interface InstagramConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<InstagramConfigurationDto.Media> | null;
 
   /**
    * Instagram post placement
    */
   placement?: 'reels' | 'stories' | 'timeline' | null;
+}
+
+export namespace InstagramConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface LinkedinConfigurationDto {
@@ -258,7 +315,26 @@ export interface LinkedinConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<LinkedinConfigurationDto.Media> | null;
+}
+
+export namespace LinkedinConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface PinterestConfigurationDto {
@@ -280,7 +356,26 @@ export interface PinterestConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<PinterestConfigurationDto.Media> | null;
+}
+
+export namespace PinterestConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface PlatformConfigurationsDto {
@@ -510,12 +605,31 @@ export interface ThreadsConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<ThreadsConfigurationDto.Media> | null;
 
   /**
    * Threads post placement
    */
   placement?: 'reels' | 'timeline' | null;
+}
+
+export namespace ThreadsConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface TiktokConfiguration {
@@ -563,7 +677,7 @@ export interface TiktokConfiguration {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<TiktokConfiguration.Media> | null;
 
   /**
    * Sets the privacy status for TikTok (private, public)
@@ -576,6 +690,25 @@ export interface TiktokConfiguration {
   title?: string | null;
 }
 
+export namespace TiktokConfiguration {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
+}
+
 export interface TwitterConfigurationDto {
   /**
    * Overrides the `caption` from the post
@@ -585,7 +718,26 @@ export interface TwitterConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<TwitterConfigurationDto.Media> | null;
+}
+
+export namespace TwitterConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface YoutubeConfigurationDto {
@@ -597,12 +749,31 @@ export interface YoutubeConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<string> | null;
+  media?: Array<YoutubeConfigurationDto.Media> | null;
 
   /**
    * Overrides the `title` from the post
    */
   title?: string | null;
+}
+
+export namespace YoutubeConfigurationDto {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
 }
 
 export interface SocialPostListResponse {
