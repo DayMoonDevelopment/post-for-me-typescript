@@ -53,6 +53,10 @@ export const tool: Tool = {
                   type: 'boolean',
                   description: 'Allow stitch on TikTok',
                 },
+                auto_add_music: {
+                  type: 'boolean',
+                  description: 'Will automatically add music to photo posts on TikTok',
+                },
                 board_ids: {
                   type: 'array',
                   description: 'Pinterest board IDs',
@@ -445,6 +449,10 @@ export const tool: Tool = {
           allow_stitch: {
             type: 'boolean',
             description: 'Allow stitch on TikTok',
+          },
+          auto_add_music: {
+            type: 'boolean',
+            description: 'Will automatically add music to photo posts',
           },
           caption: {
             type: 'object',
