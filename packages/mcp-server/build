@@ -32,7 +32,7 @@ chmod +x dist/index.js
 DIST_PATH=./dist PKG_IMPORT_PATH=post-for-me-mcp/ node ../../scripts/utils/postprocess-files.cjs
 
 # mcp bundle
-rm -rf dist-bundle post_for_me_api.dxt; mkdir dist-bundle
+rm -rf dist-bundle post_for_me_api.mcpb; mkdir dist-bundle
 
 # copy package.json
 PKG_JSON_PATH=../../packages/mcp-server/package.json node ../../scripts/utils/make-dist-package-json.cjs > dist-bundle/package.json
@@ -48,9 +48,9 @@ cd ..
 # pack bundle
 cp manifest.json dist-bundle
 
-npx dxt pack dist-bundle post_for_me_api.dxt
+npx mcpb pack dist-bundle post_for_me_api.mcpb
 
-npx dxt sign post_for_me_api.dxt --self-signed
+npx mcpb sign post_for_me_api.mcpb --self-signed
 
 # clean up
 rm -rf dist-bundle
