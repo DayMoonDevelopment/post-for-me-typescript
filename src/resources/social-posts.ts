@@ -154,6 +154,11 @@ export namespace CreateSocialPost {
       allow_stitch?: boolean | null;
 
       /**
+       * Will automatically add music to photo posts on TikTok
+       */
+      auto_add_music?: boolean | null;
+
+      /**
        * Pinterest board IDs
        */
       board_ids?: Array<string> | null;
@@ -521,6 +526,11 @@ export namespace SocialPost {
       allow_stitch?: boolean | null;
 
       /**
+       * Will automatically add music to photo posts on TikTok
+       */
+      auto_add_music?: boolean | null;
+
+      /**
        * Pinterest board IDs
        */
       board_ids?: Array<string> | null;
@@ -647,6 +657,11 @@ export interface TiktokConfiguration {
    * Allow stitch on TikTok
    */
   allow_stitch?: boolean | null;
+
+  /**
+   * Will automatically add music to photo posts
+   */
+  auto_add_music?: boolean | null;
 
   /**
    * Overrides the `caption` from the post
@@ -890,6 +905,11 @@ export namespace SocialPostCreateParams {
       allow_stitch?: boolean | null;
 
       /**
+       * Will automatically add music to photo posts on TikTok
+       */
+      auto_add_music?: boolean | null;
+
+      /**
        * Pinterest board IDs
        */
       board_ids?: Array<string> | null;
@@ -1040,6 +1060,11 @@ export namespace SocialPostUpdateParams {
        * Allow stitch on TikTok
        */
       allow_stitch?: boolean | null;
+
+      /**
+       * Will automatically add music to photo posts on TikTok
+       */
+      auto_add_music?: boolean | null;
 
       /**
        * Pinterest board IDs
