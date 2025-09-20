@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.7.0 (2025-09-20)
+
+Full Changelog: [v1.6.0...v1.7.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.6.0...v1.7.0)
+
+### Features
+
+* **api:** api update ([567186b](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/567186b3340ae2b29caad0ac32728ed3b12635a7))
+* **mcp:** add docs search tool ([5d7e625](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5d7e6254e4cf1a1b8d4ff2fce317a0f33f5756c7))
+
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([b108f37](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b108f37b8b2571adf362e72428a4ab47f665a25d))
+
+
+### Chores
+
+* **codegen:** internal codegen update ([a2eae84](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a2eae846e22aaf9fe24d9e2645ab2e7300b414f1))
+* do not install brew dependencies in ./scripts/bootstrap by default ([c6e597b](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/c6e597b69862b04d7fff08b0e717d18523c4a761))
+* **internal:** gitignore .mcpb files ([d014387](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d014387e3459d966ad6c77d70e0a37f7478ca933))
+* **mcp:** rename dxt to mcpb ([5ed6664](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5ed6664513a311a73320050f6e8de00794366110))
+
 ## 1.6.0 (2025-09-12)
 
 Full Changelog: [v1.5.3...v1.6.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.3...v1.6.0)
