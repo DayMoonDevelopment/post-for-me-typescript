@@ -113,6 +113,7 @@ describe('resource socialAccounts', () => {
       external_id: 'external_id',
       platform_data: {
         bluesky: { app_password: 'app_password', handle: 'handle' },
+        instagram: { connection_type: 'instagram' },
         linkedin: { connection_type: 'personal' },
       },
     });
