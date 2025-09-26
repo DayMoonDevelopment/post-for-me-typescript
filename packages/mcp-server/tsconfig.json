@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "post-for-me-mcp/*": ["src/*"],
-      "post-for-me-mcp": ["src/index.ts"]
+      "post-for-me-mcp/*": ["./src/*"],
+      "post-for-me-mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 
