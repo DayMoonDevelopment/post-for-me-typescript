@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "post-for-me/*": ["dist/src/*"],
-      "post-for-me": ["dist/src/index.ts"]
+      "post-for-me/*": ["./dist/src/*"],
+      "post-for-me": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

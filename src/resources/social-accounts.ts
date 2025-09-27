@@ -350,6 +350,11 @@ export namespace SocialAccountCreateAuthURLParams {
     bluesky?: PlatformData.Bluesky;
 
     /**
+     * Additional data for connecting instagram accounts
+     */
+    instagram?: PlatformData.Instagram;
+
+    /**
      * Additional data for connecting linkedin accounts
      */
     linkedin?: PlatformData.Linkedin;
@@ -369,6 +374,17 @@ export namespace SocialAccountCreateAuthURLParams {
        * The handle of the account
        */
       handle: string;
+    }
+
+    /**
+     * Additional data for connecting instagram accounts
+     */
+    export interface Instagram {
+      /**
+       * The type of connection; instagram for using login with instagram, facebook for
+       * using login with facebook.
+       */
+      connection_type: 'instagram' | 'facebook';
     }
 
     /**

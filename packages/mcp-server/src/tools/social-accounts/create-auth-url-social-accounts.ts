@@ -49,6 +49,19 @@ export const tool: Tool = {
             },
             required: ['app_password', 'handle'],
           },
+          instagram: {
+            type: 'object',
+            description: 'Additional data for connecting instagram accounts',
+            properties: {
+              connection_type: {
+                type: 'string',
+                description:
+                  'The type of connection; instagram for using login with instagram, facebook for using login with facebook.',
+                enum: ['instagram', 'facebook'],
+              },
+            },
+            required: ['connection_type'],
+          },
           linkedin: {
             type: 'object',
             description: 'Additional data for connecting linkedin accounts',
