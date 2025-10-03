@@ -66,6 +66,11 @@ export namespace BlueskyConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -74,6 +79,38 @@ export namespace BlueskyConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -169,6 +206,17 @@ export namespace CreateSocialPost {
       caption?: unknown | null;
 
       /**
+       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
+       * and Facebook)
+       */
+      collaborators?: Array<Array<unknown>> | null;
+
+      /**
+       * Id of the twitter community to post to
+       */
+      community_id?: string;
+
+      /**
        * Disclose branded content on TikTok
        */
       disclose_branded_content?: boolean | null;
@@ -195,6 +243,12 @@ export namespace CreateSocialPost {
       link?: string | null;
 
       /**
+       * Page id with a location that you want to tag the image or video with (Instagram
+       * and Facebook)
+       */
+      location?: string | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -205,14 +259,56 @@ export namespace CreateSocialPost {
       placement?: 'reels' | 'timeline' | 'stories' | null;
 
       /**
+       * Poll options for the twitter
+       */
+      poll?: Configuration.Poll;
+
+      /**
        * Sets the privacy status for TikTok (private, public)
        */
       privacy_status?: string | null;
 
       /**
+       * Id of the tweet you want to quote
+       */
+      quote_tweet_id?: string;
+
+      /**
+       * Who can reply to the tweet
+       */
+      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+      /**
+       * If false Instagram video posts will only be shown in the Reels tab
+       */
+      share_to_feed?: boolean | null;
+
+      /**
        * Overrides the `title` from the post
        */
       title?: string | null;
+    }
+
+    export namespace Configuration {
+      /**
+       * Poll options for the twitter
+       */
+      export interface Poll {
+        /**
+         * Duration of the poll in minutes
+         */
+        duration_minutes: number;
+
+        /**
+         * The choices of the poll, requiring 2-4 options
+         */
+        options: Array<string>;
+
+        /**
+         * Who can reply to the tweet
+         */
+        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
+      }
     }
   }
 
@@ -221,6 +317,11 @@ export namespace CreateSocialPost {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
 
     /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
@@ -232,6 +333,38 @@ export namespace CreateSocialPost {
      */
     thumbnail_url?: unknown | null;
   }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
+  }
 }
 
 export interface FacebookConfigurationDto {
@@ -239,6 +372,16 @@ export interface FacebookConfigurationDto {
    * Overrides the `caption` from the post
    */
   caption?: unknown | null;
+
+  /**
+   * List of page ids to invite as collaborators for a Video Reel
+   */
+  collaborators?: Array<Array<unknown>> | null;
+
+  /**
+   * Page id with a location that you want to tag the image or video with
+   */
+  location?: string | null;
 
   /**
    * Overrides the `media` from the post
@@ -259,6 +402,11 @@ export namespace FacebookConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -267,6 +415,38 @@ export namespace FacebookConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -282,6 +462,11 @@ export interface InstagramConfigurationDto {
   collaborators?: Array<string> | null;
 
   /**
+   * Page id with a location that you want to tag the image or video with
+   */
+  location?: string | null;
+
+  /**
    * Overrides the `media` from the post
    */
   media?: Array<InstagramConfigurationDto.Media> | null;
@@ -290,6 +475,11 @@ export interface InstagramConfigurationDto {
    * Instagram post placement
    */
   placement?: 'reels' | 'stories' | 'timeline' | null;
+
+  /**
+   * If false video posts will only be shown in the Reels tab
+   */
+  share_to_feed?: boolean | null;
 }
 
 export namespace InstagramConfigurationDto {
@@ -300,6 +490,11 @@ export namespace InstagramConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -308,6 +503,38 @@ export namespace InstagramConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -331,6 +558,11 @@ export namespace LinkedinConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -339,6 +571,38 @@ export namespace LinkedinConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -372,6 +636,11 @@ export namespace PinterestConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -380,6 +649,38 @@ export namespace PinterestConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -541,6 +842,17 @@ export namespace SocialPost {
       caption?: unknown | null;
 
       /**
+       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
+       * and Facebook)
+       */
+      collaborators?: Array<Array<unknown>> | null;
+
+      /**
+       * Id of the twitter community to post to
+       */
+      community_id?: string;
+
+      /**
        * Disclose branded content on TikTok
        */
       disclose_branded_content?: boolean | null;
@@ -567,6 +879,12 @@ export namespace SocialPost {
       link?: string | null;
 
       /**
+       * Page id with a location that you want to tag the image or video with (Instagram
+       * and Facebook)
+       */
+      location?: string | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -577,14 +895,56 @@ export namespace SocialPost {
       placement?: 'reels' | 'timeline' | 'stories' | null;
 
       /**
+       * Poll options for the twitter
+       */
+      poll?: Configuration.Poll;
+
+      /**
        * Sets the privacy status for TikTok (private, public)
        */
       privacy_status?: string | null;
 
       /**
+       * Id of the tweet you want to quote
+       */
+      quote_tweet_id?: string;
+
+      /**
+       * Who can reply to the tweet
+       */
+      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+      /**
+       * If false Instagram video posts will only be shown in the Reels tab
+       */
+      share_to_feed?: boolean | null;
+
+      /**
        * Overrides the `title` from the post
        */
       title?: string | null;
+    }
+
+    export namespace Configuration {
+      /**
+       * Poll options for the twitter
+       */
+      export interface Poll {
+        /**
+         * Duration of the poll in minutes
+         */
+        duration_minutes: number;
+
+        /**
+         * The choices of the poll, requiring 2-4 options
+         */
+        options: Array<string>;
+
+        /**
+         * Who can reply to the tweet
+         */
+        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
+      }
     }
   }
 
@@ -595,6 +955,11 @@ export namespace SocialPost {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -603,6 +968,38 @@ export namespace SocialPost {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -631,6 +1028,11 @@ export namespace ThreadsConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -639,6 +1041,38 @@ export namespace ThreadsConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -713,6 +1147,11 @@ export namespace TiktokConfiguration {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -721,6 +1160,38 @@ export namespace TiktokConfiguration {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -731,9 +1202,29 @@ export interface TwitterConfigurationDto {
   caption?: unknown | null;
 
   /**
+   * Id of the community to post to
+   */
+  community_id?: string;
+
+  /**
    * Overrides the `media` from the post
    */
   media?: Array<TwitterConfigurationDto.Media> | null;
+
+  /**
+   * Poll options for the tweet
+   */
+  poll?: TwitterConfigurationDto.Poll;
+
+  /**
+   * Id of the tweet you want to quote
+   */
+  quote_tweet_id?: string;
+
+  /**
+   * Who can reply to the tweet
+   */
+  reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 }
 
 export namespace TwitterConfigurationDto {
@@ -744,6 +1235,11 @@ export namespace TwitterConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -752,6 +1248,58 @@ export namespace TwitterConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
+  }
+
+  /**
+   * Poll options for the tweet
+   */
+  export interface Poll {
+    /**
+     * Duration of the poll in minutes
+     */
+    duration_minutes: number;
+
+    /**
+     * The choices of the poll, requiring 2-4 options
+     */
+    options: Array<string>;
+
+    /**
+     * Who can reply to the tweet
+     */
+    reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
   }
 }
 
@@ -780,6 +1328,11 @@ export namespace YoutubeConfigurationDto {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -788,6 +1341,38 @@ export namespace YoutubeConfigurationDto {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -920,6 +1505,17 @@ export namespace SocialPostCreateParams {
       caption?: unknown | null;
 
       /**
+       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
+       * and Facebook)
+       */
+      collaborators?: Array<Array<unknown>> | null;
+
+      /**
+       * Id of the twitter community to post to
+       */
+      community_id?: string;
+
+      /**
        * Disclose branded content on TikTok
        */
       disclose_branded_content?: boolean | null;
@@ -946,6 +1542,12 @@ export namespace SocialPostCreateParams {
       link?: string | null;
 
       /**
+       * Page id with a location that you want to tag the image or video with (Instagram
+       * and Facebook)
+       */
+      location?: string | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -956,14 +1558,56 @@ export namespace SocialPostCreateParams {
       placement?: 'reels' | 'timeline' | 'stories' | null;
 
       /**
+       * Poll options for the twitter
+       */
+      poll?: Configuration.Poll;
+
+      /**
        * Sets the privacy status for TikTok (private, public)
        */
       privacy_status?: string | null;
 
       /**
+       * Id of the tweet you want to quote
+       */
+      quote_tweet_id?: string;
+
+      /**
+       * Who can reply to the tweet
+       */
+      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+      /**
+       * If false Instagram video posts will only be shown in the Reels tab
+       */
+      share_to_feed?: boolean | null;
+
+      /**
        * Overrides the `title` from the post
        */
       title?: string | null;
+    }
+
+    export namespace Configuration {
+      /**
+       * Poll options for the twitter
+       */
+      export interface Poll {
+        /**
+         * Duration of the poll in minutes
+         */
+        duration_minutes: number;
+
+        /**
+         * The choices of the poll, requiring 2-4 options
+         */
+        options: Array<string>;
+
+        /**
+         * Who can reply to the tweet
+         */
+        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
+      }
     }
   }
 
@@ -974,6 +1618,11 @@ export namespace SocialPostCreateParams {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -982,6 +1631,38 @@ export namespace SocialPostCreateParams {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
@@ -1077,6 +1758,17 @@ export namespace SocialPostUpdateParams {
       caption?: unknown | null;
 
       /**
+       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
+       * and Facebook)
+       */
+      collaborators?: Array<Array<unknown>> | null;
+
+      /**
+       * Id of the twitter community to post to
+       */
+      community_id?: string;
+
+      /**
        * Disclose branded content on TikTok
        */
       disclose_branded_content?: boolean | null;
@@ -1103,6 +1795,12 @@ export namespace SocialPostUpdateParams {
       link?: string | null;
 
       /**
+       * Page id with a location that you want to tag the image or video with (Instagram
+       * and Facebook)
+       */
+      location?: string | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -1113,14 +1811,56 @@ export namespace SocialPostUpdateParams {
       placement?: 'reels' | 'timeline' | 'stories' | null;
 
       /**
+       * Poll options for the twitter
+       */
+      poll?: Configuration.Poll;
+
+      /**
        * Sets the privacy status for TikTok (private, public)
        */
       privacy_status?: string | null;
 
       /**
+       * Id of the tweet you want to quote
+       */
+      quote_tweet_id?: string;
+
+      /**
+       * Who can reply to the tweet
+       */
+      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+      /**
+       * If false Instagram video posts will only be shown in the Reels tab
+       */
+      share_to_feed?: boolean | null;
+
+      /**
        * Overrides the `title` from the post
        */
       title?: string | null;
+    }
+
+    export namespace Configuration {
+      /**
+       * Poll options for the twitter
+       */
+      export interface Poll {
+        /**
+         * Duration of the poll in minutes
+         */
+        duration_minutes: number;
+
+        /**
+         * The choices of the poll, requiring 2-4 options
+         */
+        options: Array<string>;
+
+        /**
+         * Who can reply to the tweet
+         */
+        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
+      }
     }
   }
 
@@ -1131,6 +1871,11 @@ export namespace SocialPostUpdateParams {
     url: string;
 
     /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
      * Timestamp in milliseconds of frame to use as thumbnail for the media
      */
     thumbnail_timestamp_ms?: unknown | null;
@@ -1139,6 +1884,38 @@ export namespace SocialPostUpdateParams {
      * Public URL of the thumbnail for the media
      */
     thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
   }
 }
 
