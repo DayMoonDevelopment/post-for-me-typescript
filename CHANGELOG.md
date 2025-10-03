@@ -1,5 +1,45 @@
 # Changelog
 
+## 1.7.0 (2025-10-03)
+
+Full Changelog: [v1.6.0...v1.7.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.6.0...v1.7.0)
+
+### Features
+
+* **api:** api update ([70d810c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/70d810cdae8a39c4980537245acffc91c4008c87))
+* **api:** api update ([5bb1334](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5bb1334ff4fa9fd2a4c42c4a8743e8797f454aa0))
+* **api:** api update ([567186b](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/567186b3340ae2b29caad0ac32728ed3b12635a7))
+* **mcp:** add docs search tool ([5d7e625](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5d7e6254e4cf1a1b8d4ff2fce317a0f33f5756c7))
+* **mcp:** add option for including docs tools ([098b996](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/098b9966ca39104ade6fdda8003729022336ae0f))
+* **mcp:** enable experimental docs search tool ([3f70e41](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3f70e41731e60a2e86ad8c60dadbe03d7fcdf430))
+
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([b108f37](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b108f37b8b2571adf362e72428a4ab47f665a25d))
+* **mcp:** fix cli argument parsing logic ([1dcba49](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1dcba49a8f5a3b58d1e8df96e74ddf259d4737d5))
+* **mcp:** resolve a linting issue in server code ([38db0c1](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/38db0c14b4c3321f6e48998523fd761a9b6f8218))
+
+
+### Performance Improvements
+
+* faster formatting ([5195e23](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5195e23de72b9b40b184d97b4cc5369210900bd7))
+
+
+### Chores
+
+* **codegen:** internal codegen update ([a2eae84](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a2eae846e22aaf9fe24d9e2645ab2e7300b414f1))
+* do not install brew dependencies in ./scripts/bootstrap by default ([c6e597b](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/c6e597b69862b04d7fff08b0e717d18523c4a761))
+* **internal:** codegen related update ([714b258](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/714b258bcb09ca37c011d955db03d79aa30cbbcd))
+* **internal:** fix incremental formatting in some cases ([0d0a799](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/0d0a79982ff602ac70f3d75cb381f180f6905125))
+* **internal:** gitignore .mcpb files ([d014387](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d014387e3459d966ad6c77d70e0a37f7478ca933))
+* **internal:** ignore .eslintcache ([412ef1d](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/412ef1df5980010e50ac5225d3718bc7f5854fca))
+* **internal:** remove .eslintcache ([9bf0ae4](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9bf0ae47ea97dd8cc83b6651e89d28c654227410))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([4e3a331](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4e3a331bb6e0d90d52910df2aec7dc3f6e18e502))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([61242ef](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/61242ef7124865eba3313157c83d10b5a77b0056))
+* **mcp:** rename dxt to mcpb ([5ed6664](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5ed6664513a311a73320050f6e8de00794366110))
+* update lockfile ([1bd889f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1bd889f9305635d3cdb931b2a38023e35e6296fb))
+
 ## 1.6.0 (2025-09-12)
 
 Full Changelog: [v1.5.3...v1.6.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.5.3...v1.6.0)
