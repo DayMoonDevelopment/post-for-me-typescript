@@ -69,6 +69,22 @@ export const tool: Tool = {
                   description: 'Overrides the `caption` from the post',
                   additionalProperties: true,
                 },
+                collaborators: {
+                  type: 'array',
+                  description:
+                    'List of page ids or users to invite as collaborators for a Video Reel (Instagram and Facebook)',
+                  items: {
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                      additionalProperties: true,
+                    },
+                  },
+                },
+                community_id: {
+                  type: 'string',
+                  description: 'Id of the twitter community to post to',
+                },
                 disclose_branded_content: {
                   type: 'boolean',
                   description: 'Disclose branded content on TikTok',
@@ -90,6 +106,11 @@ export const tool: Tool = {
                   type: 'string',
                   description: 'Pinterest post link',
                 },
+                location: {
+                  type: 'string',
+                  description:
+                    'Page id with a location that you want to tag the image or video with (Instagram and Facebook)',
+                },
                 media: {
                   type: 'array',
                   description: 'Overrides the `media` from the post',
@@ -102,9 +123,45 @@ export const tool: Tool = {
                   description: 'Post placement for Facebook/Instagram/Threads',
                   enum: ['reels', 'timeline', 'stories'],
                 },
+                poll: {
+                  type: 'object',
+                  description: 'Poll options for the twitter',
+                  properties: {
+                    duration_minutes: {
+                      type: 'number',
+                      description: 'Duration of the poll in minutes',
+                    },
+                    options: {
+                      type: 'array',
+                      description: 'The choices of the poll, requiring 2-4 options',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                    reply_settings: {
+                      type: 'string',
+                      description: 'Who can reply to the tweet',
+                      enum: ['following', 'mentionedUsers', 'subscribers', 'verified'],
+                    },
+                  },
+                  required: ['duration_minutes', 'options'],
+                },
                 privacy_status: {
                   type: 'string',
                   description: 'Sets the privacy status for TikTok (private, public)',
+                },
+                quote_tweet_id: {
+                  type: 'string',
+                  description: 'Id of the tweet you want to quote',
+                },
+                reply_settings: {
+                  type: 'string',
+                  description: 'Who can reply to the tweet',
+                  enum: ['following', 'mentionedUsers', 'subscribers', 'verified'],
+                },
+                share_to_feed: {
+                  type: 'boolean',
+                  description: 'If false Instagram video posts will only be shown in the Reels tab',
                 },
                 title: {
                   type: 'string',
@@ -137,6 +194,41 @@ export const tool: Tool = {
             url: {
               type: 'string',
               description: 'Public URL of the media',
+            },
+            tags: {
+              type: 'array',
+              description: 'List of tags to attach to the media',
+              items: {
+                type: 'object',
+                properties: {
+                  id: {
+                    type: 'string',
+                    description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                  },
+                  platform: {
+                    type: 'string',
+                    description: 'The platform for the tags',
+                    enum: ['facebook', 'instagram'],
+                  },
+                  type: {
+                    type: 'string',
+                    description:
+                      'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                    enum: ['user', 'product'],
+                  },
+                  x: {
+                    type: 'number',
+                    description:
+                      'Percentage distance from left edge of the image, Not required for videos or stories',
+                  },
+                  y: {
+                    type: 'number',
+                    description:
+                      'Percentage distance from top edge of the image, Not required for videos or stories',
+                  },
+                },
+                required: ['id', 'platform', 'type'],
+              },
             },
             thumbnail_timestamp_ms: {
               type: 'object',
@@ -216,6 +308,41 @@ export const tool: Tool = {
                   type: 'string',
                   description: 'Public URL of the media',
                 },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
+                },
                 thumbnail_timestamp_ms: {
                   type: 'object',
                   description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
@@ -240,6 +367,21 @@ export const tool: Tool = {
             description: 'Overrides the `caption` from the post',
             additionalProperties: true,
           },
+          collaborators: {
+            type: 'array',
+            description: 'List of page ids to invite as collaborators for a Video Reel',
+            items: {
+              type: 'array',
+              items: {
+                type: 'object',
+                additionalProperties: true,
+              },
+            },
+          },
+          location: {
+            type: 'string',
+            description: 'Page id with a location that you want to tag the image or video with',
+          },
           media: {
             type: 'array',
             description: 'Overrides the `media` from the post',
@@ -249,6 +391,41 @@ export const tool: Tool = {
                 url: {
                   type: 'string',
                   description: 'Public URL of the media',
+                },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
                 },
                 thumbnail_timestamp_ms: {
                   type: 'object',
@@ -286,6 +463,10 @@ export const tool: Tool = {
               type: 'string',
             },
           },
+          location: {
+            type: 'string',
+            description: 'Page id with a location that you want to tag the image or video with',
+          },
           media: {
             type: 'array',
             description: 'Overrides the `media` from the post',
@@ -295,6 +476,41 @@ export const tool: Tool = {
                 url: {
                   type: 'string',
                   description: 'Public URL of the media',
+                },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
                 },
                 thumbnail_timestamp_ms: {
                   type: 'object',
@@ -315,6 +531,10 @@ export const tool: Tool = {
             description: 'Instagram post placement',
             enum: ['reels', 'stories', 'timeline'],
           },
+          share_to_feed: {
+            type: 'boolean',
+            description: 'If false video posts will only be shown in the Reels tab',
+          },
         },
       },
       linkedin_configuration_dto: {
@@ -334,6 +554,41 @@ export const tool: Tool = {
                 url: {
                   type: 'string',
                   description: 'Public URL of the media',
+                },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
                 },
                 thumbnail_timestamp_ms: {
                   type: 'object',
@@ -380,6 +635,41 @@ export const tool: Tool = {
                   type: 'string',
                   description: 'Public URL of the media',
                 },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
+                },
                 thumbnail_timestamp_ms: {
                   type: 'object',
                   description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
@@ -413,6 +703,41 @@ export const tool: Tool = {
                 url: {
                   type: 'string',
                   description: 'Public URL of the media',
+                },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
                 },
                 thumbnail_timestamp_ms: {
                   type: 'object',
@@ -486,6 +811,41 @@ export const tool: Tool = {
                   type: 'string',
                   description: 'Public URL of the media',
                 },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
+                },
                 thumbnail_timestamp_ms: {
                   type: 'object',
                   description: 'Timestamp in milliseconds of frame to use as thumbnail for the media',
@@ -518,6 +878,10 @@ export const tool: Tool = {
             description: 'Overrides the `caption` from the post',
             additionalProperties: true,
           },
+          community_id: {
+            type: 'string',
+            description: 'Id of the community to post to',
+          },
           media: {
             type: 'array',
             description: 'Overrides the `media` from the post',
@@ -527,6 +891,41 @@ export const tool: Tool = {
                 url: {
                   type: 'string',
                   description: 'Public URL of the media',
+                },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
                 },
                 thumbnail_timestamp_ms: {
                   type: 'object',
@@ -541,6 +940,38 @@ export const tool: Tool = {
               },
               required: ['url'],
             },
+          },
+          poll: {
+            type: 'object',
+            description: 'Poll options for the tweet',
+            properties: {
+              duration_minutes: {
+                type: 'number',
+                description: 'Duration of the poll in minutes',
+              },
+              options: {
+                type: 'array',
+                description: 'The choices of the poll, requiring 2-4 options',
+                items: {
+                  type: 'string',
+                },
+              },
+              reply_settings: {
+                type: 'string',
+                description: 'Who can reply to the tweet',
+                enum: ['following', 'mentionedUsers', 'subscribers', 'verified'],
+              },
+            },
+            required: ['duration_minutes', 'options'],
+          },
+          quote_tweet_id: {
+            type: 'string',
+            description: 'Id of the tweet you want to quote',
+          },
+          reply_settings: {
+            type: 'string',
+            description: 'Who can reply to the tweet',
+            enum: ['following', 'mentionedUsers', 'subscribers', 'verified'],
           },
         },
       },
@@ -561,6 +992,41 @@ export const tool: Tool = {
                 url: {
                   type: 'string',
                   description: 'Public URL of the media',
+                },
+                tags: {
+                  type: 'array',
+                  description: 'List of tags to attach to the media',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'Facebook User ID, Instagram Username or Instagram product id to tag',
+                      },
+                      platform: {
+                        type: 'string',
+                        description: 'The platform for the tags',
+                        enum: ['facebook', 'instagram'],
+                      },
+                      type: {
+                        type: 'string',
+                        description:
+                          'The type of tag, user to tag accounts, product to tag products (only supported for instagram)',
+                        enum: ['user', 'product'],
+                      },
+                      x: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from left edge of the image, Not required for videos or stories',
+                      },
+                      y: {
+                        type: 'number',
+                        description:
+                          'Percentage distance from top edge of the image, Not required for videos or stories',
+                      },
+                    },
+                    required: ['id', 'platform', 'type'],
+                  },
                 },
                 thumbnail_timestamp_ms: {
                   type: 'object',
