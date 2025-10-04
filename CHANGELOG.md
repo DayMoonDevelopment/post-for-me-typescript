@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.7.1 (2025-10-04)
+
+Full Changelog: [v1.7.0...v1.7.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.7.0...v1.7.1)
+
+### Chores
+
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([36af506](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/36af5061ff182a4da89592409b833262a51df1e2))
+
 ## 1.7.0 (2025-10-03)
 
 Full Changelog: [v1.6.0...v1.7.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.6.0...v1.7.0)
