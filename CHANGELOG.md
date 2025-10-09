@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.7.2 (2025-10-09)
+
+Full Changelog: [v1.7.1...v1.7.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.7.1...v1.7.2)
+
+### Chores
+
+* extract some types in mcp docs ([78cdaab](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/78cdaab1209af77ba9ba458bf1a58e9f3b242a41))
+* **internal:** use npm pack for build uploads ([87f3395](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/87f3395df1d69ea7ee089e810c0363d627889662))
+
 ## 1.7.1 (2025-10-04)
 
 Full Changelog: [v1.7.0...v1.7.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.7.0...v1.7.1)
