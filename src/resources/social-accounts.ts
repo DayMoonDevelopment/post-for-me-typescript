@@ -93,6 +93,11 @@ export interface SocialAccount {
   platform: string;
 
   /**
+   * The platform's profile photo of the social account
+   */
+  profile_photo_url: string | null;
+
+  /**
    * The refresh token of the social account
    */
   refresh_token: string | null;
@@ -190,6 +195,11 @@ export interface SocialAccountDisconnectResponse {
    * The platform of the social account
    */
   platform: string;
+
+  /**
+   * The platform's profile photo of the social account
+   */
+  profile_photo_url: string | null;
 
   /**
    * The refresh token of the social account
