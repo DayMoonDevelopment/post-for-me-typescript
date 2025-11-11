@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.8.0 (2025-11-11)
+
+Full Changelog: [v1.7.1...v1.8.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.7.1...v1.8.0)
+
+### Features
+
+* **api:** api update ([94faa63](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/94faa639305371f0d1a37fab0cdca4ef12d9d745))
+* **mcp:** enable optional code execution tool on http mcp servers ([5bc692b](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5bc692b36526c80832507511a9515d327d91eadb))
+
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([b9342cb](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b9342cb3430f28065508271f8c6e5e0ec184df22))
+
+
+### Chores
+
+* extract some types in mcp docs ([78cdaab](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/78cdaab1209af77ba9ba458bf1a58e9f3b242a41))
+* **internal:** codegen related update ([253e162](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/253e162842b7921eac9971e19cd71305646e22d1))
+* **internal:** codegen related update ([88e09a0](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/88e09a01145c26080a6025d754759d62955b0e59))
+* **internal:** grammar fix (it's -&gt; its) ([47b4ca9](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/47b4ca9a95f150c0d55917c2ab6f55b4724610a8))
+* **internal:** use npm pack for build uploads ([87f3395](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/87f3395df1d69ea7ee089e810c0363d627889662))
+* mcp code tool explicit error message when missing a run function ([0a76ab4](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/0a76ab44dc37b1af5ca1b496d1f833c0aeb89f0d))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([9018b91](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9018b9161c8a617e1cd0a576719130c6a0fce05f))
+* **mcp:** add line numbers to code tool errors ([7cc068e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/7cc068e0c483444722175c406061cae36c095ff4))
+* **mcp:** clarify http auth error ([1fc7059](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1fc7059ffd74c4b23b0ba2971a74db57beb5295a))
+* use structured error when code execution tool errors ([1780fa5](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1780fa5e054d13063e00d6483cd2ba2583594201))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([58c25a8](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/58c25a863addf877a48913ed310ed8fb86043c37))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([63dca86](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/63dca867650875c9a102af36e03f4156a5a83c86))
+
 ## 1.7.1 (2025-10-04)
 
 Full Changelog: [v1.7.0...v1.7.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.7.0...v1.7.1)
