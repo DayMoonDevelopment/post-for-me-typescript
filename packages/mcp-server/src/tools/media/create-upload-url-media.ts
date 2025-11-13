@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'post-for-me-mcp/filtering';
-import { Metadata, asTextContentResult } from 'post-for-me-mcp/tools/types';
+import { isJqError, maybeFilter } from 'post-for-me-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from 'post-for-me-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import PostForMe from 'post-for-me';
@@ -36,7 +36,14 @@ export const tool: Tool = {
 
 export const handler = async (client: PostForMe, args: Record<string, unknown> | undefined) => {
   const { jq_filter } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.media.createUploadURL()));
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await client.media.createUploadURL()));
+  } catch (error) {
+    if (isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
