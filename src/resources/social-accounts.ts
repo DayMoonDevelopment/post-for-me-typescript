@@ -347,6 +347,14 @@ export interface SocialAccountCreateAuthURLParams {
    * Additional data needed for the provider
    */
   platform_data?: SocialAccountCreateAuthURLParams.PlatformData;
+
+  /**
+   * Override the default redirect URL for the OAuth flow. If provided, this URL will
+   * be used instead of our redirect URL. Make sure this URL is included in your
+   * app's authorized redirect urls. This override will not work when using our
+   * system credientals.
+   */
+  redirect_url_override?: string;
 }
 
 export namespace SocialAccountCreateAuthURLParams {
