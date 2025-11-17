@@ -77,6 +77,11 @@ export const tool: Tool = {
           },
         },
       },
+      redirect_url_override: {
+        type: 'string',
+        description:
+          "Override the default redirect URL for the OAuth flow. If provided, this URL will be used instead of our redirect URL. Make sure this URL is included in your app's authorized redirect urls. This override will not work when using our system credientals.",
+      },
       jq_filter: {
         type: 'string',
         title: 'jq Filter',

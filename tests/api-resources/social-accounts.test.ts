@@ -116,6 +116,7 @@ describe('resource socialAccounts', () => {
         instagram: { connection_type: 'instagram' },
         linkedin: { connection_type: 'personal' },
       },
+      redirect_url_override: 'redirect_url_override',
     });
   });
 
