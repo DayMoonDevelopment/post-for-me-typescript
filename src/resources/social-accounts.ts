@@ -410,8 +410,9 @@ export namespace SocialAccountCreateAuthURLParams {
      */
     export interface Linkedin {
       /**
-       * The type of connection; personal for posting on behalf of the user only,
-       * organization for posting on behalf of both an organization and the user
+       * The type of connection; If using our provided credentials always use
+       * "organization". If using your own crednetials then only use "organization" if
+       * you are using the Community API
        */
       connection_type: 'personal' | 'organization';
     }
