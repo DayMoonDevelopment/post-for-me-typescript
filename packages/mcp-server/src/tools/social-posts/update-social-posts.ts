@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, asTextContentResult } from 'post-for-me-mcp/tools/types';
+import { Metadata, asErrorResult, asTextContentResult } from 'post-for-me-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import PostForMe from 'post-for-me';
@@ -1060,7 +1060,14 @@ export const tool: Tool = {
 
 export const handler = async (client: PostForMe, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  return asTextContentResult(await client.socialPosts.update(id, body));
+  try {
+    return asTextContentResult(await client.socialPosts.update(id, body));
+  } catch (error) {
+    if (error instanceof PostForMe.APIError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
