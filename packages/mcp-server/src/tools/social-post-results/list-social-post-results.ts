@@ -64,7 +64,7 @@ export const handler = async (client: PostForMe, args: Record<string, unknown> |
   try {
     return asTextContentResult(await maybeFilter(jq_filter, await client.socialPostResults.list(body)));
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof PostForMe.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
