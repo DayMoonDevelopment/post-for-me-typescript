@@ -30,6 +30,15 @@ export const tool: Tool = {
         type: 'string',
         description: 'Your unique identifier for the social account',
       },
+      permissions: {
+        type: 'array',
+        description:
+          'List of permissions you want to allow. Will default to only post permissions. You must include the "feeds" permission to request an account feed and metrics',
+        items: {
+          type: 'string',
+          enum: ['posts', 'feeds'],
+        },
+      },
       platform_data: {
         type: 'object',
         description: 'Additional data needed for the provider',
@@ -49,6 +58,24 @@ export const tool: Tool = {
             },
             required: ['app_password', 'handle'],
           },
+          facebook: {
+            type: 'object',
+            description: 'Additional data for connecting facebook accounts',
+            properties: {
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default scopes: public_profile, pages_show_list, pages_read_engagement, pages_manage_posts, business_management',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
+              },
+            },
+          },
           instagram: {
             type: 'object',
             description: 'Additional data for connecting instagram accounts',
@@ -58,6 +85,18 @@ export const tool: Tool = {
                 description:
                   'The type of connection; instagram for using login with instagram, facebook for using login with facebook.',
                 enum: ['instagram', 'facebook'],
+              },
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default instagram scopes: instagram_business_basic, instagram_business_content_publish. Default facebook scopes: instagram_basic, instagram_content_publish, pages_show_list, public_profile, business_management',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
               },
             },
             required: ['connection_type'],
@@ -72,8 +111,110 @@ export const tool: Tool = {
                   'The type of connection; If using our provided credentials always use "organization". If using your own crednetials then only use "organization" if you are using the Community API',
                 enum: ['personal', 'organization'],
               },
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default personal scopes: openid, w_member_social, profile, email. Default organization scopes: r_basicprofile, w_member_social, r_organization_social, w_organization_social, rw_organization_admin',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
+              },
             },
             required: ['connection_type'],
+          },
+          pinterest: {
+            type: 'object',
+            description: 'Additional data for connecting Pinterest accounts',
+            properties: {
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default scopes: boards:read, boards:write, pins:read, pins:write, user_accounts:read',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
+              },
+            },
+          },
+          threads: {
+            type: 'object',
+            description: 'Additional data for connecting Threads accounts',
+            properties: {
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default scopes: threads_basic, threads_content_publish',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
+              },
+            },
+          },
+          tiktok: {
+            type: 'object',
+            description: 'Additional data for connecting TikTok accounts',
+            properties: {
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default scopes: user.info.basic, video.list, video.upload, video.publish',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
+              },
+            },
+          },
+          tiktok_business: {
+            type: 'object',
+            description: 'Additional data for connecting TikTok Business accounts',
+            properties: {
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default scopes: user.info.basic, user.info.username, user.info.stats, user.info.profile, user.account.type, user.insights, video.list, video.insights, comment.list, comment.list.manage, video.publish, video.upload, biz.spark.auth, discovery.search.words',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
+              },
+            },
+          },
+          youtube: {
+            type: 'object',
+            description: 'Additional data for connecting YouTube accounts',
+            properties: {
+              permission_overrides: {
+                type: 'array',
+                description:
+                  'Override the default permissions/scopes requested during OAuth. Default scopes: https://www.googleapis.com/auth/youtube.force-ssl, https://www.googleapis.com/auth/youtube.upload, https://www.googleapis.com/auth/youtube.readonly, https://www.googleapis.com/auth/userinfo.profile',
+                items: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    additionalProperties: true,
+                  },
+                },
+              },
+            },
           },
         },
       },
