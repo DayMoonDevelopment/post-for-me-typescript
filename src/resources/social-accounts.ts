@@ -9,6 +9,16 @@ export class SocialAccounts extends APIResource {
   /**
    * If a social account with the same platform and user_id already exists, it will
    * be updated. If not, a new social account will be created.
+   *
+   * @example
+   * ```ts
+   * const socialAccount = await client.socialAccounts.create({
+   *   access_token: 'access_token',
+   *   access_token_expires_at: '2019-12-27T18:11:19.117Z',
+   *   platform: 'facebook',
+   *   user_id: 'user_id',
+   * });
+   * ```
    */
   create(body: SocialAccountCreateParams, options?: RequestOptions): APIPromise<SocialAccount> {
     return this._client.post('/v1/social-accounts', { body, ...options });
@@ -16,6 +26,13 @@ export class SocialAccounts extends APIResource {
 
   /**
    * Get social account by ID
+   *
+   * @example
+   * ```ts
+   * const socialAccount = await client.socialAccounts.retrieve(
+   *   'id',
+   * );
+   * ```
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<SocialAccount> {
     return this._client.get(path`/v1/social-accounts/${id}`, options);
@@ -23,6 +40,13 @@ export class SocialAccounts extends APIResource {
 
   /**
    * Update social account
+   *
+   * @example
+   * ```ts
+   * const socialAccount = await client.socialAccounts.update(
+   *   'id',
+   * );
+   * ```
    */
   update(id: string, body: SocialAccountUpdateParams, options?: RequestOptions): APIPromise<SocialAccount> {
     return this._client.patch(path`/v1/social-accounts/${id}`, { body, ...options });
@@ -30,6 +54,11 @@ export class SocialAccounts extends APIResource {
 
   /**
    * Get a paginated result for social accounts based on the applied filters
+   *
+   * @example
+   * ```ts
+   * const socialAccounts = await client.socialAccounts.list();
+   * ```
    */
   list(
     query: SocialAccountListParams | null | undefined = {},
@@ -43,6 +72,13 @@ export class SocialAccounts extends APIResource {
    * account. When visited, the user is redirected to the selected social platform's
    * login/authorization page. Upon successful authentication, they are redirected
    * back to your application
+   *
+   * @example
+   * ```ts
+   * const response = await client.socialAccounts.createAuthURL({
+   *   platform: 'platform',
+   * });
+   * ```
    */
   createAuthURL(
     body: SocialAccountCreateAuthURLParams,
@@ -55,6 +91,13 @@ export class SocialAccounts extends APIResource {
    * Disconnecting an account with remove all auth tokens and mark the account as
    * disconnected. The record of the account will be kept and can be retrieved and
    * reconnected by the owner of the account.
+   *
+   * @example
+   * ```ts
+   * const response = await client.socialAccounts.disconnect(
+   *   'id',
+   * );
+   * ```
    */
   disconnect(id: string, options?: RequestOptions): APIPromise<SocialAccountDisconnectResponse> {
     return this._client.post(path`/v1/social-accounts/${id}/disconnect`, options);
@@ -344,6 +387,12 @@ export interface SocialAccountCreateAuthURLParams {
   external_id?: string;
 
   /**
+   * List of permissions you want to allow. Will default to only post permissions.
+   * You must include the "feeds" permission to request an account feed and metrics
+   */
+  permissions?: Array<'posts' | 'feeds'>;
+
+  /**
    * Additional data needed for the provider
    */
   platform_data?: SocialAccountCreateAuthURLParams.PlatformData;
@@ -368,6 +417,11 @@ export namespace SocialAccountCreateAuthURLParams {
     bluesky?: PlatformData.Bluesky;
 
     /**
+     * Additional data for connecting facebook accounts
+     */
+    facebook?: PlatformData.Facebook;
+
+    /**
      * Additional data for connecting instagram accounts
      */
     instagram?: PlatformData.Instagram;
@@ -376,6 +430,31 @@ export namespace SocialAccountCreateAuthURLParams {
      * Additional data for connecting linkedin accounts
      */
     linkedin?: PlatformData.Linkedin;
+
+    /**
+     * Additional data for connecting Pinterest accounts
+     */
+    pinterest?: PlatformData.Pinterest;
+
+    /**
+     * Additional data for connecting Threads accounts
+     */
+    threads?: PlatformData.Threads;
+
+    /**
+     * Additional data for connecting TikTok accounts
+     */
+    tiktok?: PlatformData.Tiktok;
+
+    /**
+     * Additional data for connecting TikTok Business accounts
+     */
+    tiktok_business?: PlatformData.TiktokBusiness;
+
+    /**
+     * Additional data for connecting YouTube accounts
+     */
+    youtube?: PlatformData.Youtube;
   }
 
   export namespace PlatformData {
@@ -395,6 +474,18 @@ export namespace SocialAccountCreateAuthURLParams {
     }
 
     /**
+     * Additional data for connecting facebook accounts
+     */
+    export interface Facebook {
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default scopes:
+       * public_profile, pages_show_list, pages_read_engagement, pages_manage_posts,
+       * business_management
+       */
+      permission_overrides?: Array<Array<unknown>>;
+    }
+
+    /**
      * Additional data for connecting instagram accounts
      */
     export interface Instagram {
@@ -403,6 +494,14 @@ export namespace SocialAccountCreateAuthURLParams {
        * using login with facebook.
        */
       connection_type: 'instagram' | 'facebook';
+
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default
+       * instagram scopes: instagram_business_basic, instagram_business_content_publish.
+       * Default facebook scopes: instagram_basic, instagram_content_publish,
+       * pages_show_list, public_profile, business_management
+       */
+      permission_overrides?: Array<Array<unknown>>;
     }
 
     /**
@@ -415,6 +514,75 @@ export namespace SocialAccountCreateAuthURLParams {
        * you are using the Community API
        */
       connection_type: 'personal' | 'organization';
+
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default personal
+       * scopes: openid, w_member_social, profile, email. Default organization scopes:
+       * r_basicprofile, w_member_social, r_organization_social, w_organization_social,
+       * rw_organization_admin
+       */
+      permission_overrides?: Array<Array<unknown>>;
+    }
+
+    /**
+     * Additional data for connecting Pinterest accounts
+     */
+    export interface Pinterest {
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default scopes:
+       * boards:read, boards:write, pins:read, pins:write, user_accounts:read
+       */
+      permission_overrides?: Array<Array<unknown>>;
+    }
+
+    /**
+     * Additional data for connecting Threads accounts
+     */
+    export interface Threads {
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default scopes:
+       * threads_basic, threads_content_publish
+       */
+      permission_overrides?: Array<Array<unknown>>;
+    }
+
+    /**
+     * Additional data for connecting TikTok accounts
+     */
+    export interface Tiktok {
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default scopes:
+       * user.info.basic, video.list, video.upload, video.publish
+       */
+      permission_overrides?: Array<Array<unknown>>;
+    }
+
+    /**
+     * Additional data for connecting TikTok Business accounts
+     */
+    export interface TiktokBusiness {
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default scopes:
+       * user.info.basic, user.info.username, user.info.stats, user.info.profile,
+       * user.account.type, user.insights, video.list, video.insights, comment.list,
+       * comment.list.manage, video.publish, video.upload, biz.spark.auth,
+       * discovery.search.words
+       */
+      permission_overrides?: Array<Array<unknown>>;
+    }
+
+    /**
+     * Additional data for connecting YouTube accounts
+     */
+    export interface Youtube {
+      /**
+       * Override the default permissions/scopes requested during OAuth. Default scopes:
+       * https://www.googleapis.com/auth/youtube.force-ssl,
+       * https://www.googleapis.com/auth/youtube.upload,
+       * https://www.googleapis.com/auth/youtube.readonly,
+       * https://www.googleapis.com/auth/userinfo.profile
+       */
+      permission_overrides?: Array<Array<unknown>>;
     }
   }
 }
