@@ -35,7 +35,10 @@ export async function codeTool() {
       headers: {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
-        client_envs: JSON.stringify({ POST_FOR_ME_API_KEY: readEnv('POST_FOR_ME_API_KEY') }),
+        client_envs: JSON.stringify({
+          POST_FOR_ME_API_KEY: readEnv('POST_FOR_ME_API_KEY'),
+          POST_FOR_ME_BASE_URL: readEnv('POST_FOR_ME_BASE_URL'),
+        }),
       },
       body: JSON.stringify({
         project_name: 'post-for-me',
