@@ -1,5 +1,46 @@
 # Changelog
 
+## 2.0.0 (2025-12-19)
+
+Full Changelog: [v1.8.0...v2.0.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.8.0...v2.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+* **mcp:** **Migration:** To migrate, simply modify the command used to invoke the MCP server. Currently, the only supported tool scheme is code mode. Now, starting the server with just `node /path/to/mcp/server` or `npx package-name` will invoke code tools: changing your command to one of these is likely all you will need to do.
+
+### Features
+
+* **api:** api update ([4827964](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/48279646eaf05e7f072f0d9e36abfdc9c5deed9c))
+* **api:** api update ([3ff8f7a](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3ff8f7a9d64da1f38fa9dd33dc9773ee815b1bdb))
+* **api:** api update ([7f378ac](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/7f378acf18d34dc54fda4c91c8f555b974faa8b5))
+* **mcp:** add detail field to docs search tool ([bf95e6f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/bf95e6f1866c1061e841f01bcce404cdfbd45e21))
+* **mcp:** add typescript check to code execution tool ([c6a3adf](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/c6a3adf20688aea2de1a94fb673995f618278848))
+* **mcp:** handle code mode calls in the Stainless API ([6c10abe](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/6c10abe0c10cf956d45be26cb3a72dc4d23d2577))
+* **mcp:** return logs on code tool errors ([9674871](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9674871d78ee41e46a73d1f0b50137ad6d6390ea))
+
+
+### Bug Fixes
+
+* **mcp:** add client instantiation options to code tool ([6a23c4a](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/6a23c4a5cca3398758e8784cec7299e6c261be0b))
+* **mcp:** correct code tool API endpoint ([0a0fe2c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/0a0fe2cd2cea264629a9dfb6f56766b0b11d3a0e))
+* **mcp:** pass base url to code tool ([2219574](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2219574782a45af23e2cfff5924ab0e3a85a3f65))
+* **mcp:** return correct lines on typescript errors ([f1d98c2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/f1d98c29f16bcb3b6e125114dcb214ba9804a14d))
+* **mcp:** return tool execution error on api error ([33e4194](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/33e419464976cecc7e65bf0f0c06ef9faf722159))
+* **mcp:** return tool execution error on jq failure ([0340900](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/0340900a01b929a374d9c4a5613dcf03dff5bef7))
+
+
+### Chores
+
+* **client:** fix logger property type ([1ab0227](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1ab0227555476c97aee5bb3ed542069431a685fd))
+* **internal:** codegen related update ([55a2f91](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/55a2f9177832e0aebcd4b830e789192ad98596fa))
+* **internal:** codegen related update ([032bbf5](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/032bbf570ab6030ad8f0bf752592a4e9b6342fb2))
+* **internal:** upgrade eslint ([8172c2f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/8172c2fba0be398c5e0ef30bb11b1a718670a93f))
+* **mcp:** remove deprecated tool schemes ([2027d8e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2027d8ea84fd092b779b5fa6b88de8cb7ecaf59c))
+* **mcp:** update lockfile ([28e9ed8](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/28e9ed874513ea8db12d5ef26e61aa68d98dff03))
+* **mcp:** upgrade jq-web ([1bd2456](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1bd2456e77c3b88840b55adebfeff7426ff279cc))
+* use latest @modelcontextprotocol/sdk ([f841a39](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/f841a39405356ca787ebf3ac34ef0708c2515589))
+
 ## 1.8.0 (2025-11-11)
 
 Full Changelog: [v1.7.1...v1.8.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.7.1...v1.8.0)
