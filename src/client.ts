@@ -19,6 +19,12 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { Media, MediaCreateUploadURLResponse } from './resources/media';
 import {
+  PlatformPost,
+  SocialAccountFeedListParams,
+  SocialAccountFeedListResponse,
+  SocialAccountFeeds,
+} from './resources/social-account-feeds';
+import {
   SocialAccount,
   SocialAccountCreateAuthURLParams,
   SocialAccountCreateAuthURLResponse,
@@ -740,12 +746,14 @@ export class PostForMe {
   socialPosts: API.SocialPosts = new API.SocialPosts(this);
   socialPostResults: API.SocialPostResults = new API.SocialPostResults(this);
   socialAccounts: API.SocialAccounts = new API.SocialAccounts(this);
+  socialAccountFeeds: API.SocialAccountFeeds = new API.SocialAccountFeeds(this);
 }
 
 PostForMe.Media = Media;
 PostForMe.SocialPosts = SocialPosts;
 PostForMe.SocialPostResults = SocialPostResults;
 PostForMe.SocialAccounts = SocialAccounts;
+PostForMe.SocialAccountFeeds = SocialAccountFeeds;
 
 export declare namespace PostForMe {
   export type RequestOptions = Opts.RequestOptions;
@@ -790,5 +798,12 @@ export declare namespace PostForMe {
     type SocialAccountUpdateParams as SocialAccountUpdateParams,
     type SocialAccountListParams as SocialAccountListParams,
     type SocialAccountCreateAuthURLParams as SocialAccountCreateAuthURLParams,
+  };
+
+  export {
+    SocialAccountFeeds as SocialAccountFeeds,
+    type PlatformPost as PlatformPost,
+    type SocialAccountFeedListResponse as SocialAccountFeedListResponse,
+    type SocialAccountFeedListParams as SocialAccountFeedListParams,
   };
 }

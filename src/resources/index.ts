@@ -2,6 +2,12 @@
 
 export { Media, type MediaCreateUploadURLResponse } from './media';
 export {
+  SocialAccountFeeds,
+  type PlatformPost,
+  type SocialAccountFeedListResponse,
+  type SocialAccountFeedListParams,
+} from './social-account-feeds';
+export {
   SocialAccounts,
   type SocialAccount,
   type SocialAccountListResponse,
