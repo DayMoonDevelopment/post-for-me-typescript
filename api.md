@@ -64,3 +64,14 @@ Methods:
 - <code title="get /v1/social-accounts">client.socialAccounts.<a href="./src/resources/social-accounts.ts">list</a>({ ...params }) -> SocialAccountListResponse</code>
 - <code title="post /v1/social-accounts/auth-url">client.socialAccounts.<a href="./src/resources/social-accounts.ts">createAuthURL</a>({ ...params }) -> SocialAccountCreateAuthURLResponse</code>
 - <code title="post /v1/social-accounts/{id}/disconnect">client.socialAccounts.<a href="./src/resources/social-accounts.ts">disconnect</a>(id) -> SocialAccountDisconnectResponse</code>
+
+# SocialAccountFeeds
+
+Types:
+
+- <code><a href="./src/resources/social-account-feeds.ts">PlatformPost</a></code>
+- <code><a href="./src/resources/social-account-feeds.ts">SocialAccountFeedListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/social-account-feeds/{social_account_id}">client.socialAccountFeeds.<a href="./src/resources/social-account-feeds.ts">list</a>(socialAccountID, { ...params }) -> SocialAccountFeedListResponse</code>

@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.1.0 (2025-12-30)
+
+Full Changelog: [v2.0.0...v2.1.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.0.0...v2.1.0)
+
+### Features
+
+* **api:** Adding account feed endpoint ([77513b8](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/77513b872a9b520777e944fd59283da6a6861e07))
+
+
+### Chores
+
+* **internal:** configure MCP Server hosting ([d75700c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d75700cf16105b2819c2d2b9a4857932c5f287c3))
+
 ## 2.0.0 (2025-12-19)
 
 Full Changelog: [v1.8.0...v2.0.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v1.8.0...v2.0.0)
