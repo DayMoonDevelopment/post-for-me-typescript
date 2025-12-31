@@ -42,10 +42,11 @@ describe('resource socialPosts', () => {
             is_draft: true,
             link: 'link',
             location: 'location',
+            made_for_kids: true,
             media: ['string'],
             placement: 'reels',
             poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
-            privacy_status: 'privacy_status',
+            privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
             share_to_feed: true,
@@ -200,6 +201,7 @@ describe('resource socialPosts', () => {
         },
         youtube: {
           caption: {},
+          made_for_kids: true,
           media: [
             {
               url: 'url',
@@ -208,6 +210,7 @@ describe('resource socialPosts', () => {
               thumbnail_url: {},
             },
           ],
+          privacy_status: 'public',
           title: 'title',
         },
       },
@@ -264,10 +267,11 @@ describe('resource socialPosts', () => {
             is_draft: true,
             link: 'link',
             location: 'location',
+            made_for_kids: true,
             media: ['string'],
             placement: 'reels',
             poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
-            privacy_status: 'privacy_status',
+            privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
             share_to_feed: true,
@@ -422,6 +426,7 @@ describe('resource socialPosts', () => {
         },
         youtube: {
           caption: {},
+          made_for_kids: true,
           media: [
             {
               url: 'url',
@@ -430,6 +435,7 @@ describe('resource socialPosts', () => {
               thumbnail_url: {},
             },
           ],
+          privacy_status: 'public',
           title: 'title',
         },
       },

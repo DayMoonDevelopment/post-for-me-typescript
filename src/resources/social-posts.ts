@@ -249,6 +249,11 @@ export namespace CreateSocialPost {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -264,9 +269,10 @@ export namespace CreateSocialPost {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
@@ -885,6 +891,11 @@ export namespace SocialPost {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -900,9 +911,10 @@ export namespace SocialPost {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
@@ -1310,9 +1322,19 @@ export interface YoutubeConfigurationDto {
   caption?: unknown | null;
 
   /**
+   * If true will notify YouTube the video is intended for kids, defaults to false
+   */
+  made_for_kids?: boolean | null;
+
+  /**
    * Overrides the `media` from the post
    */
   media?: Array<YoutubeConfigurationDto.Media> | null;
+
+  /**
+   * Sets the privacy status of the video, will default to public
+   */
+  privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
   /**
    * Overrides the `title` from the post
@@ -1548,6 +1570,11 @@ export namespace SocialPostCreateParams {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -1563,9 +1590,10 @@ export namespace SocialPostCreateParams {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
@@ -1801,6 +1829,11 @@ export namespace SocialPostUpdateParams {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
       media?: Array<string> | null;
@@ -1816,9 +1849,10 @@ export namespace SocialPostUpdateParams {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
