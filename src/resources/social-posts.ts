@@ -256,7 +256,7 @@ export namespace CreateSocialPost {
       /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -296,6 +296,60 @@ export namespace CreateSocialPost {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
@@ -898,7 +952,7 @@ export namespace SocialPost {
       /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -938,6 +992,60 @@ export namespace SocialPost {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
@@ -1577,7 +1685,7 @@ export namespace SocialPostCreateParams {
       /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -1617,6 +1725,60 @@ export namespace SocialPostCreateParams {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
@@ -1836,7 +1998,7 @@ export namespace SocialPostUpdateParams {
       /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -1876,6 +2038,60 @@ export namespace SocialPostUpdateParams {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
