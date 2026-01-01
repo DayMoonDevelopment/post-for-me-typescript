@@ -43,7 +43,14 @@ describe('resource socialPosts', () => {
             link: 'link',
             location: 'location',
             made_for_kids: true,
-            media: ['string'],
+            media: [
+              {
+                url: 'url',
+                tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+                thumbnail_timestamp_ms: {},
+                thumbnail_url: {},
+              },
+            ],
             placement: 'reels',
             poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
             privacy_status: 'public',
@@ -268,7 +275,14 @@ describe('resource socialPosts', () => {
             link: 'link',
             location: 'location',
             made_for_kids: true,
-            media: ['string'],
+            media: [
+              {
+                url: 'url',
+                tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+                thumbnail_timestamp_ms: {},
+                thumbnail_url: {},
+              },
+            ],
             placement: 'reels',
             poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
             privacy_status: 'public',
