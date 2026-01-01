@@ -42,10 +42,18 @@ describe('resource socialPosts', () => {
             is_draft: true,
             link: 'link',
             location: 'location',
-            media: ['string'],
+            made_for_kids: true,
+            media: [
+              {
+                url: 'url',
+                tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+                thumbnail_timestamp_ms: {},
+                thumbnail_url: {},
+              },
+            ],
             placement: 'reels',
             poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
-            privacy_status: 'privacy_status',
+            privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
             share_to_feed: true,
@@ -200,6 +208,7 @@ describe('resource socialPosts', () => {
         },
         youtube: {
           caption: {},
+          made_for_kids: true,
           media: [
             {
               url: 'url',
@@ -208,6 +217,7 @@ describe('resource socialPosts', () => {
               thumbnail_url: {},
             },
           ],
+          privacy_status: 'public',
           title: 'title',
         },
       },
@@ -264,10 +274,18 @@ describe('resource socialPosts', () => {
             is_draft: true,
             link: 'link',
             location: 'location',
-            media: ['string'],
+            made_for_kids: true,
+            media: [
+              {
+                url: 'url',
+                tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+                thumbnail_timestamp_ms: {},
+                thumbnail_url: {},
+              },
+            ],
             placement: 'reels',
             poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
-            privacy_status: 'privacy_status',
+            privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
             share_to_feed: true,
@@ -422,6 +440,7 @@ describe('resource socialPosts', () => {
         },
         youtube: {
           caption: {},
+          made_for_kids: true,
           media: [
             {
               url: 'url',
@@ -430,6 +449,7 @@ describe('resource socialPosts', () => {
               thumbnail_url: {},
             },
           ],
+          privacy_status: 'public',
           title: 'title',
         },
       },
