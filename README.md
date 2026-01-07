@@ -120,7 +120,11 @@ const client = new PostForMe({
 });
 
 // Or, configure per-request:
-await client.socialPosts.create({ caption: 'My first post!', social_accounts: ['sa_1234'], media: [{ url: 'https://picsum.photos/1080' }] }, {
+await client.socialPosts.create({
+  caption: 'My first post!',
+  social_accounts: ['sa_1234'],
+  media: [{ url: 'https://picsum.photos/1080' }],
+}, {
   maxRetries: 5,
 });
 ```
@@ -137,7 +141,11 @@ const client = new PostForMe({
 });
 
 // Override per-request:
-await client.socialPosts.create({ caption: 'My first post!', social_accounts: ['sa_1234'], media: [{ url: 'https://picsum.photos/1080' }] }, {
+await client.socialPosts.create({
+  caption: 'My first post!',
+  social_accounts: ['sa_1234'],
+  media: [{ url: 'https://picsum.photos/1080' }],
+}, {
   timeout: 5 * 1000,
 });
 ```
