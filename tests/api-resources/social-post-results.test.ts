@@ -37,7 +37,13 @@ describe('resource socialPostResults', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.socialPostResults.list(
-        { limit: 0, offset: 0, platform: ['string'], post_id: ['string'] },
+        {
+          limit: 0,
+          offset: 0,
+          platform: ['string'],
+          post_id: ['string'],
+          social_account_id: ['string'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(PostForMe.NotFoundError);

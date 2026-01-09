@@ -42,10 +42,30 @@ describe('resource socialPosts', () => {
             is_draft: true,
             link: 'link',
             location: 'location',
-            media: ['string'],
+            made_for_kids: true,
+            media: [
+              {
+                url: 'url',
+                tags: [
+                  {
+                    id: 'id',
+                    platform: 'facebook',
+                    type: 'user',
+                    x: 0,
+                    y: 0,
+                  },
+                ],
+                thumbnail_timestamp_ms: {},
+                thumbnail_url: {},
+              },
+            ],
             placement: 'reels',
-            poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
-            privacy_status: 'privacy_status',
+            poll: {
+              duration_minutes: 0,
+              options: ['string'],
+              reply_settings: 'following',
+            },
+            privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
             share_to_feed: true,
@@ -59,7 +79,15 @@ describe('resource socialPosts', () => {
       media: [
         {
           url: 'url',
-          tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+          tags: [
+            {
+              id: 'id',
+              platform: 'facebook',
+              type: 'user',
+              x: 0,
+              y: 0,
+            },
+          ],
           thumbnail_timestamp_ms: {},
           thumbnail_url: {},
         },
@@ -70,7 +98,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -83,7 +119,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -97,7 +141,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -110,7 +162,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -123,7 +183,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -134,7 +202,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -154,7 +230,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -175,7 +259,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -189,25 +281,47 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
           ],
-          poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
+          poll: {
+            duration_minutes: 0,
+            options: ['string'],
+            reply_settings: 'following',
+          },
           quote_tweet_id: 'quote_tweet_id',
           reply_settings: 'following',
         },
         youtube: {
           caption: {},
+          made_for_kids: true,
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
           ],
+          privacy_status: 'public',
           title: 'title',
         },
       },
@@ -264,10 +378,30 @@ describe('resource socialPosts', () => {
             is_draft: true,
             link: 'link',
             location: 'location',
-            media: ['string'],
+            made_for_kids: true,
+            media: [
+              {
+                url: 'url',
+                tags: [
+                  {
+                    id: 'id',
+                    platform: 'facebook',
+                    type: 'user',
+                    x: 0,
+                    y: 0,
+                  },
+                ],
+                thumbnail_timestamp_ms: {},
+                thumbnail_url: {},
+              },
+            ],
             placement: 'reels',
-            poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
-            privacy_status: 'privacy_status',
+            poll: {
+              duration_minutes: 0,
+              options: ['string'],
+              reply_settings: 'following',
+            },
+            privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
             share_to_feed: true,
@@ -281,7 +415,15 @@ describe('resource socialPosts', () => {
       media: [
         {
           url: 'url',
-          tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+          tags: [
+            {
+              id: 'id',
+              platform: 'facebook',
+              type: 'user',
+              x: 0,
+              y: 0,
+            },
+          ],
           thumbnail_timestamp_ms: {},
           thumbnail_url: {},
         },
@@ -292,7 +434,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -305,7 +455,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -319,7 +477,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -332,7 +498,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -345,7 +519,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -356,7 +538,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -376,7 +566,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -397,7 +595,15 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
@@ -411,25 +617,47 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
           ],
-          poll: { duration_minutes: 0, options: ['string'], reply_settings: 'following' },
+          poll: {
+            duration_minutes: 0,
+            options: ['string'],
+            reply_settings: 'following',
+          },
           quote_tweet_id: 'quote_tweet_id',
           reply_settings: 'following',
         },
         youtube: {
           caption: {},
+          made_for_kids: true,
           media: [
             {
               url: 'url',
-              tags: [{ id: 'id', platform: 'facebook', type: 'user', x: 0, y: 0 }],
+              tags: [
+                {
+                  id: 'id',
+                  platform: 'facebook',
+                  type: 'user',
+                  x: 0,
+                  y: 0,
+                },
+              ],
               thumbnail_timestamp_ms: {},
               thumbnail_url: {},
             },
           ],
+          privacy_status: 'public',
           title: 'title',
         },
       },
@@ -454,7 +682,14 @@ describe('resource socialPosts', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.socialPosts.list(
-        { external_id: ['string'], limit: 0, offset: 0, platform: ['bluesky'], status: ['draft'] },
+        {
+          external_id: ['string'],
+          limit: 0,
+          offset: 0,
+          platform: ['bluesky'],
+          social_account_id: ['string'],
+          status: ['draft'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(PostForMe.NotFoundError);

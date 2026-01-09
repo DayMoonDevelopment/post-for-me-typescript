@@ -130,6 +130,12 @@ export interface SocialPostResultListParams {
    * ?post_id=123&post_id=456).
    */
   post_id?: Array<string>;
+
+  /**
+   * Filter by social account ID(s). Multiple values imply OR logic (e.g.,
+   * ?social_account_id=123&social_account_id=456).
+   */
+  social_account_id?: Array<string>;
 }
 
 export declare namespace SocialPostResults {
