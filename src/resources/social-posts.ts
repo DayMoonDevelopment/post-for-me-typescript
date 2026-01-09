@@ -2193,6 +2193,11 @@ export interface SocialPostListParams {
   >;
 
   /**
+   * Filter by social account ID. Multiple values imply OR logic.
+   */
+  social_account_id?: Array<string>;
+
+  /**
    * Filter by post status. Multiple values imply OR logic.
    */
   status?: Array<'draft' | 'scheduled' | 'processing' | 'processed'>;

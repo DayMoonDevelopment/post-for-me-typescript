@@ -687,6 +687,7 @@ describe('resource socialPosts', () => {
           limit: 0,
           offset: 0,
           platform: ['bluesky'],
+          social_account_id: ['string'],
           status: ['draft'],
         },
         { path: '/_stainless_unknown_path' },
