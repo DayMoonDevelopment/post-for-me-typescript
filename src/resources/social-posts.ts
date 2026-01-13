@@ -249,9 +249,14 @@ export namespace CreateSocialPost {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -264,9 +269,10 @@ export namespace CreateSocialPost {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
@@ -290,6 +296,60 @@ export namespace CreateSocialPost {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
@@ -885,9 +945,14 @@ export namespace SocialPost {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -900,9 +965,10 @@ export namespace SocialPost {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
@@ -926,6 +992,60 @@ export namespace SocialPost {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
@@ -1310,9 +1430,19 @@ export interface YoutubeConfigurationDto {
   caption?: unknown | null;
 
   /**
+   * If true will notify YouTube the video is intended for kids, defaults to false
+   */
+  made_for_kids?: boolean | null;
+
+  /**
    * Overrides the `media` from the post
    */
   media?: Array<YoutubeConfigurationDto.Media> | null;
+
+  /**
+   * Sets the privacy status of the video, will default to public
+   */
+  privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
   /**
    * Overrides the `title` from the post
@@ -1548,9 +1678,14 @@ export namespace SocialPostCreateParams {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -1563,9 +1698,10 @@ export namespace SocialPostCreateParams {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
@@ -1589,6 +1725,60 @@ export namespace SocialPostCreateParams {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
@@ -1801,9 +1991,14 @@ export namespace SocialPostUpdateParams {
       location?: string | null;
 
       /**
+       * If true will notify YouTube the video is intended for kids, defaults to false
+       */
+      made_for_kids?: boolean | null;
+
+      /**
        * Overrides the `media` from the post
        */
-      media?: Array<string> | null;
+      media?: Array<Configuration.Media> | null;
 
       /**
        * Post placement for Facebook/Instagram/Threads
@@ -1816,9 +2011,10 @@ export namespace SocialPostUpdateParams {
       poll?: Configuration.Poll;
 
       /**
-       * Sets the privacy status for TikTok (private, public)
+       * Sets the privacy status for TikTok (private, public), or YouTube (private,
+       * public, unlisted)
        */
-      privacy_status?: string | null;
+      privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
       /**
        * Id of the tweet you want to quote
@@ -1842,6 +2038,60 @@ export namespace SocialPostUpdateParams {
     }
 
     export namespace Configuration {
+      export interface Media {
+        /**
+         * Public URL of the media
+         */
+        url: string;
+
+        /**
+         * List of tags to attach to the media
+         */
+        tags?: Array<Media.Tag> | null;
+
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         */
+        thumbnail_timestamp_ms?: unknown | null;
+
+        /**
+         * Public URL of the thumbnail for the media
+         */
+        thumbnail_url?: unknown | null;
+      }
+
+      export namespace Media {
+        export interface Tag {
+          /**
+           * Facebook User ID, Instagram Username or Instagram product id to tag
+           */
+          id: string;
+
+          /**
+           * The platform for the tags
+           */
+          platform: 'facebook' | 'instagram';
+
+          /**
+           * The type of tag, user to tag accounts, product to tag products (only supported
+           * for instagram)
+           */
+          type: 'user' | 'product';
+
+          /**
+           * Percentage distance from left edge of the image, Not required for videos or
+           * stories
+           */
+          x?: number;
+
+          /**
+           * Percentage distance from top edge of the image, Not required for videos or
+           * stories
+           */
+          y?: number;
+        }
+      }
+
       /**
        * Poll options for the twitter
        */
@@ -1941,6 +2191,11 @@ export interface SocialPostListParams {
   platform?: Array<
     'bluesky' | 'facebook' | 'instagram' | 'linkedin' | 'pinterest' | 'threads' | 'tiktok' | 'x' | 'youtube'
   >;
+
+  /**
+   * Filter by social account ID. Multiple values imply OR logic.
+   */
+  social_account_id?: Array<string>;
 
   /**
    * Filter by post status. Multiple values imply OR logic.

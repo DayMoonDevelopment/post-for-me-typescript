@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.2.0 (2026-01-13)
+
+Full Changelog: [v2.1.0...v2.2.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.1.0...v2.2.0)
+
+### Features
+
+* **api:** api update ([a95ac60](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a95ac608bf07cd4cab6e4e197faf2a14d090028c))
+* **api:** api update ([03cfd93](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/03cfd93f7e1473d1d743e9c543d4da57a234e227))
+* **api:** api update ([cce2350](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cce2350afb0f27672f3c78d6c24714b9fe1cabbd))
+
+
+### Bug Fixes
+
+* **mcp:** correct code tool api output types ([b9e4e8a](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b9e4e8a525bb98edfa3d3eb74a88e39a01a653cc))
+* **mcp:** fix env parsing ([d9dcc34](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d9dcc3476299460229056bca7dd78244bb000578))
+* **mcp:** fix options parsing ([37de855](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/37de85560eb57c6ff62186e99b56faba062fa243))
+* **mcp:** update code tool prompt ([2ee202b](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2ee202ba6200fef85f6993ac5d28201aaecd9c3a))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([41a0559](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/41a05599b563577132587a41127ca2b71d0eb7ee))
+* **internal:** codegen related update ([3af5b64](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3af5b64df77f33da5daf01cb645cd9f7bc4c9a5e))
+* **internal:** codegen related update ([afd1625](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/afd16254edb4eda68b8939df8f821b3b740aed3c))
+* **internal:** codegen related update ([2e997c2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2e997c2715421d17e015d1e0a8424c8adbbdacb2))
+* **internal:** codegen related update ([290c325](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/290c3255496815334fdcd33011d32aaaddef13c9))
+* **internal:** fix dockerfile ([fafedee](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/fafedeee9f887652ad1ceb98a68791012725e4f4))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([462d3bd](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/462d3bde6bc8071eb32cba285467bdd993ae5fb2))
+
 ## 2.1.0 (2025-12-30)
 
 Full Changelog: [v2.0.0...v2.1.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.0.0...v2.1.0)
