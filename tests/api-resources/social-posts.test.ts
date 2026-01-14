@@ -70,6 +70,7 @@ describe('resource socialPosts', () => {
             reply_settings: 'following',
             share_to_feed: true,
             title: 'title',
+            trial_reel_type: 'manual',
           },
           social_account_id: 'social_account_id',
         },
@@ -156,6 +157,7 @@ describe('resource socialPosts', () => {
           ],
           placement: 'reels',
           share_to_feed: true,
+          trial_reel_type: 'manual',
         },
         linkedin: {
           caption: {},
@@ -406,6 +408,7 @@ describe('resource socialPosts', () => {
             reply_settings: 'following',
             share_to_feed: true,
             title: 'title',
+            trial_reel_type: 'manual',
           },
           social_account_id: 'social_account_id',
         },
@@ -492,6 +495,7 @@ describe('resource socialPosts', () => {
           ],
           placement: 'reels',
           share_to_feed: true,
+          trial_reel_type: 'manual',
         },
         linkedin: {
           caption: {},
