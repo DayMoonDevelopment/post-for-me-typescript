@@ -293,6 +293,13 @@ export namespace CreateSocialPost {
        * Overrides the `title` from the post
        */
       title?: string | null;
+
+      /**
+       * Instagram trial reel type, when passed will be created as a trial reel. If
+       * manual the trial reel can be manually graduated in the native app. If perfomance
+       * the trial reel will be automatically graduated if the trial reel performs well.
+       */
+      trial_reel_type?: 'manual' | 'performance' | null;
     }
 
     export namespace Configuration {
@@ -540,6 +547,13 @@ export interface InstagramConfigurationDto {
    * If false video posts will only be shown in the Reels tab
    */
   share_to_feed?: boolean | null;
+
+  /**
+   * Instagram trial reel type, when passed will be created as a trial reel. If
+   * manual the trial reel can be manually graduated in the native app. If perfomance
+   * the trial reel will be automatically graduated if the trial reel performs well.
+   */
+  trial_reel_type?: 'manual' | 'performance' | null;
 }
 
 export namespace InstagramConfigurationDto {
@@ -989,6 +1003,13 @@ export namespace SocialPost {
        * Overrides the `title` from the post
        */
       title?: string | null;
+
+      /**
+       * Instagram trial reel type, when passed will be created as a trial reel. If
+       * manual the trial reel can be manually graduated in the native app. If perfomance
+       * the trial reel will be automatically graduated if the trial reel performs well.
+       */
+      trial_reel_type?: 'manual' | 'performance' | null;
     }
 
     export namespace Configuration {
@@ -1722,6 +1743,13 @@ export namespace SocialPostCreateParams {
        * Overrides the `title` from the post
        */
       title?: string | null;
+
+      /**
+       * Instagram trial reel type, when passed will be created as a trial reel. If
+       * manual the trial reel can be manually graduated in the native app. If perfomance
+       * the trial reel will be automatically graduated if the trial reel performs well.
+       */
+      trial_reel_type?: 'manual' | 'performance' | null;
     }
 
     export namespace Configuration {
@@ -2035,6 +2063,13 @@ export namespace SocialPostUpdateParams {
        * Overrides the `title` from the post
        */
       title?: string | null;
+
+      /**
+       * Instagram trial reel type, when passed will be created as a trial reel. If
+       * manual the trial reel can be manually graduated in the native app. If perfomance
+       * the trial reel will be automatically graduated if the trial reel performs well.
+       */
+      trial_reel_type?: 'manual' | 'performance' | null;
     }
 
     export namespace Configuration {
