@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.3.0 (2026-01-15)
+
+Full Changelog: [v2.2.0...v2.3.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.2.0...v2.3.0)
+
+### Features
+
+* **api:** api update ([469d03d](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/469d03dcf529d6a9fd707e9ffec2861f6fcdd197))
+
+
+### Chores
+
+* **internal:** upgrade babel, qs, js-yaml ([53bfa24](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/53bfa24e13d9a3943e677e569388c2f3e6174ec9))
+* **mcp:** add intent param to execute tool ([e9318b6](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/e9318b6f865d81dd6cbeccbcd58469eb589875c2))
+* **mcp:** pass intent param to execute handler ([f7cf6dc](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/f7cf6dca99576be0789b6f879834e2566fce7a4c))
+* **mcp:** upgrade dependencies ([605c11e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/605c11edcd2e711a1e0f1ba197f50e515a0856b0))
+
 ## 2.2.0 (2026-01-13)
 
 Full Changelog: [v2.1.0...v2.2.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.1.0...v2.2.0)
