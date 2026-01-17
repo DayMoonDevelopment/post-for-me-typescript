@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.1 (2026-01-17)
+
+Full Changelog: [v2.3.0...v2.3.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.3.0...v2.3.1)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([bce9fe8](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/bce9fe8ec4e418540b587dd465d8ce7d86aef6fa))
+
 ## 2.3.0 (2026-01-15)
 
 Full Changelog: [v2.2.0...v2.3.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.2.0...v2.3.0)
