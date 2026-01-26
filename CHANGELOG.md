@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.3.1 (2026-01-24)
+
+Full Changelog: [v2.3.0...v2.3.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.3.0...v2.3.1)
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([e6b32e2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/e6b32e26f2ccf6918a4ca278b9fda242f5560db3))
+* **internal:** update `actions/checkout` version ([bce9fe8](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/bce9fe8ec4e418540b587dd465d8ce7d86aef6fa))
+* **internal:** update lock file ([d293dfb](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d293dfb8cbd668d51e9a389c41b04044919eb119))
+
 ## 2.3.0 (2026-01-15)
 
 Full Changelog: [v2.2.0...v2.3.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.2.0...v2.3.0)
