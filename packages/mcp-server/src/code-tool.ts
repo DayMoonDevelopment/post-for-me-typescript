@@ -4,6 +4,7 @@ import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult }
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv, readEnvOrError } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { PostForMe } from 'post-for-me';
 
 const prompt = `Runs JavaScript code to interact with the Post For Me API.
 
@@ -58,7 +59,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: PostForMe, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -74,8 +75,8 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          POST_FOR_ME_API_KEY: readEnvOrError('POST_FOR_ME_API_KEY'),
-          POST_FOR_ME_BASE_URL: readEnv('POST_FOR_ME_BASE_URL'),
+          POST_FOR_ME_API_KEY: readEnvOrError('POST_FOR_ME_API_KEY') ?? client.apiKey ?? undefined,
+          POST_FOR_ME_BASE_URL: readEnv('POST_FOR_ME_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
