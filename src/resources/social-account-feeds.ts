@@ -71,7 +71,11 @@ export interface PlatformPost {
     | PlatformPost.TikTokBusinessMetricsDto
     | PlatformPost.TikTokPostMetricsDto
     | PlatformPost.InstagramPostMetricsDto
-    | PlatformPost.YouTubePostMetricsDto;
+    | PlatformPost.YouTubePostMetricsDto
+    | PlatformPost.FacebookPostMetricsDto
+    | PlatformPost.TwitterPostMetricsDto
+    | PlatformPost.ThreadsPostMetricsDto
+    | unknown;
 
   /**
    * Date the post was published
@@ -532,6 +536,467 @@ export namespace PlatformPost {
      * Number of times the video was removed from playlists
      */
     videosRemovedFromPlaylists?: number;
+  }
+
+  export interface FacebookPostMetricsDto {
+    /**
+     * Total activity breakdown by action type
+     */
+    activity_by_action_type?: Array<FacebookPostMetricsDto.ActivityByActionType>;
+
+    /**
+     * Unique users activity breakdown by action type
+     */
+    activity_by_action_type_unique?: Array<FacebookPostMetricsDto.ActivityByActionTypeUnique>;
+
+    /**
+     * Number of comments (from post object)
+     */
+    comments?: number;
+
+    /**
+     * Number of fans who saw the post
+     */
+    fan_reach?: number;
+
+    /**
+     * Number of times the photo or video was viewed
+     */
+    media_views?: number;
+
+    /**
+     * Number of people who saw the post via non-viral distribution
+     */
+    nonviral_reach?: number;
+
+    /**
+     * Number of people who saw the post via organic distribution
+     */
+    organic_reach?: number;
+
+    /**
+     * Number of people who saw the post via paid distribution
+     */
+    paid_reach?: number;
+
+    /**
+     * Total number of unique people who saw the post
+     */
+    reach?: number;
+
+    /**
+     * Number of anger reactions
+     */
+    reactions_anger?: number;
+
+    /**
+     * Breakdown of all reaction types
+     */
+    reactions_by_type?: unknown;
+
+    /**
+     * Number of haha reactions
+     */
+    reactions_haha?: number;
+
+    /**
+     * Number of like reactions
+     */
+    reactions_like?: number;
+
+    /**
+     * Number of love reactions
+     */
+    reactions_love?: number;
+
+    /**
+     * Number of sad reactions
+     */
+    reactions_sorry?: number;
+
+    /**
+     * Total number of reactions (all types)
+     */
+    reactions_total?: number;
+
+    /**
+     * Number of wow reactions
+     */
+    reactions_wow?: number;
+
+    /**
+     * Number of shares (from post object)
+     */
+    shares?: number;
+
+    /**
+     * Average time video was viewed in milliseconds
+     */
+    video_avg_time_watched?: number;
+
+    /**
+     * Number of times video was viewed to 95% organically
+     */
+    video_complete_views_organic?: number;
+
+    /**
+     * Number of unique people who viewed video to 95% organically
+     */
+    video_complete_views_organic_unique?: number;
+
+    /**
+     * Number of times video was viewed to 95% via paid distribution
+     */
+    video_complete_views_paid?: number;
+
+    /**
+     * Number of unique people who viewed video to 95% via paid distribution
+     */
+    video_complete_views_paid_unique?: number;
+
+    /**
+     * Length of the video in milliseconds
+     */
+    video_length?: number;
+
+    /**
+     * Video retention graph for autoplayed views
+     */
+    video_retention_graph_autoplayed?: Array<FacebookPostMetricsDto.VideoRetentionGraphAutoplayed>;
+
+    /**
+     * Video retention graph for clicked-to-play views
+     */
+    video_retention_graph_clicked_to_play?: Array<FacebookPostMetricsDto.VideoRetentionGraphClickedToPlay>;
+
+    /**
+     * Number of unique people who performed social actions on the video
+     */
+    video_social_actions_unique?: number;
+
+    /**
+     * Total time video was viewed in milliseconds
+     */
+    video_view_time?: number;
+
+    /**
+     * Video view time breakdown by age and gender
+     */
+    video_view_time_by_age_gender?: Array<FacebookPostMetricsDto.VideoViewTimeByAgeGender>;
+
+    /**
+     * Video view time breakdown by country
+     */
+    video_view_time_by_country?: Array<FacebookPostMetricsDto.VideoViewTimeByCountry>;
+
+    /**
+     * Video view time breakdown by distribution type
+     */
+    video_view_time_by_distribution_type?: unknown;
+
+    /**
+     * Video view time breakdown by region
+     */
+    video_view_time_by_region?: Array<FacebookPostMetricsDto.VideoViewTimeByRegion>;
+
+    /**
+     * Total time video was viewed in milliseconds via organic distribution
+     */
+    video_view_time_organic?: number;
+
+    /**
+     * Number of times video was viewed for 3+ seconds
+     */
+    video_views?: number;
+
+    /**
+     * Number of times video was viewed for 15+ seconds
+     */
+    video_views_15s?: number;
+
+    /**
+     * Number of times video was viewed for 60+ seconds (excludes videos shorter than
+     * 60s)
+     */
+    video_views_60s?: number;
+
+    /**
+     * Number of times video was autoplayed for 3+ seconds
+     */
+    video_views_autoplayed?: number;
+
+    /**
+     * Video views breakdown by distribution type
+     */
+    video_views_by_distribution_type?: unknown;
+
+    /**
+     * Number of times video was clicked to play for 3+ seconds
+     */
+    video_views_clicked_to_play?: number;
+
+    /**
+     * Number of times video was viewed for 3+ seconds organically
+     */
+    video_views_organic?: number;
+
+    /**
+     * Number of unique people who viewed the video for 3+ seconds organically
+     */
+    video_views_organic_unique?: number;
+
+    /**
+     * Number of times video was viewed for 3+ seconds via paid distribution
+     */
+    video_views_paid?: number;
+
+    /**
+     * Number of unique people who viewed the video for 3+ seconds via paid
+     * distribution
+     */
+    video_views_paid_unique?: number;
+
+    /**
+     * Number of times video was viewed with sound on
+     */
+    video_views_sound_on?: number;
+
+    /**
+     * Number of unique people who viewed the video for 3+ seconds
+     */
+    video_views_unique?: number;
+
+    /**
+     * Number of people who saw the post in News Feed via viral reach
+     */
+    viral_reach?: number;
+  }
+
+  export namespace FacebookPostMetricsDto {
+    export interface ActivityByActionType {
+      /**
+       * Action type (e.g., like, comment, share)
+       */
+      action_type: string;
+
+      /**
+       * Number of actions
+       */
+      value: number;
+    }
+
+    export interface ActivityByActionTypeUnique {
+      /**
+       * Action type (e.g., like, comment, share)
+       */
+      action_type: string;
+
+      /**
+       * Number of actions
+       */
+      value: number;
+    }
+
+    export interface VideoRetentionGraphAutoplayed {
+      /**
+       * Percentage of viewers at this time
+       */
+      rate: number;
+
+      /**
+       * Time in seconds
+       */
+      time: number;
+    }
+
+    export interface VideoRetentionGraphClickedToPlay {
+      /**
+       * Percentage of viewers at this time
+       */
+      rate: number;
+
+      /**
+       * Time in seconds
+       */
+      time: number;
+    }
+
+    export interface VideoViewTimeByAgeGender {
+      /**
+       * Demographic key (e.g., age_gender, region, country)
+       */
+      key: string;
+
+      /**
+       * Total view time in milliseconds
+       */
+      value: number;
+    }
+
+    export interface VideoViewTimeByCountry {
+      /**
+       * Demographic key (e.g., age_gender, region, country)
+       */
+      key: string;
+
+      /**
+       * Total view time in milliseconds
+       */
+      value: number;
+    }
+
+    export interface VideoViewTimeByRegion {
+      /**
+       * Demographic key (e.g., age_gender, region, country)
+       */
+      key: string;
+
+      /**
+       * Total view time in milliseconds
+       */
+      value: number;
+    }
+  }
+
+  export interface TwitterPostMetricsDto {
+    /**
+     * Non-public metrics for the Tweet (available to the Tweet owner or advertisers)
+     */
+    non_public_metrics?: TwitterPostMetricsDto.NonPublicMetrics;
+
+    /**
+     * Organic metrics for the Tweet (available to the Tweet owner)
+     */
+    organic_metrics?: TwitterPostMetricsDto.OrganicMetrics;
+
+    /**
+     * Publicly available metrics for the Tweet
+     */
+    public_metrics?: TwitterPostMetricsDto.PublicMetrics;
+  }
+
+  export namespace TwitterPostMetricsDto {
+    /**
+     * Non-public metrics for the Tweet (available to the Tweet owner or advertisers)
+     */
+    export interface NonPublicMetrics {
+      /**
+       * Number of times this Tweet has been viewed via promoted distribution
+       */
+      impression_count: number;
+
+      /**
+       * Number of clicks on links in this Tweet via promoted distribution
+       */
+      url_link_clicks: number;
+
+      /**
+       * Number of clicks on the author's profile via promoted distribution
+       */
+      user_profile_clicks: number;
+    }
+
+    /**
+     * Organic metrics for the Tweet (available to the Tweet owner)
+     */
+    export interface OrganicMetrics {
+      /**
+       * Number of times this Tweet has been viewed organically
+       */
+      impression_count: number;
+
+      /**
+       * Number of Likes of this Tweet from organic distribution
+       */
+      like_count: number;
+
+      /**
+       * Number of Replies of this Tweet from organic distribution
+       */
+      reply_count: number;
+
+      /**
+       * Number of Retweets of this Tweet from organic distribution
+       */
+      retweet_count: number;
+
+      /**
+       * Number of clicks on links in this Tweet from organic distribution
+       */
+      url_link_clicks: number;
+
+      /**
+       * Number of clicks on the author's profile from organic distribution
+       */
+      user_profile_clicks: number;
+    }
+
+    /**
+     * Publicly available metrics for the Tweet
+     */
+    export interface PublicMetrics {
+      /**
+       * Number of times this Tweet has been bookmarked
+       */
+      bookmark_count: number;
+
+      /**
+       * Number of times this Tweet has been viewed
+       */
+      impression_count: number;
+
+      /**
+       * Number of Likes of this Tweet
+       */
+      like_count: number;
+
+      /**
+       * Number of Quotes of this Tweet
+       */
+      quote_count: number;
+
+      /**
+       * Number of Replies of this Tweet
+       */
+      reply_count: number;
+
+      /**
+       * Number of Retweets of this Tweet
+       */
+      retweet_count: number;
+    }
+  }
+
+  export interface ThreadsPostMetricsDto {
+    /**
+     * Number of likes on the post
+     */
+    likes: number;
+
+    /**
+     * Number of quotes of the post
+     */
+    quotes: number;
+
+    /**
+     * Number of replies on the post
+     */
+    replies: number;
+
+    /**
+     * Number of reposts of the post
+     */
+    reposts: number;
+
+    /**
+     * Number of shares of the post
+     */
+    shares: number;
+
+    /**
+     * Number of views on the post
+     */
+    views: number;
   }
 }
 
