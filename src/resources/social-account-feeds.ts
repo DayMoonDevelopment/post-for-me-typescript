@@ -75,7 +75,9 @@ export interface PlatformPost {
     | PlatformPost.FacebookPostMetricsDto
     | PlatformPost.TwitterPostMetricsDto
     | PlatformPost.ThreadsPostMetricsDto
-    | unknown;
+    | PlatformPost.LinkedInPostMetricsDto
+    | PlatformPost.BlueskyPostMetricsDto
+    | PlatformPost.PinterestPostMetricsDto;
 
   /**
    * Date the post was published
@@ -997,6 +999,254 @@ export namespace PlatformPost {
      * Number of views on the post
      */
     views: number;
+  }
+
+  export interface LinkedInPostMetricsDto {
+    /**
+     * Number of clicks
+     */
+    clickCount?: number;
+
+    /**
+     * Number of comments
+     */
+    commentCount?: number;
+
+    /**
+     * Engagement rate
+     */
+    engagement?: number;
+
+    /**
+     * Number of impressions
+     */
+    impressionCount?: number;
+
+    /**
+     * Number of likes
+     */
+    likeCount?: number;
+
+    /**
+     * Number of shares
+     */
+    shareCount?: number;
+
+    /**
+     * TIME_WATCHED: The time the video was watched in milliseconds. Video auto-looping
+     * will continue to increase this metric for each subsequent play
+     */
+    timeWatched?: number;
+
+    /**
+     * TIME_WATCHED_FOR_VIDEO_VIEWS: The time watched in milliseconds for video
+     * play-pause cycles that are at least 3 seconds. Video auto-looping will continue
+     * to increase this metric for each subsequent play. Analytics data for this metric
+     * will be available for six months
+     */
+    timeWatchedForVideoViews?: number;
+
+    /**
+     * VIDEO_VIEW: Video views with play-pause cycles for at least 3 seconds.
+     * Auto-looping videos are counted as one when loaded. Each subsequent auto-looped
+     * play doesn't increase this metric. Analytics data for this metric won't be
+     * available after six months
+     */
+    videoView?: number;
+
+    /**
+     * VIEWER: Unique viewers who made engaged plays on the video. Auto-looping videos
+     * are counted as one when loaded. Each subsequent auto-looped play doesn't
+     * increase this metric. Analytics data for this metric won't be available after
+     * six months
+     */
+    viewer?: number;
+  }
+
+  export interface BlueskyPostMetricsDto {
+    /**
+     * Number of likes on the post
+     */
+    likeCount: number;
+
+    /**
+     * Number of quotes of the post
+     */
+    quoteCount: number;
+
+    /**
+     * Number of replies on the post
+     */
+    replyCount: number;
+
+    /**
+     * Number of reposts of the post
+     */
+    repostCount: number;
+  }
+
+  export interface PinterestPostMetricsDto {
+    /**
+     * Last 90 days of Pin metrics
+     */
+    '90d'?: PinterestPostMetricsDto._90d;
+
+    /**
+     * Lifetime Pin metrics
+     */
+    lifetime_metrics?: PinterestPostMetricsDto.LifetimeMetrics;
+  }
+
+  export namespace PinterestPostMetricsDto {
+    /**
+     * Last 90 days of Pin metrics
+     */
+    export interface _90d {
+      /**
+       * Number of comments on the Pin
+       */
+      comment?: number;
+
+      /**
+       * Number of times the Pin was shown (impressions)
+       */
+      impression?: number;
+
+      /**
+       * The last time Pinterest updated these metrics
+       */
+      last_updated?: string;
+
+      /**
+       * Number of clicks from the Pin to an external destination (outbound clicks)
+       */
+      outbound_click?: number;
+
+      /**
+       * Number of clicks on the Pin to view it in closeup (Pin clicks)
+       */
+      pin_click?: number;
+
+      /**
+       * Number of visits to the author's profile driven from the Pin
+       */
+      profile_visit?: unknown | null;
+
+      /**
+       * Total number of reactions on the Pin
+       */
+      reaction?: number;
+
+      /**
+       * Number of saves of the Pin
+       */
+      save?: number;
+
+      /**
+       * Number of follows driven from the Pin
+       */
+      user_follow?: unknown | null;
+
+      /**
+       * Number of video views of at least 10 seconds
+       */
+      video_10s_views?: number;
+
+      /**
+       * Average watch time for the video
+       */
+      video_average_time?: number;
+
+      /**
+       * Number of video views that reached 95% completion
+       */
+      video_p95_views?: number;
+
+      /**
+       * Total watch time for the video
+       */
+      video_total_time?: number;
+
+      /**
+       * Number of video views
+       */
+      video_views?: number;
+    }
+
+    /**
+     * Lifetime Pin metrics
+     */
+    export interface LifetimeMetrics {
+      /**
+       * Number of comments on the Pin
+       */
+      comment?: number;
+
+      /**
+       * Number of times the Pin was shown (impressions)
+       */
+      impression?: number;
+
+      /**
+       * The last time Pinterest updated these metrics
+       */
+      last_updated?: string;
+
+      /**
+       * Number of clicks from the Pin to an external destination (outbound clicks)
+       */
+      outbound_click?: number;
+
+      /**
+       * Number of clicks on the Pin to view it in closeup (Pin clicks)
+       */
+      pin_click?: number;
+
+      /**
+       * Number of visits to the author's profile driven from the Pin
+       */
+      profile_visit?: unknown | null;
+
+      /**
+       * Total number of reactions on the Pin
+       */
+      reaction?: number;
+
+      /**
+       * Number of saves of the Pin
+       */
+      save?: number;
+
+      /**
+       * Number of follows driven from the Pin
+       */
+      user_follow?: unknown | null;
+
+      /**
+       * Number of video views of at least 10 seconds
+       */
+      video_10s_views?: number;
+
+      /**
+       * Average watch time for the video
+       */
+      video_average_time?: number;
+
+      /**
+       * Number of video views that reached 95% completion
+       */
+      video_p95_views?: number;
+
+      /**
+       * Total watch time for the video
+       */
+      video_total_time?: number;
+
+      /**
+       * Number of video views
+       */
+      video_views?: number;
+    }
   }
 }
 
