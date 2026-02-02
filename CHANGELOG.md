@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.4.0 (2026-02-02)
+
+Full Changelog: [v2.3.1...v2.4.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.3.1...v2.4.0)
+
+### Features
+
+* **api:** api update ([211dbd3](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/211dbd3830c38fa338d1b93989eea18d383bee7b))
+* **api:** api update ([98a47fc](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/98a47fc7a920c88380d6b223483f703ccb449c95))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([2b4a8d7](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2b4a8d78e4f85120ed42f3f983c999c84bb84f8e))
+* **mcp:** allow falling back for required env variables ([ffd4189](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/ffd41899ed37a8fc23708497436146924c235a82))
+
+
+### Chores
+
+* **internal:** codegen related update ([c3f00bb](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/c3f00bb2cf702d1347e03e0be13c9cc740872d05))
+* **mcp:** up tsconfig lib version to es2022 ([7d4cec2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/7d4cec2958c51792957ccc8da106c52d31bfa215))
+
 ## 2.3.1 (2026-01-24)
 
 Full Changelog: [v2.3.0...v2.3.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.3.0...v2.3.1)
