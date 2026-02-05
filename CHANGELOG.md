@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.5.0 (2026-02-05)
+
+Full Changelog: [v2.4.0...v2.5.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.4.0...v2.5.0)
+
+### Features
+
+* **mcp:** add initial server instructions ([d92a7d7](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d92a7d7d7a433a561991aac05009369e2a0976d3))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([2aef8a3](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2aef8a357a6990890ef715087b6b81234a9d8956))
+
+
+### Chores
+
+* **client:** do not parse responses with empty content-length ([5d16bad](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5d16bad0fe942addb25047c1217b3aeaae168b25))
+* **client:** restructure abort controller binding ([cccc59e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cccc59e629d93eace93cf896cd24a4abb434b36d))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([6ff3dc5](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/6ff3dc521bdec4ddc5f5c52e01d17291d7c8ab21))
+* **internal:** support oauth authorization code flow for MCP servers ([c20422a](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/c20422ad70552426e4efed2f727bb7533d27b329))
+
 ## 2.4.0 (2026-02-02)
 
 Full Changelog: [v2.3.1...v2.4.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.3.1...v2.4.0)
