@@ -66,6 +66,13 @@ export namespace BlueskyConfigurationDto {
     url: string;
 
     /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
+
+    /**
      * List of tags to attach to the media
      */
     tags?: Array<Media.Tag> | null;
@@ -310,6 +317,13 @@ export namespace CreateSocialPost {
         url: string;
 
         /**
+         * If true the media will not be processed at all and instead be posted as is, this
+         * may increase chance of post failure if media does not meet platform's
+         * requirements. Best used for larger files.
+         */
+        skip_processing?: boolean | null;
+
+        /**
          * List of tags to attach to the media
          */
         tags?: Array<Media.Tag> | null;
@@ -384,6 +398,13 @@ export namespace CreateSocialPost {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -467,6 +488,13 @@ export namespace FacebookConfigurationDto {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -564,6 +592,13 @@ export namespace InstagramConfigurationDto {
     url: string;
 
     /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
+
+    /**
      * List of tags to attach to the media
      */
     tags?: Array<Media.Tag> | null;
@@ -630,6 +665,13 @@ export namespace LinkedinConfigurationDto {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -708,6 +750,13 @@ export namespace PinterestConfigurationDto {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -1020,6 +1069,13 @@ export namespace SocialPost {
         url: string;
 
         /**
+         * If true the media will not be processed at all and instead be posted as is, this
+         * may increase chance of post failure if media does not meet platform's
+         * requirements. Best used for larger files.
+         */
+        skip_processing?: boolean | null;
+
+        /**
          * List of tags to attach to the media
          */
         tags?: Array<Media.Tag> | null;
@@ -1096,6 +1152,13 @@ export namespace SocialPost {
     url: string;
 
     /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
+
+    /**
      * List of tags to attach to the media
      */
     tags?: Array<Media.Tag> | null;
@@ -1167,6 +1230,13 @@ export namespace ThreadsConfigurationDto {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -1288,6 +1358,13 @@ export namespace TiktokConfiguration {
     url: string;
 
     /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
+
+    /**
      * List of tags to attach to the media
      */
     tags?: Array<Media.Tag> | null;
@@ -1374,6 +1451,13 @@ export namespace TwitterConfigurationDto {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -1477,6 +1561,13 @@ export namespace YoutubeConfigurationDto {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -1760,6 +1851,13 @@ export namespace SocialPostCreateParams {
         url: string;
 
         /**
+         * If true the media will not be processed at all and instead be posted as is, this
+         * may increase chance of post failure if media does not meet platform's
+         * requirements. Best used for larger files.
+         */
+        skip_processing?: boolean | null;
+
+        /**
          * List of tags to attach to the media
          */
         tags?: Array<Media.Tag> | null;
@@ -1834,6 +1932,13 @@ export namespace SocialPostCreateParams {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
@@ -2080,6 +2185,13 @@ export namespace SocialPostUpdateParams {
         url: string;
 
         /**
+         * If true the media will not be processed at all and instead be posted as is, this
+         * may increase chance of post failure if media does not meet platform's
+         * requirements. Best used for larger files.
+         */
+        skip_processing?: boolean | null;
+
+        /**
          * List of tags to attach to the media
          */
         tags?: Array<Media.Tag> | null;
@@ -2154,6 +2266,13 @@ export namespace SocialPostUpdateParams {
      * Public URL of the media
      */
     url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
 
     /**
      * List of tags to attach to the media
