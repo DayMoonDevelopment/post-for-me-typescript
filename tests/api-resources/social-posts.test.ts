@@ -46,6 +46,7 @@ describe('resource socialPosts', () => {
             media: [
               {
                 url: 'url',
+                skip_processing: true,
                 tags: [
                   {
                     id: 'id',
@@ -80,6 +81,7 @@ describe('resource socialPosts', () => {
       media: [
         {
           url: 'url',
+          skip_processing: true,
           tags: [
             {
               id: 'id',
@@ -99,6 +101,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -120,6 +123,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -142,6 +146,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -164,6 +169,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -185,6 +191,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -204,6 +211,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -232,6 +240,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -261,6 +270,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -283,6 +293,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -310,6 +321,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -384,6 +396,7 @@ describe('resource socialPosts', () => {
             media: [
               {
                 url: 'url',
+                skip_processing: true,
                 tags: [
                   {
                     id: 'id',
@@ -418,6 +431,7 @@ describe('resource socialPosts', () => {
       media: [
         {
           url: 'url',
+          skip_processing: true,
           tags: [
             {
               id: 'id',
@@ -437,6 +451,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -458,6 +473,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -480,6 +496,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -502,6 +519,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -523,6 +541,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -542,6 +561,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -570,6 +590,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -599,6 +620,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -621,6 +643,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',
@@ -648,6 +671,7 @@ describe('resource socialPosts', () => {
           media: [
             {
               url: 'url',
+              skip_processing: true,
               tags: [
                 {
                   id: 'id',

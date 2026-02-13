@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.6.0 (2026-02-12)
+
+Full Changelog: [v2.5.0...v2.6.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.5.0...v2.6.0)
+
+### Features
+
+* **api:** api update ([c363af2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/c363af2f31eb3d68e1d3c014bcf190cc7f365689))
+
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([5d5e05f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5d5e05f53f7e1ba055a902607eebd70378fecee8))
+
+
+### Chores
+
+* **internal:** add health check to MCP server when running in HTTP mode ([7390ced](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/7390cedbe013b43f0ff7564dc73ed27b72b6237e))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([1f8d2ff](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1f8d2ff03715527b67f7e35a234fa3cc29ea49c7))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([742557f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/742557f2df1d6810124580fac4dae3f024f63cc0))
+* **internal:** avoid type checking errors with ts-reset ([f4c518f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/f4c518f7c98872a75258a806a03588a069828549))
+
 ## 2.5.0 (2026-02-05)
 
 Full Changelog: [v2.4.0...v2.5.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.4.0...v2.5.0)
