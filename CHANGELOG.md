@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.6.1 (2026-02-14)
+
+Full Changelog: [v2.6.0...v2.6.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.6.0...v2.6.1)
+
+### Chores
+
+* **internal:** improve layout of generated MCP server files ([0b052fb](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/0b052fb2629bd663a9192f4f943d5d435b902e5a))
+* **mcp:** forward STAINLESS_API_KEY to docs search endpoint ([fbcbf36](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/fbcbf36fd36aef849ced0ed6668f20f14f5de985))
+
 ## 2.6.0 (2026-02-12)
 
 Full Changelog: [v2.5.0...v2.6.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.5.0...v2.6.0)
