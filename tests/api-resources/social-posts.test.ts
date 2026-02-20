@@ -8,7 +8,7 @@ const client = new PostForMe({
 });
 
 describe('resource socialPosts', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.socialPosts.create({ caption: 'caption', social_accounts: ['string'] });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource socialPosts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.socialPosts.create({
       caption: 'caption',
@@ -343,7 +343,7 @@ describe('resource socialPosts', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.socialPosts.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
@@ -355,7 +355,7 @@ describe('resource socialPosts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.socialPosts.update('id', {
       caption: 'caption',
@@ -370,7 +370,7 @@ describe('resource socialPosts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.socialPosts.update('id', {
       caption: 'caption',
@@ -693,7 +693,7 @@ describe('resource socialPosts', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.socialPosts.list();
     const rawResponse = await responsePromise.asResponse();
@@ -705,7 +705,7 @@ describe('resource socialPosts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -723,7 +723,7 @@ describe('resource socialPosts', () => {
     ).rejects.toThrow(PostForMe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.socialPosts.delete('id');
     const rawResponse = await responsePromise.asResponse();
