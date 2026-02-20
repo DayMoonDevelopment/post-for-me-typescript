@@ -87,6 +87,7 @@ describe('resource socialAccounts', () => {
           limit: 0,
           offset: 0,
           platform: ['string'],
+          status: ['connected'],
           username: ['string'],
         },
         { path: '/_stainless_unknown_path' },
