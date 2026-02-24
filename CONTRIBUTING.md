@@ -60,7 +60,7 @@ $ yarn link post-for-me
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global post-for-me
+$ pnpm link --global post-for-me
 ```
 
 ## Running tests
