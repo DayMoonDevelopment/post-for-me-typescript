@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.7.0 (2026-02-27)
+
+Full Changelog: [v2.6.1...v2.7.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.6.1...v2.7.0)
+
+### Features
+
+* **api:** api update ([874eb5c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/874eb5c10a38f2dbc1ea2952950dab4be6d9148e))
+* **mcp:** add an option to disable code tool ([1141c18](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1141c189bdadd2bd81bdcddf5e3b400121a7a720))
+
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([557f11c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/557f11c3551dc1b4e83fb701cba91b9b1f9fb30a))
+* **mcp:** initialize SDK lazily to avoid failing the connection on init errors ([94ed748](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/94ed748c10d47bc77f662deaddd54a06bba99015))
+* **mcp:** update prompt ([55d71a8](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/55d71a88aee62fe3474e82ba038fa369d7cde3c3))
+
+
+### Chores
+
+* **internal/client:** fix form-urlencoded requests ([55c58bb](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/55c58bb224057ace70b4338e53ca80b51c9cfbe6))
+* **internal:** allow setting x-stainless-api-key header on mcp server requests ([5be1a39](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5be1a394b0b951851ec8ae22c9e1f0deefb184f4))
+* **internal:** cache fetch instruction calls in MCP server ([6651196](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/66511961f7e4ae63d9f72209cd7b2af2b83f9e1e))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([5bfef0e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5bfef0e5756a0ddf23525ece2a9873e703e3f074))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([4c69e61](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4c69e612735a8771df25f550eca7678b7ee50df2))
+* **internal:** make MCP code execution location configurable via a flag ([079317a](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/079317a7d994c40fac7374fa25c1db913d8048c9))
+* **internal:** move stringifyQuery implementation to internal function ([caf7728](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/caf772825d7fa7f290ded01d285b855912d12867))
+* **internal:** remove mock server code ([1c5eb5f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1c5eb5fc7f638be5799328e72f0a1471ab477649))
+* **internal:** upgrade @modelcontextprotocol/sdk and hono ([2bd4016](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2bd40161f2a416b7ce66828103ef4abf94675405))
+* **mcp:** correctly update version in sync with sdk ([ce230e0](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/ce230e0f19004bbf0c4f03602e139ea8b970d488))
+* update mock server docs ([777fe00](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/777fe000b4bcefe7a31f49dbad8b762608bd6088))
+
 ## 2.6.1 (2026-02-14)
 
 Full Changelog: [v2.6.0...v2.6.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.6.0...v2.6.1)

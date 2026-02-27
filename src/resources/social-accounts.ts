@@ -369,6 +369,12 @@ export interface SocialAccountListParams {
   platform?: Array<string>;
 
   /**
+   * Filter by status. Multiple values imply OR logic (e.g.,
+   * ?status=connected&status=disconnected).
+   */
+  status?: Array<'connected' | 'disconnected'>;
+
+  /**
    * Filter by username(s). Multiple values imply OR logic (e.g.,
    * ?username=test&username=test2).
    */

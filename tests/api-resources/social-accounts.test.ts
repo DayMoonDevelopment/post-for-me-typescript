@@ -8,7 +8,7 @@ const client = new PostForMe({
 });
 
 describe('resource socialAccounts', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.socialAccounts.create({
       access_token: 'access_token',
@@ -25,7 +25,7 @@ describe('resource socialAccounts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.socialAccounts.create({
       access_token: 'access_token',
@@ -40,7 +40,7 @@ describe('resource socialAccounts', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.socialAccounts.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
@@ -52,7 +52,7 @@ describe('resource socialAccounts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update', async () => {
     const responsePromise = client.socialAccounts.update('id', {});
     const rawResponse = await responsePromise.asResponse();
@@ -64,7 +64,7 @@ describe('resource socialAccounts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.socialAccounts.list();
     const rawResponse = await responsePromise.asResponse();
@@ -76,7 +76,7 @@ describe('resource socialAccounts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -87,6 +87,7 @@ describe('resource socialAccounts', () => {
           limit: 0,
           offset: 0,
           platform: ['string'],
+          status: ['connected'],
           username: ['string'],
         },
         { path: '/_stainless_unknown_path' },
@@ -94,7 +95,7 @@ describe('resource socialAccounts', () => {
     ).rejects.toThrow(PostForMe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createAuthURL: only required params', async () => {
     const responsePromise = client.socialAccounts.createAuthURL({ platform: 'platform' });
     const rawResponse = await responsePromise.asResponse();
@@ -106,7 +107,7 @@ describe('resource socialAccounts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('createAuthURL: required and optional params', async () => {
     const response = await client.socialAccounts.createAuthURL({
       platform: 'platform',
@@ -127,7 +128,7 @@ describe('resource socialAccounts', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('disconnect', async () => {
     const responsePromise = client.socialAccounts.disconnect('id');
     const rawResponse = await responsePromise.asResponse();
