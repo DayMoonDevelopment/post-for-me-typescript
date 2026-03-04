@@ -5,6 +5,13 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ *
+ * Post results represent the outcome of publishing content to various social media platforms. They provide comprehensive information including:
+ * - Publication status (success/failure)
+ * - Any errors or issues encountered during posting
+ * - Platform url to view the published post
+ */
 export class SocialPostResults extends APIResource {
   /**
    * Get post result by ID
