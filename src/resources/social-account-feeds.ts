@@ -101,6 +101,11 @@ export interface PlatformPost {
     | PlatformPost.PinterestPostMetricsDto;
 
   /**
+   * Platform-specific data for the post
+   */
+  platform_data?: PlatformPost.PlatformData;
+
+  /**
    * Date the post was published
    */
   posted_at?: string;
@@ -1268,6 +1273,16 @@ export namespace PlatformPost {
        */
       video_views?: number;
     }
+  }
+
+  /**
+   * Platform-specific data for the post
+   */
+  export interface PlatformData {
+    /**
+     * Title of the post
+     */
+    title: string;
   }
 }
 
