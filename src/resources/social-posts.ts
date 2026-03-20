@@ -158,7 +158,8 @@ export interface CreateSocialPost {
   isDraft?: boolean | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post. If multiple media items are provided
+   * and the placement is `stories`, individual posts are created per media item.
    */
   media?: Array<CreateSocialPost.Media> | null;
 
@@ -896,7 +897,7 @@ export interface SocialPost {
   external_id: string | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post
    */
   media: Array<SocialPost.Media> | null;
 
@@ -1692,7 +1693,8 @@ export interface SocialPostCreateParams {
   isDraft?: boolean | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post. If multiple media items are provided
+   * and the placement is `stories`, individual posts are created per media item.
    */
   media?: Array<SocialPostCreateParams.Media> | null;
 
@@ -2026,7 +2028,8 @@ export interface SocialPostUpdateParams {
   isDraft?: boolean | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post. If multiple media items are provided
+   * and the placement is `stories`, individual posts are created per media item.
    */
   media?: Array<SocialPostUpdateParams.Media> | null;
 
