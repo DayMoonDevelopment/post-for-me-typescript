@@ -6,6 +6,16 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ *
+ * Posts represent content that can be published across multiple social media platforms. Each post can have platform-specific content variations, allowing customization for different platforms and accounts. Content can be defined at three levels:
+ *
+ * 1. Default content for all platforms
+ * 2. Platform-specific content overrides
+ * 3. Account-specific content overrides
+ *
+ * The system will use the most specific content override available when publishing to each platform and account.
+ */
 export class SocialPosts extends APIResource {
   /**
    * Create Post
@@ -148,7 +158,8 @@ export interface CreateSocialPost {
   isDraft?: boolean | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post. If multiple media items are provided
+   * and the placement is `stories`, individual posts are created per media item.
    */
   media?: Array<CreateSocialPost.Media> | null;
 
@@ -886,7 +897,7 @@ export interface SocialPost {
   external_id: string | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post
    */
   media: Array<SocialPost.Media> | null;
 
@@ -1682,7 +1693,8 @@ export interface SocialPostCreateParams {
   isDraft?: boolean | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post. If multiple media items are provided
+   * and the placement is `stories`, individual posts are created per media item.
    */
   media?: Array<SocialPostCreateParams.Media> | null;
 
@@ -2016,7 +2028,8 @@ export interface SocialPostUpdateParams {
   isDraft?: boolean | null;
 
   /**
-   * Array of media URLs associated with the post
+   * Array of media associated with the post. If multiple media items are provided
+   * and the placement is `stories`, individual posts are created per media item.
    */
   media?: Array<SocialPostUpdateParams.Media> | null;
 

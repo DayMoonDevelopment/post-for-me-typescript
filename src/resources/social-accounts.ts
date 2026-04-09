@@ -5,6 +5,11 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ *
+ * Social accounts represent platform-specific accounts (e.g. Twitter, LinkedIn, Facebook) that are used for publishing posts.
+ * Each social account has a unique `id` that can be referenced when creating or scheduling posts to specify which platforms the content should be published to.
+ */
 export class SocialAccounts extends APIResource {
   /**
    * If a social account with the same platform and user_id already exists, it will

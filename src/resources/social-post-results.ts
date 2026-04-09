@@ -5,6 +5,13 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ *
+ * Post results represent the outcome of publishing content to various social media platforms. They provide comprehensive information including:
+ * - Publication status (success/failure)
+ * - Any errors or issues encountered during posting
+ * - Platform url to view the published post
+ */
 export class SocialPostResults extends APIResource {
   /**
    * Get post result by ID
@@ -41,6 +48,11 @@ export interface SocialPostResult {
   error: unknown;
 
   /**
+   * Array of media URLs associated with the post
+   */
+  media: Array<SocialPostResult.Media> | null;
+
+  /**
    * Platform-specific data
    */
   platform_data: SocialPostResult.PlatformData;
@@ -62,6 +74,67 @@ export interface SocialPostResult {
 }
 
 export namespace SocialPostResult {
+  export interface Media {
+    /**
+     * Public URL of the media
+     */
+    url: string;
+
+    /**
+     * If true the media will not be processed at all and instead be posted as is, this
+     * may increase chance of post failure if media does not meet platform's
+     * requirements. Best used for larger files.
+     */
+    skip_processing?: boolean | null;
+
+    /**
+     * List of tags to attach to the media
+     */
+    tags?: Array<Media.Tag> | null;
+
+    /**
+     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     */
+    thumbnail_timestamp_ms?: unknown | null;
+
+    /**
+     * Public URL of the thumbnail for the media
+     */
+    thumbnail_url?: unknown | null;
+  }
+
+  export namespace Media {
+    export interface Tag {
+      /**
+       * Facebook User ID, Instagram Username or Instagram product id to tag
+       */
+      id: string;
+
+      /**
+       * The platform for the tags
+       */
+      platform: 'facebook' | 'instagram';
+
+      /**
+       * The type of tag, user to tag accounts, product to tag products (only supported
+       * for instagram)
+       */
+      type: 'user' | 'product';
+
+      /**
+       * Percentage distance from left edge of the image, Not required for videos or
+       * stories
+       */
+      x?: number;
+
+      /**
+       * Percentage distance from top edge of the image, Not required for videos or
+       * stories
+       */
+      y?: number;
+    }
+  }
+
   /**
    * Platform-specific data
    */
