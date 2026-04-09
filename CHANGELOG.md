@@ -1,5 +1,52 @@
 # Changelog
 
+## 2.7.1 (2026-04-09)
+
+Full Changelog: [v2.7.0...v2.7.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.0...v2.7.1)
+
+### Features
+
+* **api:** api update ([23de073](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/23de0738e3cd684240d0d2222bf6a0a9de8a023d))
+* **api:** api update ([b32a78f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/b32a78f83c3cff62a2c7966c05b50faac8c4f97a))
+
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([4a80352](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4a80352e3ab4e0b062ed89b0e1e4e2bd08d5d5a7))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([08b76b2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/08b76b2218b9550250eac17829e82b720ebaa9c6))
+* **ci:** skip lint on metadata-only changes ([1ada2d4](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1ada2d416529f401db24a7ac9307edf68449a6d2))
+* **ci:** skip uploading artifacts on stainless-internal branches ([5105664](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/51056647ae18d8bb7943c5b79c94fe2fb29683d4))
+* **internal:** bump @modelcontextprotocol/sdk, @hono/node-server, and minimatch ([3ff3c63](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3ff3c63d5a2e3e0dfc6a735e6f5de2aa0bbbe95a))
+* **internal:** codegen related update ([4965303](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/496530313b45ff0d514d5ef56d4d0ce3fe6c32bc))
+* **internal:** codegen related update ([31b4689](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/31b4689ea1ee91573248a3699cb26899e843647e))
+* **internal:** codegen related update ([8b31d5d](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/8b31d5dc7a7084e57d2b621d6cd56ff89a1cbe58))
+* **internal:** codegen related update ([4cd868c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4cd868c0100af6cdace41a8f5b04312ce8d271e3))
+* **internal:** fix MCP docker image builds in yarn projects ([a6b6fa5](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a6b6fa5d41629d281960ba23f20063c694116286))
+* **internal:** fix MCP server import ordering ([d55ac01](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d55ac0129cc2c624090cf2eaefd987dbd4626ae8))
+* **internal:** fix MCP server TS errors that occur with required client options ([51a507d](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/51a507d39bb54fbe340cdaa938ee777897042f54))
+* **internal:** improve local docs search for MCP servers ([1d10e14](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1d10e145aee105223e91ba615496bd3024e44a59))
+* **internal:** improve local docs search for MCP servers ([a6309ee](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a6309ee12393be4886816c93d115c02cfe69a9e3))
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([23c3982](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/23c3982c4d4adc6842ccc7bd1f0b8a2c25743938))
+* **internal:** support custom-instructions-path flag in MCP servers ([cdc2579](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cdc25794977b6ad0e32da0444289666887722858))
+* **internal:** support local docs search in MCP servers ([ae64f8f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/ae64f8f92d8b29379e835facae94dcfc082f91b1))
+* **internal:** support type annotations when running MCP in local execution mode ([3787788](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/37877888a6b2fa33c911fcf1098afc175830b8ab))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([9371cc1](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9371cc13ffa5ae12b812415a1d098de6d3a3c62b))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([06f7b99](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/06f7b99a3da77387a3b628534a6eaa78e049bd42))
+* **internal:** tweak CI branches ([7e20a03](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/7e20a032fadf01dac84f99c176c85828ec4bad1e))
+* **internal:** update dependencies to address dependabot vulnerabilities ([d9c5254](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d9c5254084031c6dfb702469b3a88d224f701181))
+* **internal:** update gitignore ([7d43f56](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/7d43f5637b529902963acffd6fd3f0f734cf0217))
+* **internal:** use link instead of file in MCP server package.json files ([5e29436](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5e2943681175dc5bc8a39a3b0dfcad1d10eebea0))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([1f15da5](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/1f15da500b7c8e3d482a9ae689f4d3b8fce46121))
+* **mcp-server:** add support for session id, forward client info ([3c2867f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3c2867f105d8abdd0c76ac98718c7ed0459dabd8))
+* **mcp-server:** improve instructions ([5289c57](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5289c571f1cbfafe52e68e2f2eb46ec593833d82))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([ecaf1a9](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/ecaf1a9574eecac42f9edb21411c5e8653817fde))
+* **mcp-server:** log client info ([14ed138](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/14ed13869bfb23daed78170648504a51b65f8b02))
+* **mcp-server:** return access instructions for 404 without API key ([20e9f72](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/20e9f72c8607e4b10ab5332d8d0848c391d2984b))
+
 ## 2.7.0 (2026-02-27)
 
 Full Changelog: [v2.6.1...v2.7.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.6.1...v2.7.0)
