@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.2 (2026-04-10)
+
+Full Changelog: [v2.7.1...v2.7.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.1...v2.7.2)
+
+### Chores
+
+* **internal:** show error causes in MCP servers when running in local mode ([810ef63](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/810ef63708beb7801647fee3f158c631ac525618))
+
 ## 2.7.1 (2026-04-09)
 
 Full Changelog: [v2.7.0...v2.7.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.0...v2.7.1)
