@@ -303,6 +303,12 @@ export namespace CreateSocialPost {
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 
       /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
+
+      /**
        * If false Instagram video posts will only be shown in the Reels tab
        */
       share_to_feed?: boolean | null;
@@ -491,6 +497,12 @@ export interface FacebookConfigurationDto {
    * Facebook post placement
    */
   placement?: 'reels' | 'stories' | 'timeline' | null;
+
+  /**
+   * If true, include the caption on each image in a carousel upload; if false, only
+   * include it on the final carousel post
+   */
+  set_caption_for_each_image?: boolean | null;
 }
 
 export namespace FacebookConfigurationDto {
@@ -1053,6 +1065,12 @@ export namespace SocialPost {
        * Who can reply to the tweet
        */
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+      /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
 
       /**
        * If false Instagram video posts will only be shown in the Reels tab
@@ -1838,6 +1856,12 @@ export namespace SocialPostCreateParams {
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 
       /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
+
+      /**
        * If false Instagram video posts will only be shown in the Reels tab
        */
       share_to_feed?: boolean | null;
@@ -2171,6 +2195,12 @@ export namespace SocialPostUpdateParams {
        * Who can reply to the tweet
        */
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+      /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
 
       /**
        * If false Instagram video posts will only be shown in the Reels tab
