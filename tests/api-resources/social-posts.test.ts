@@ -69,6 +69,7 @@ describe('resource socialPosts', () => {
             privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
+            set_caption_for_each_image: true,
             share_to_feed: true,
             title: 'title',
             trial_reel_type: 'manual',
@@ -138,6 +139,7 @@ describe('resource socialPosts', () => {
             },
           ],
           placement: 'reels',
+          set_caption_for_each_image: true,
         },
         instagram: {
           caption: {},
@@ -419,6 +421,7 @@ describe('resource socialPosts', () => {
             privacy_status: 'public',
             quote_tweet_id: 'quote_tweet_id',
             reply_settings: 'following',
+            set_caption_for_each_image: true,
             share_to_feed: true,
             title: 'title',
             trial_reel_type: 'manual',
@@ -488,6 +491,7 @@ describe('resource socialPosts', () => {
             },
           ],
           placement: 'reels',
+          set_caption_for_each_image: true,
         },
         instagram: {
           caption: {},
