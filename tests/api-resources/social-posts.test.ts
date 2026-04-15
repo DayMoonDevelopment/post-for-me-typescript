@@ -207,6 +207,7 @@ describe('resource socialPosts', () => {
               thumbnail_url: {},
             },
           ],
+          title: 'title',
         },
         threads: {
           caption: {},
@@ -559,6 +560,7 @@ describe('resource socialPosts', () => {
               thumbnail_url: {},
             },
           ],
+          title: 'title',
         },
         threads: {
           caption: {},
