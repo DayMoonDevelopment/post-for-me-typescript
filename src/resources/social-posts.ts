@@ -314,7 +314,7 @@ export namespace CreateSocialPost {
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
@@ -765,6 +765,11 @@ export interface PinterestConfigurationDto {
    * Overrides the `media` from the post
    */
   media?: Array<PinterestConfigurationDto.Media> | null;
+
+  /**
+   * Overrides the `title` from the post for Pinterest
+   */
+  title?: string | null;
 }
 
 export namespace PinterestConfigurationDto {
@@ -1078,7 +1083,7 @@ export namespace SocialPost {
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
@@ -1867,7 +1872,7 @@ export namespace SocialPostCreateParams {
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
@@ -2208,7 +2213,7 @@ export namespace SocialPostUpdateParams {
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
