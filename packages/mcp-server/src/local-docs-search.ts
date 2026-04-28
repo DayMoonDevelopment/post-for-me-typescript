@@ -63,34 +63,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create_upload_url\n\n`client.media.createUploadURL(): { media_url: string; upload_url: string; }`\n\n**post** `/v1/media/create-upload-url`\n\n\nTo upload media to attach to your post, make a `POST` request to the `/media/create-upload-url` endpoint. \n\nYou'll receive the public url of your media item (which can be used when making a post) and will include an `upload_url` which is a signed URL of the storage location for uploading your file to. \n\nThis URL is unique and publicly signed for a short time, so make sure to upload your files in a timely manner.\n\n**Example flow using JavaScript and the Fetch API:**\n\n**Request an upload URL**\n\n   ```js\n   // Step 1: Request an upload URL from your API\n   const response = await fetch('https://api.postforme.dev/v1/media/create-upload-url', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json'\n     }\n   });\n\n   const { media_url, upload_url } = await response.json();\n   ```\n\n**Upload your file to the signed URL**\n\n   ```js\n   // Step 2: Upload your file to the signed URL\n   const file = /* your File or Blob object, e.g., from an <input type=\"file\"> */;\n   await fetch(upload_url, {\n     method: 'PUT',\n     headers: {\n       'Content-Type': 'image/jpeg'\n     },\n     body: file\n   });\n   ```\n\n**Use the `media_url` when creating your post**\n\n    ```js\n    // Step 3: Use the `media_url` when creating your post\n    const response = await fetch('https://api.postforme.dev/v1/social-posts', {\n      method: 'POST',\n      headers: {\n        'Content-Type': 'application/json'\n      },\n      body: JSON.stringify({\n        social_accounts: ['spc_...', ...],\n        caption: 'My caption',\n        media: [\n          { \n            url: media_url \n          }\n        ]\n      })\n    });\n    ```\n\n\n### Returns\n\n- `{ media_url: string; upload_url: string; }`\n\n  - `media_url: string`\n  - `upload_url: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst response = await client.media.createUploadURL();\n\nconsole.log(response);\n```",
     perLanguage: {
-      go: {
-        method: 'client.Media.NewUploadURL',
+      typescript: {
+        method: 'client.media.createUploadURL',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Media.NewUploadURL(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.MediaURL)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/media/create-upload-url \\\n    -X POST \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'media().createUploadUrl',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.media.MediaCreateUploadUrlParams\nimport com.post_for_me.api.models.media.MediaCreateUploadUrlResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val response: MediaCreateUploadUrlResponse = client.media().createUploadUrl()\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.media.createUploadURL();\n\nconsole.log(response.media_url);",
       },
       python: {
         method: 'media.create_upload_url',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.media.create_upload_url()\nprint(response.media_url)',
       },
+      kotlin: {
+        method: 'media().createUploadUrl',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.media.MediaCreateUploadUrlParams\nimport com.post_for_me.api.models.media.MediaCreateUploadUrlResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val response: MediaCreateUploadUrlResponse = client.media().createUploadUrl()\n}',
+      },
+      go: {
+        method: 'client.Media.NewUploadURL',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Media.NewUploadURL(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.MediaURL)\n}\n',
+      },
       ruby: {
         method: 'media.create_upload_url',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nresponse = post_for_me.media.create_upload_url\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.media.createUploadURL',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.media.createUploadURL();\n\nconsole.log(response.media_url);",
+          'curl https://api.postforme.dev/v1/media/create-upload-url \\\n    -X POST \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -115,34 +115,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.socialPosts.list(external_id?: string[], limit?: number, offset?: number, platform?: string[], social_account_id?: string[], status?: 'draft' | 'scheduled' | 'processing' | 'processed'[]): { data: social_post[]; meta: object; }`\n\n**get** `/v1/social-posts`\n\nGet a paginated result for posts based on the applied filters\n\n### Parameters\n\n- `external_id?: string[]`\n  Filter by external ID. Multiple values imply OR logic.\n\n- `limit?: number`\n  Number of items to return\n\n- `offset?: number`\n  Number of items to skip\n\n- `platform?: string[]`\n  Filter by platforms. Multiple values imply OR logic.\n\n- `social_account_id?: string[]`\n  Filter by social account ID. Multiple values imply OR logic.\n\n- `status?: 'draft' | 'scheduled' | 'processing' | 'processed'[]`\n  Filter by post status. Multiple values imply OR logic.\n\n### Returns\n\n- `{ data: { id: string; account_configurations: object[]; caption: string; created_at: string; external_id: string; media: object[]; platform_configurations: platform_configurations_dto; scheduled_at: string; social_accounts: social_account[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }[]; meta: { limit: number; next: string; offset: number; total: number; }; }`\n\n  - `data: { id: string; account_configurations: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: object[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: object; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]; caption: string; created_at: string; external_id: string; media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; platform_configurations: { bluesky?: bluesky_configuration_dto; facebook?: facebook_configuration_dto; instagram?: instagram_configuration_dto; linkedin?: linkedin_configuration_dto; pinterest?: pinterest_configuration_dto; threads?: threads_configuration_dto; tiktok?: tiktok_configuration; tiktok_business?: tiktok_configuration; x?: twitter_configuration_dto; youtube?: youtube_configuration_dto; }; scheduled_at: string; social_accounts: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }[]`\n  - `meta: { limit: number; next: string; offset: number; total: number; }`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialPosts = await client.socialPosts.list();\n\nconsole.log(socialPosts);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialPosts.List',
+      typescript: {
+        method: 'client.socialPosts.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPosts, err := client.SocialPosts.List(context.TODO(), postforme.SocialPostListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPosts.Data)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-posts \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialPosts().list',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.SocialPostListParams\nimport com.post_for_me.api.models.socialposts.SocialPostListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPosts: SocialPostListResponse = client.socialPosts().list()\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPosts = await client.socialPosts.list();\n\nconsole.log(socialPosts.data);",
       },
       python: {
         method: 'social_posts.list',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_posts = client.social_posts.list()\nprint(social_posts.data)',
       },
+      kotlin: {
+        method: 'socialPosts().list',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.SocialPostListParams\nimport com.post_for_me.api.models.socialposts.SocialPostListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPosts: SocialPostListResponse = client.socialPosts().list()\n}',
+      },
+      go: {
+        method: 'client.SocialPosts.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPosts, err := client.SocialPosts.List(context.TODO(), postforme.SocialPostListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPosts.Data)\n}\n',
+      },
       ruby: {
         method: 'social_posts.list',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_posts = post_for_me.social_posts.list\n\nputs(social_posts)',
       },
-      typescript: {
-        method: 'client.socialPosts.list',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPosts = await client.socialPosts.list();\n\nconsole.log(socialPosts.data);",
+          'curl https://api.postforme.dev/v1/social-posts \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -169,34 +169,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.socialPosts.create(caption: string, social_accounts: string[], account_configurations?: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: object[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: object; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[], external_id?: string, isDraft?: boolean, media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[], platform_configurations?: { bluesky?: bluesky_configuration_dto; facebook?: facebook_configuration_dto; instagram?: instagram_configuration_dto; linkedin?: linkedin_configuration_dto; pinterest?: pinterest_configuration_dto; threads?: threads_configuration_dto; tiktok?: tiktok_configuration; tiktok_business?: tiktok_configuration; x?: twitter_configuration_dto; youtube?: youtube_configuration_dto; }, scheduled_at?: string): { id: string; account_configurations: object[]; caption: string; created_at: string; external_id: string; media: object[]; platform_configurations: platform_configurations_dto; scheduled_at: string; social_accounts: social_account[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }`\n\n**post** `/v1/social-posts`\n\nCreate Post\n\n### Parameters\n\n- `caption: string`\n  Caption text for the post\n\n- `social_accounts: string[]`\n  Array of social account IDs for posting\n\n- `account_configurations?: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: { duration_minutes: number; options: string[]; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]`\n  Account-specific configurations for the post\n\n- `external_id?: string`\n  Array of social account IDs for posting\n\n- `isDraft?: boolean`\n  If isDraft is set then the post will not be processed\n\n- `media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]`\n  Array of media associated with the post. If multiple media items are provided and the placement is `stories`, individual posts are created per media item.\n\n- `platform_configurations?: { bluesky?: { caption?: object; media?: object[]; }; facebook?: { caption?: object; collaborators?: object[][]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; set_caption_for_each_image?: boolean; }; instagram?: { caption?: object; collaborators?: string[]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; share_to_feed?: boolean; trial_reel_type?: 'manual' | 'performance'; }; linkedin?: { caption?: object; media?: object[]; }; pinterest?: { board_ids?: string[]; caption?: object; link?: string; media?: object[]; title?: string; }; threads?: { caption?: object; media?: object[]; placement?: 'reels' | 'timeline'; }; tiktok?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; tiktok_business?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; x?: { caption?: object; community_id?: string; media?: object[]; poll?: object; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; youtube?: { caption?: object; made_for_kids?: boolean; media?: object[]; privacy_status?: 'public' | 'private' | 'unlisted'; title?: string; }; }`\n  Platform-specific configurations for the post\n  - `bluesky?: { caption?: object; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; }`\n    Bluesky configuration\n  - `facebook?: { caption?: object; collaborators?: object[][]; location?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'stories' | 'timeline'; set_caption_for_each_image?: boolean; }`\n    Facebook configuration\n  - `instagram?: { caption?: object; collaborators?: string[]; location?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'stories' | 'timeline'; share_to_feed?: boolean; trial_reel_type?: 'manual' | 'performance'; }`\n    Instagram configuration\n  - `linkedin?: { caption?: object; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; }`\n    LinkedIn configuration\n  - `pinterest?: { board_ids?: string[]; caption?: object; link?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; title?: string; }`\n    Pinterest configuration\n  - `threads?: { caption?: object; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'timeline'; }`\n    Threads configuration\n  - `tiktok?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; privacy_status?: string; title?: string; }`\n    TikTok configuration\n  - `tiktok_business?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; privacy_status?: string; title?: string; }`\n    TikTok configuration\n  - `x?: { caption?: object; community_id?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; poll?: { duration_minutes: number; options: string[]; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }`\n    Twitter configuration\n  - `youtube?: { caption?: object; made_for_kids?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; privacy_status?: 'public' | 'private' | 'unlisted'; title?: string; }`\n    YouTube configuration\n\n- `scheduled_at?: string`\n  Scheduled date and time for the post, setting to null or undefined will post instantly\n\n### Returns\n\n- `{ id: string; account_configurations: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: object[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: object; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]; caption: string; created_at: string; external_id: string; media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; platform_configurations: { bluesky?: bluesky_configuration_dto; facebook?: facebook_configuration_dto; instagram?: instagram_configuration_dto; linkedin?: linkedin_configuration_dto; pinterest?: pinterest_configuration_dto; threads?: threads_configuration_dto; tiktok?: tiktok_configuration; tiktok_business?: tiktok_configuration; x?: twitter_configuration_dto; youtube?: youtube_configuration_dto; }; scheduled_at: string; social_accounts: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }`\n\n  - `id: string`\n  - `account_configurations: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: { duration_minutes: number; options: string[]; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]`\n  - `caption: string`\n  - `created_at: string`\n  - `external_id: string`\n  - `media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]`\n  - `platform_configurations: { bluesky?: { caption?: object; media?: object[]; }; facebook?: { caption?: object; collaborators?: object[][]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; set_caption_for_each_image?: boolean; }; instagram?: { caption?: object; collaborators?: string[]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; share_to_feed?: boolean; trial_reel_type?: 'manual' | 'performance'; }; linkedin?: { caption?: object; media?: object[]; }; pinterest?: { board_ids?: string[]; caption?: object; link?: string; media?: object[]; title?: string; }; threads?: { caption?: object; media?: object[]; placement?: 'reels' | 'timeline'; }; tiktok?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; tiktok_business?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; x?: { caption?: object; community_id?: string; media?: object[]; poll?: object; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; youtube?: { caption?: object; made_for_kids?: boolean; media?: object[]; privacy_status?: 'public' | 'private' | 'unlisted'; title?: string; }; }`\n  - `scheduled_at: string`\n  - `social_accounts: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]`\n  - `status: 'draft' | 'scheduled' | 'processing' | 'processed'`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialPost = await client.socialPosts.create({ caption: 'caption', social_accounts: ['string'] });\n\nconsole.log(socialPost);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialPosts.New',
+      typescript: {
+        method: 'client.socialPosts.create',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.New(context.TODO(), postforme.SocialPostNewParams{\n\t\tCreateSocialPost: postforme.CreateSocialPostParam{\n\t\t\tCaption:        "caption",\n\t\t\tSocialAccounts: []string{"string"},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-posts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "caption": "caption",\n          "social_accounts": [\n            "string"\n          ]\n        }\'',
-      },
-      kotlin: {
-        method: 'socialPosts().create',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.CreateSocialPost\nimport com.post_for_me.api.models.socialposts.SocialPost\nimport com.post_for_me.api.models.socialposts.SocialPostCreateParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: CreateSocialPost = CreateSocialPost.builder()\n        .caption("caption")\n        .addSocialAccount("string")\n        .build()\n    val socialPost: SocialPost = client.socialPosts().create(params)\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.create({\n  caption: 'caption',\n  social_accounts: ['string'],\n});\n\nconsole.log(socialPost.id);",
       },
       python: {
         method: 'social_posts.create',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_post = client.social_posts.create(\n    caption="caption",\n    social_accounts=["string"],\n)\nprint(social_post.id)',
       },
+      kotlin: {
+        method: 'socialPosts().create',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.CreateSocialPost\nimport com.post_for_me.api.models.socialposts.SocialPost\nimport com.post_for_me.api.models.socialposts.SocialPostCreateParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: CreateSocialPost = CreateSocialPost.builder()\n        .caption("caption")\n        .addSocialAccount("string")\n        .build()\n    val socialPost: SocialPost = client.socialPosts().create(params)\n}',
+      },
+      go: {
+        method: 'client.SocialPosts.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.New(context.TODO(), postforme.SocialPostNewParams{\n\t\tCreateSocialPost: postforme.CreateSocialPostParam{\n\t\t\tCaption:        "caption",\n\t\t\tSocialAccounts: []string{"string"},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.ID)\n}\n',
+      },
       ruby: {
         method: 'social_posts.create',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_post = post_for_me.social_posts.create(caption: "caption", social_accounts: ["string"])\n\nputs(social_post)',
       },
-      typescript: {
-        method: 'client.socialPosts.create',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.create({\n  caption: 'caption',\n  social_accounts: ['string'],\n});\n\nconsole.log(socialPost.id);",
+          'curl https://api.postforme.dev/v1/social-posts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "caption": "caption",\n          "social_accounts": [\n            "string"\n          ]\n        }\'',
       },
     },
   },
@@ -214,34 +214,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.socialPosts.retrieve(id: string): { id: string; account_configurations: object[]; caption: string; created_at: string; external_id: string; media: object[]; platform_configurations: platform_configurations_dto; scheduled_at: string; social_accounts: social_account[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }`\n\n**get** `/v1/social-posts/{id}`\n\nGet Post by ID\n\n### Parameters\n\n- `id: string`\n\n### Returns\n\n- `{ id: string; account_configurations: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: object[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: object; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]; caption: string; created_at: string; external_id: string; media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; platform_configurations: { bluesky?: bluesky_configuration_dto; facebook?: facebook_configuration_dto; instagram?: instagram_configuration_dto; linkedin?: linkedin_configuration_dto; pinterest?: pinterest_configuration_dto; threads?: threads_configuration_dto; tiktok?: tiktok_configuration; tiktok_business?: tiktok_configuration; x?: twitter_configuration_dto; youtube?: youtube_configuration_dto; }; scheduled_at: string; social_accounts: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }`\n\n  - `id: string`\n  - `account_configurations: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: { duration_minutes: number; options: string[]; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]`\n  - `caption: string`\n  - `created_at: string`\n  - `external_id: string`\n  - `media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]`\n  - `platform_configurations: { bluesky?: { caption?: object; media?: object[]; }; facebook?: { caption?: object; collaborators?: object[][]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; set_caption_for_each_image?: boolean; }; instagram?: { caption?: object; collaborators?: string[]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; share_to_feed?: boolean; trial_reel_type?: 'manual' | 'performance'; }; linkedin?: { caption?: object; media?: object[]; }; pinterest?: { board_ids?: string[]; caption?: object; link?: string; media?: object[]; title?: string; }; threads?: { caption?: object; media?: object[]; placement?: 'reels' | 'timeline'; }; tiktok?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; tiktok_business?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; x?: { caption?: object; community_id?: string; media?: object[]; poll?: object; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; youtube?: { caption?: object; made_for_kids?: boolean; media?: object[]; privacy_status?: 'public' | 'private' | 'unlisted'; title?: string; }; }`\n  - `scheduled_at: string`\n  - `social_accounts: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]`\n  - `status: 'draft' | 'scheduled' | 'processing' | 'processed'`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialPost = await client.socialPosts.retrieve('id');\n\nconsole.log(socialPost);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialPosts.Get',
+      typescript: {
+        method: 'client.socialPosts.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-posts/$ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialPosts().retrieve',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.SocialPost\nimport com.post_for_me.api.models.socialposts.SocialPostRetrieveParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPost: SocialPost = client.socialPosts().retrieve("id")\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.retrieve('id');\n\nconsole.log(socialPost.id);",
       },
       python: {
         method: 'social_posts.retrieve',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_post = client.social_posts.retrieve(\n    "id",\n)\nprint(social_post.id)',
       },
+      kotlin: {
+        method: 'socialPosts().retrieve',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.SocialPost\nimport com.post_for_me.api.models.socialposts.SocialPostRetrieveParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPost: SocialPost = client.socialPosts().retrieve("id")\n}',
+      },
+      go: {
+        method: 'client.SocialPosts.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.ID)\n}\n',
+      },
       ruby: {
         method: 'social_posts.retrieve',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_post = post_for_me.social_posts.retrieve("id")\n\nputs(social_post)',
       },
-      typescript: {
-        method: 'client.socialPosts.retrieve',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.retrieve('id');\n\nconsole.log(socialPost.id);",
+          'curl https://api.postforme.dev/v1/social-posts/$ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -269,34 +269,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.socialPosts.update(id: string, caption: string, social_accounts: string[], account_configurations?: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: object[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: object; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[], external_id?: string, isDraft?: boolean, media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[], platform_configurations?: { bluesky?: bluesky_configuration_dto; facebook?: facebook_configuration_dto; instagram?: instagram_configuration_dto; linkedin?: linkedin_configuration_dto; pinterest?: pinterest_configuration_dto; threads?: threads_configuration_dto; tiktok?: tiktok_configuration; tiktok_business?: tiktok_configuration; x?: twitter_configuration_dto; youtube?: youtube_configuration_dto; }, scheduled_at?: string): { id: string; account_configurations: object[]; caption: string; created_at: string; external_id: string; media: object[]; platform_configurations: platform_configurations_dto; scheduled_at: string; social_accounts: social_account[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }`\n\n**put** `/v1/social-posts/{id}`\n\nUpdate Post\n\n### Parameters\n\n- `id: string`\n\n- `caption: string`\n  Caption text for the post\n\n- `social_accounts: string[]`\n  Array of social account IDs for posting\n\n- `account_configurations?: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: { duration_minutes: number; options: string[]; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]`\n  Account-specific configurations for the post\n\n- `external_id?: string`\n  Array of social account IDs for posting\n\n- `isDraft?: boolean`\n  If isDraft is set then the post will not be processed\n\n- `media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]`\n  Array of media associated with the post. If multiple media items are provided and the placement is `stories`, individual posts are created per media item.\n\n- `platform_configurations?: { bluesky?: { caption?: object; media?: object[]; }; facebook?: { caption?: object; collaborators?: object[][]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; set_caption_for_each_image?: boolean; }; instagram?: { caption?: object; collaborators?: string[]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; share_to_feed?: boolean; trial_reel_type?: 'manual' | 'performance'; }; linkedin?: { caption?: object; media?: object[]; }; pinterest?: { board_ids?: string[]; caption?: object; link?: string; media?: object[]; title?: string; }; threads?: { caption?: object; media?: object[]; placement?: 'reels' | 'timeline'; }; tiktok?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; tiktok_business?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; x?: { caption?: object; community_id?: string; media?: object[]; poll?: object; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; youtube?: { caption?: object; made_for_kids?: boolean; media?: object[]; privacy_status?: 'public' | 'private' | 'unlisted'; title?: string; }; }`\n  Platform-specific configurations for the post\n  - `bluesky?: { caption?: object; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; }`\n    Bluesky configuration\n  - `facebook?: { caption?: object; collaborators?: object[][]; location?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'stories' | 'timeline'; set_caption_for_each_image?: boolean; }`\n    Facebook configuration\n  - `instagram?: { caption?: object; collaborators?: string[]; location?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'stories' | 'timeline'; share_to_feed?: boolean; trial_reel_type?: 'manual' | 'performance'; }`\n    Instagram configuration\n  - `linkedin?: { caption?: object; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; }`\n    LinkedIn configuration\n  - `pinterest?: { board_ids?: string[]; caption?: object; link?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; title?: string; }`\n    Pinterest configuration\n  - `threads?: { caption?: object; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'timeline'; }`\n    Threads configuration\n  - `tiktok?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; privacy_status?: string; title?: string; }`\n    TikTok configuration\n  - `tiktok_business?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; privacy_status?: string; title?: string; }`\n    TikTok configuration\n  - `x?: { caption?: object; community_id?: string; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; poll?: { duration_minutes: number; options: string[]; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }`\n    Twitter configuration\n  - `youtube?: { caption?: object; made_for_kids?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; privacy_status?: 'public' | 'private' | 'unlisted'; title?: string; }`\n    YouTube configuration\n\n- `scheduled_at?: string`\n  Scheduled date and time for the post, setting to null or undefined will post instantly\n\n### Returns\n\n- `{ id: string; account_configurations: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: object[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: object; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]; caption: string; created_at: string; external_id: string; media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; platform_configurations: { bluesky?: bluesky_configuration_dto; facebook?: facebook_configuration_dto; instagram?: instagram_configuration_dto; linkedin?: linkedin_configuration_dto; pinterest?: pinterest_configuration_dto; threads?: threads_configuration_dto; tiktok?: tiktok_configuration; tiktok_business?: tiktok_configuration; x?: twitter_configuration_dto; youtube?: youtube_configuration_dto; }; scheduled_at: string; social_accounts: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]; status: 'draft' | 'scheduled' | 'processing' | 'processed'; updated_at: string; }`\n\n  - `id: string`\n  - `account_configurations: { configuration: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; board_ids?: string[]; caption?: object; collaborators?: object[][]; community_id?: string; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; link?: string; location?: string; made_for_kids?: boolean; media?: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; placement?: 'reels' | 'timeline' | 'stories'; poll?: { duration_minutes: number; options: string[]; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; privacy_status?: 'public' | 'private' | 'unlisted'; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; set_caption_for_each_image?: boolean; share_to_feed?: boolean; title?: string; trial_reel_type?: 'manual' | 'performance'; }; social_account_id: string; }[]`\n  - `caption: string`\n  - `created_at: string`\n  - `external_id: string`\n  - `media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]`\n  - `platform_configurations: { bluesky?: { caption?: object; media?: object[]; }; facebook?: { caption?: object; collaborators?: object[][]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; set_caption_for_each_image?: boolean; }; instagram?: { caption?: object; collaborators?: string[]; location?: string; media?: object[]; placement?: 'reels' | 'stories' | 'timeline'; share_to_feed?: boolean; trial_reel_type?: 'manual' | 'performance'; }; linkedin?: { caption?: object; media?: object[]; }; pinterest?: { board_ids?: string[]; caption?: object; link?: string; media?: object[]; title?: string; }; threads?: { caption?: object; media?: object[]; placement?: 'reels' | 'timeline'; }; tiktok?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; tiktok_business?: { allow_comment?: boolean; allow_duet?: boolean; allow_stitch?: boolean; auto_add_music?: boolean; caption?: object; disclose_branded_content?: boolean; disclose_your_brand?: boolean; is_ai_generated?: boolean; is_draft?: boolean; media?: object[]; privacy_status?: string; title?: string; }; x?: { caption?: object; community_id?: string; media?: object[]; poll?: object; quote_tweet_id?: string; reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified'; }; youtube?: { caption?: object; made_for_kids?: boolean; media?: object[]; privacy_status?: 'public' | 'private' | 'unlisted'; title?: string; }; }`\n  - `scheduled_at: string`\n  - `social_accounts: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]`\n  - `status: 'draft' | 'scheduled' | 'processing' | 'processed'`\n  - `updated_at: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialPost = await client.socialPosts.update('id', { caption: 'caption', social_accounts: ['string'] });\n\nconsole.log(socialPost);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialPosts.Update',
+      typescript: {
+        method: 'client.socialPosts.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tpostforme.SocialPostUpdateParams{\n\t\t\tCreateSocialPost: postforme.CreateSocialPostParam{\n\t\t\t\tCaption:        "caption",\n\t\t\t\tSocialAccounts: []string{"string"},\n\t\t\t},\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-posts/$ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "caption": "caption",\n          "social_accounts": [\n            "string"\n          ]\n        }\'',
-      },
-      kotlin: {
-        method: 'socialPosts().update',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.CreateSocialPost\nimport com.post_for_me.api.models.socialposts.SocialPost\nimport com.post_for_me.api.models.socialposts.SocialPostUpdateParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: SocialPostUpdateParams = SocialPostUpdateParams.builder()\n        .id("id")\n        .createSocialPost(CreateSocialPost.builder()\n            .caption("caption")\n            .addSocialAccount("string")\n            .build())\n        .build()\n    val socialPost: SocialPost = client.socialPosts().update(params)\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.update('id', {\n  caption: 'caption',\n  social_accounts: ['string'],\n});\n\nconsole.log(socialPost.id);",
       },
       python: {
         method: 'social_posts.update',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_post = client.social_posts.update(\n    id="id",\n    caption="caption",\n    social_accounts=["string"],\n)\nprint(social_post.id)',
       },
+      kotlin: {
+        method: 'socialPosts().update',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.CreateSocialPost\nimport com.post_for_me.api.models.socialposts.SocialPost\nimport com.post_for_me.api.models.socialposts.SocialPostUpdateParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: SocialPostUpdateParams = SocialPostUpdateParams.builder()\n        .id("id")\n        .createSocialPost(CreateSocialPost.builder()\n            .caption("caption")\n            .addSocialAccount("string")\n            .build())\n        .build()\n    val socialPost: SocialPost = client.socialPosts().update(params)\n}',
+      },
+      go: {
+        method: 'client.SocialPosts.Update',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tpostforme.SocialPostUpdateParams{\n\t\t\tCreateSocialPost: postforme.CreateSocialPostParam{\n\t\t\t\tCaption:        "caption",\n\t\t\t\tSocialAccounts: []string{"string"},\n\t\t\t},\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.ID)\n}\n',
+      },
       ruby: {
         method: 'social_posts.update',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_post = post_for_me.social_posts.update("id", caption: "caption", social_accounts: ["string"])\n\nputs(social_post)',
       },
-      typescript: {
-        method: 'client.socialPosts.update',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.update('id', {\n  caption: 'caption',\n  social_accounts: ['string'],\n});\n\nconsole.log(socialPost.id);",
+          'curl https://api.postforme.dev/v1/social-posts/$ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "caption": "caption",\n          "social_accounts": [\n            "string"\n          ]\n        }\'',
       },
     },
   },
@@ -313,34 +313,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.socialPosts.delete(id: string): { success: boolean; }`\n\n**delete** `/v1/social-posts/{id}`\n\nDelete Post\n\n### Parameters\n\n- `id: string`\n\n### Returns\n\n- `{ success: boolean; }`\n\n  - `success: boolean`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialPost = await client.socialPosts.delete('id');\n\nconsole.log(socialPost);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialPosts.Delete',
+      typescript: {
+        method: 'client.socialPosts.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.Success)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-posts/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialPosts().delete',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.SocialPostDeleteParams\nimport com.post_for_me.api.models.socialposts.SocialPostDeleteResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPost: SocialPostDeleteResponse = client.socialPosts().delete("id")\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.delete('id');\n\nconsole.log(socialPost.success);",
       },
       python: {
         method: 'social_posts.delete',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_post = client.social_posts.delete(\n    "id",\n)\nprint(social_post.success)',
       },
+      kotlin: {
+        method: 'socialPosts().delete',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialposts.SocialPostDeleteParams\nimport com.post_for_me.api.models.socialposts.SocialPostDeleteResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPost: SocialPostDeleteResponse = client.socialPosts().delete("id")\n}',
+      },
+      go: {
+        method: 'client.SocialPosts.Delete',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPost, err := client.SocialPosts.Delete(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPost.Success)\n}\n',
+      },
       ruby: {
         method: 'social_posts.delete',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_post = post_for_me.social_posts.delete("id")\n\nputs(social_post)',
       },
-      typescript: {
-        method: 'client.socialPosts.delete',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPost = await client.socialPosts.delete('id');\n\nconsole.log(socialPost.success);",
+          'curl https://api.postforme.dev/v1/social-posts/$ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -364,34 +364,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.socialPostResults.list(limit?: number, offset?: number, platform?: string[], post_id?: string[], social_account_id?: string[]): { data: social_post_result[]; meta: object; }`\n\n**get** `/v1/social-post-results`\n\nGet a paginated result for post results based on the applied filters\n\n### Parameters\n\n- `limit?: number`\n  Number of items to return\n\n- `offset?: number`\n  Number of items to skip\n\n- `platform?: string[]`\n  Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=x&platform=facebook).\n\n- `post_id?: string[]`\n  Filter by post IDs. Multiple values imply OR logic (e.g., ?post_id=123&post_id=456).\n\n- `social_account_id?: string[]`\n  Filter by social account ID(s). Multiple values imply OR logic (e.g., ?social_account_id=123&social_account_id=456).\n\n### Returns\n\n- `{ data: { id: string; details: object; error: object; media: object[]; platform_data: object; post_id: string; social_account_id: string; success: boolean; }[]; meta: { limit: number; next: string; offset: number; total: number; }; }`\n\n  - `data: { id: string; details: object; error: object; media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; platform_data: { id?: string; url?: string; }; post_id: string; social_account_id: string; success: boolean; }[]`\n  - `meta: { limit: number; next: string; offset: number; total: number; }`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialPostResults = await client.socialPostResults.list();\n\nconsole.log(socialPostResults);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialPostResults.List',
+      typescript: {
+        method: 'client.socialPostResults.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPostResults, err := client.SocialPostResults.List(context.TODO(), postforme.SocialPostResultListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPostResults.Data)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-post-results \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialPostResults().list',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialpostresults.SocialPostResultListParams\nimport com.post_for_me.api.models.socialpostresults.SocialPostResultListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPostResults: SocialPostResultListResponse = client.socialPostResults().list()\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPostResults = await client.socialPostResults.list();\n\nconsole.log(socialPostResults.data);",
       },
       python: {
         method: 'social_post_results.list',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_post_results = client.social_post_results.list()\nprint(social_post_results.data)',
       },
+      kotlin: {
+        method: 'socialPostResults().list',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialpostresults.SocialPostResultListParams\nimport com.post_for_me.api.models.socialpostresults.SocialPostResultListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPostResults: SocialPostResultListResponse = client.socialPostResults().list()\n}',
+      },
+      go: {
+        method: 'client.SocialPostResults.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPostResults, err := client.SocialPostResults.List(context.TODO(), postforme.SocialPostResultListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPostResults.Data)\n}\n',
+      },
       ruby: {
         method: 'social_post_results.list',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_post_results = post_for_me.social_post_results.list\n\nputs(social_post_results)',
       },
-      typescript: {
-        method: 'client.socialPostResults.list',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPostResults = await client.socialPostResults.list();\n\nconsole.log(socialPostResults.data);",
+          'curl https://api.postforme.dev/v1/social-post-results \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -409,34 +409,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.socialPostResults.retrieve(id: string): { id: string; details: object; error: object; media: object[]; platform_data: object; post_id: string; social_account_id: string; success: boolean; }`\n\n**get** `/v1/social-post-results/{id}`\n\nGet post result by ID\n\n### Parameters\n\n- `id: string`\n\n### Returns\n\n- `{ id: string; details: object; error: object; media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]; platform_data: { id?: string; url?: string; }; post_id: string; social_account_id: string; success: boolean; }`\n\n  - `id: string`\n  - `details: object`\n  - `error: object`\n  - `media: { url: string; skip_processing?: boolean; tags?: { id: string; platform: 'facebook' | 'instagram'; type: 'user' | 'product'; x?: number; y?: number; }[]; thumbnail_timestamp_ms?: object; thumbnail_url?: object; }[]`\n  - `platform_data: { id?: string; url?: string; }`\n  - `post_id: string`\n  - `social_account_id: string`\n  - `success: boolean`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialPostResult = await client.socialPostResults.retrieve('id');\n\nconsole.log(socialPostResult);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialPostResults.Get',
+      typescript: {
+        method: 'client.socialPostResults.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPostResult, err := client.SocialPostResults.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPostResult.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-post-results/$ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialPostResults().retrieve',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialpostresults.SocialPostResult\nimport com.post_for_me.api.models.socialpostresults.SocialPostResultRetrieveParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPostResult: SocialPostResult = client.socialPostResults().retrieve("id")\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPostResult = await client.socialPostResults.retrieve('id');\n\nconsole.log(socialPostResult.id);",
       },
       python: {
         method: 'social_post_results.retrieve',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_post_result = client.social_post_results.retrieve(\n    "id",\n)\nprint(social_post_result.id)',
       },
+      kotlin: {
+        method: 'socialPostResults().retrieve',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialpostresults.SocialPostResult\nimport com.post_for_me.api.models.socialpostresults.SocialPostResultRetrieveParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialPostResult: SocialPostResult = client.socialPostResults().retrieve("id")\n}',
+      },
+      go: {
+        method: 'client.SocialPostResults.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialPostResult, err := client.SocialPostResults.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialPostResult.ID)\n}\n',
+      },
       ruby: {
         method: 'social_post_results.retrieve',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_post_result = post_for_me.social_post_results.retrieve("id")\n\nputs(social_post_result)',
       },
-      typescript: {
-        method: 'client.socialPostResults.retrieve',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialPostResult = await client.socialPostResults.retrieve('id');\n\nconsole.log(socialPostResult.id);",
+          'curl https://api.postforme.dev/v1/social-post-results/$ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -465,34 +465,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.socialAccounts.create(access_token: string, access_token_expires_at: string, platform: string, user_id: string, external_id?: string, metadata?: object, refresh_token?: string, refresh_token_expires_at?: string, username?: string): { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }`\n\n**post** `/v1/social-accounts`\n\nIf a social account with the same platform and user_id already exists, it will be updated. If not, a new social account will be created.\n\n### Parameters\n\n- `access_token: string`\n  The access token of the social account\n\n- `access_token_expires_at: string`\n  The access token expiration date of the social account\n\n- `platform: string`\n  The platform of the social account\n\n- `user_id: string`\n  The user id of the social account\n\n- `external_id?: string`\n  The external id of the social account\n\n- `metadata?: object`\n  The metadata of the social account\n\n- `refresh_token?: string`\n  The refresh token of the social account\n\n- `refresh_token_expires_at?: string`\n  The refresh token expiration date of the social account\n\n- `username?: string`\n  The platform's username of the social account\n\n### Returns\n\n- `{ id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }`\n\n  - `id: string`\n  - `access_token: string`\n  - `access_token_expires_at: string`\n  - `external_id: string`\n  - `metadata: object`\n  - `platform: string`\n  - `profile_photo_url: string`\n  - `refresh_token: string`\n  - `refresh_token_expires_at: string`\n  - `status: 'connected' | 'disconnected'`\n  - `user_id: string`\n  - `username: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialAccount = await client.socialAccounts.create({\n  access_token: 'access_token',\n  access_token_expires_at: '2019-12-27T18:11:19.117Z',\n  platform: 'facebook',\n  user_id: 'user_id',\n});\n\nconsole.log(socialAccount);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialAccounts.New',
+      typescript: {
+        method: 'client.socialAccounts.create',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccount, err := client.SocialAccounts.New(context.TODO(), postforme.SocialAccountNewParams{\n\t\tAccessToken:          "access_token",\n\t\tAccessTokenExpiresAt: time.Now(),\n\t\tPlatform:             postforme.SocialAccountNewParamsPlatformFacebook,\n\t\tUserID:               "user_id",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccount.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-accounts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "access_token": "access_token",\n          "access_token_expires_at": "2019-12-27T18:11:19.117Z",\n          "platform": "facebook",\n          "user_id": "user_id"\n        }\'',
-      },
-      kotlin: {
-        method: 'socialAccounts().create',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccount\nimport com.post_for_me.api.models.socialaccounts.SocialAccountCreateParams\nimport java.time.OffsetDateTime\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: SocialAccountCreateParams = SocialAccountCreateParams.builder()\n        .accessToken("access_token")\n        .accessTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))\n        .platform(SocialAccountCreateParams.Platform.FACEBOOK)\n        .userId("user_id")\n        .build()\n    val socialAccount: SocialAccount = client.socialAccounts().create(params)\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccount = await client.socialAccounts.create({\n  access_token: 'access_token',\n  access_token_expires_at: '2019-12-27T18:11:19.117Z',\n  platform: 'facebook',\n  user_id: 'user_id',\n});\n\nconsole.log(socialAccount.id);",
       },
       python: {
         method: 'social_accounts.create',
         example:
           'import os\nfrom datetime import datetime\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_account = client.social_accounts.create(\n    access_token="access_token",\n    access_token_expires_at=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    platform="facebook",\n    user_id="user_id",\n)\nprint(social_account.id)',
       },
+      kotlin: {
+        method: 'socialAccounts().create',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccount\nimport com.post_for_me.api.models.socialaccounts.SocialAccountCreateParams\nimport java.time.OffsetDateTime\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: SocialAccountCreateParams = SocialAccountCreateParams.builder()\n        .accessToken("access_token")\n        .accessTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))\n        .platform(SocialAccountCreateParams.Platform.FACEBOOK)\n        .userId("user_id")\n        .build()\n    val socialAccount: SocialAccount = client.socialAccounts().create(params)\n}',
+      },
+      go: {
+        method: 'client.SocialAccounts.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccount, err := client.SocialAccounts.New(context.TODO(), postforme.SocialAccountNewParams{\n\t\tAccessToken:          "access_token",\n\t\tAccessTokenExpiresAt: time.Now(),\n\t\tPlatform:             postforme.SocialAccountNewParamsPlatformFacebook,\n\t\tUserID:               "user_id",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccount.ID)\n}\n',
+      },
       ruby: {
         method: 'social_accounts.create',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_account = post_for_me.social_accounts.create(\n  access_token: "access_token",\n  access_token_expires_at: "2019-12-27T18:11:19.117Z",\n  platform: :facebook,\n  user_id: "user_id"\n)\n\nputs(social_account)',
       },
-      typescript: {
-        method: 'client.socialAccounts.create',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccount = await client.socialAccounts.create({\n  access_token: 'access_token',\n  access_token_expires_at: '2019-12-27T18:11:19.117Z',\n  platform: 'facebook',\n  user_id: 'user_id',\n});\n\nconsole.log(socialAccount.id);",
+          'curl https://api.postforme.dev/v1/social-accounts \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "access_token": "access_token",\n          "access_token_expires_at": "2019-12-27T18:11:19.117Z",\n          "platform": "facebook",\n          "user_id": "user_id"\n        }\'',
       },
     },
   },
@@ -518,34 +518,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.socialAccounts.list(id?: string[], external_id?: string[], limit?: number, offset?: number, platform?: string[], status?: 'connected' | 'disconnected'[], username?: string[]): { data: social_account[]; meta: object; }`\n\n**get** `/v1/social-accounts`\n\nGet a paginated result for social accounts based on the applied filters\n\n### Parameters\n\n- `id?: string[]`\n  Filter by id(s). Multiple values imply OR logic (e.g., ?id=spc_xxxxxx&id=spc_yyyyyy).\n\n- `external_id?: string[]`\n  Filter by externalId(s). Multiple values imply OR logic (e.g., ?externalId=test&externalId=test2).\n\n- `limit?: number`\n  Number of items to return\n\n- `offset?: number`\n  Number of items to skip\n\n- `platform?: string[]`\n  Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=x&platform=facebook).\n\n- `status?: 'connected' | 'disconnected'[]`\n  Filter by status. Multiple values imply OR logic (e.g., ?status=connected&status=disconnected).\n\n- `username?: string[]`\n  Filter by username(s). Multiple values imply OR logic (e.g., ?username=test&username=test2).\n\n### Returns\n\n- `{ data: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]; meta: { limit: number; next: string; offset: number; total: number; }; }`\n\n  - `data: { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }[]`\n  - `meta: { limit: number; next: string; offset: number; total: number; }`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialAccounts = await client.socialAccounts.list();\n\nconsole.log(socialAccounts);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialAccounts.List',
+      typescript: {
+        method: 'client.socialAccounts.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccounts, err := client.SocialAccounts.List(context.TODO(), postforme.SocialAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccounts.Data)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-accounts \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialAccounts().list',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccountListParams\nimport com.post_for_me.api.models.socialaccounts.SocialAccountListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccounts: SocialAccountListResponse = client.socialAccounts().list()\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccounts = await client.socialAccounts.list();\n\nconsole.log(socialAccounts.data);",
       },
       python: {
         method: 'social_accounts.list',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_accounts = client.social_accounts.list()\nprint(social_accounts.data)',
       },
+      kotlin: {
+        method: 'socialAccounts().list',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccountListParams\nimport com.post_for_me.api.models.socialaccounts.SocialAccountListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccounts: SocialAccountListResponse = client.socialAccounts().list()\n}',
+      },
+      go: {
+        method: 'client.SocialAccounts.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccounts, err := client.SocialAccounts.List(context.TODO(), postforme.SocialAccountListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccounts.Data)\n}\n',
+      },
       ruby: {
         method: 'social_accounts.list',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_accounts = post_for_me.social_accounts.list\n\nputs(social_accounts)',
       },
-      typescript: {
-        method: 'client.socialAccounts.list',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccounts = await client.socialAccounts.list();\n\nconsole.log(socialAccounts.data);",
+          'curl https://api.postforme.dev/v1/social-accounts \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -563,34 +563,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.socialAccounts.retrieve(id: string): { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }`\n\n**get** `/v1/social-accounts/{id}`\n\nGet social account by ID\n\n### Parameters\n\n- `id: string`\n\n### Returns\n\n- `{ id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }`\n\n  - `id: string`\n  - `access_token: string`\n  - `access_token_expires_at: string`\n  - `external_id: string`\n  - `metadata: object`\n  - `platform: string`\n  - `profile_photo_url: string`\n  - `refresh_token: string`\n  - `refresh_token_expires_at: string`\n  - `status: 'connected' | 'disconnected'`\n  - `user_id: string`\n  - `username: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialAccount = await client.socialAccounts.retrieve('id');\n\nconsole.log(socialAccount);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialAccounts.Get',
+      typescript: {
+        method: 'client.socialAccounts.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccount, err := client.SocialAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccount.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-accounts/$ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialAccounts().retrieve',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccount\nimport com.post_for_me.api.models.socialaccounts.SocialAccountRetrieveParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccount: SocialAccount = client.socialAccounts().retrieve("id")\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccount = await client.socialAccounts.retrieve('id');\n\nconsole.log(socialAccount.id);",
       },
       python: {
         method: 'social_accounts.retrieve',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_account = client.social_accounts.retrieve(\n    "id",\n)\nprint(social_account.id)',
       },
+      kotlin: {
+        method: 'socialAccounts().retrieve',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccount\nimport com.post_for_me.api.models.socialaccounts.SocialAccountRetrieveParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccount: SocialAccount = client.socialAccounts().retrieve("id")\n}',
+      },
+      go: {
+        method: 'client.SocialAccounts.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccount, err := client.SocialAccounts.Get(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccount.ID)\n}\n',
+      },
       ruby: {
         method: 'social_accounts.retrieve',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_account = post_for_me.social_accounts.retrieve("id")\n\nputs(social_account)',
       },
-      typescript: {
-        method: 'client.socialAccounts.retrieve',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccount = await client.socialAccounts.retrieve('id');\n\nconsole.log(socialAccount.id);",
+          'curl https://api.postforme.dev/v1/social-accounts/$ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -608,34 +608,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.socialAccounts.update(id: string, external_id?: string, username?: string): { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }`\n\n**patch** `/v1/social-accounts/{id}`\n\nUpdate social account\n\n### Parameters\n\n- `id: string`\n\n- `external_id?: string`\n  The platform's external id of the social account\n\n- `username?: string`\n  The platform's username of the social account\n\n### Returns\n\n- `{ id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'connected' | 'disconnected'; user_id: string; username: string; }`\n\n  - `id: string`\n  - `access_token: string`\n  - `access_token_expires_at: string`\n  - `external_id: string`\n  - `metadata: object`\n  - `platform: string`\n  - `profile_photo_url: string`\n  - `refresh_token: string`\n  - `refresh_token_expires_at: string`\n  - `status: 'connected' | 'disconnected'`\n  - `user_id: string`\n  - `username: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialAccount = await client.socialAccounts.update('id');\n\nconsole.log(socialAccount);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialAccounts.Update',
+      typescript: {
+        method: 'client.socialAccounts.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccount, err := client.SocialAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tpostforme.SocialAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccount.ID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://api.postforme.dev/v1/social-accounts/$ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $POST_FOR_ME_API_KEY\" \\\n    -d '{}'",
-      },
-      kotlin: {
-        method: 'socialAccounts().update',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccount\nimport com.post_for_me.api.models.socialaccounts.SocialAccountUpdateParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccount: SocialAccount = client.socialAccounts().update("id")\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccount = await client.socialAccounts.update('id');\n\nconsole.log(socialAccount.id);",
       },
       python: {
         method: 'social_accounts.update',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_account = client.social_accounts.update(\n    id="id",\n)\nprint(social_account.id)',
       },
+      kotlin: {
+        method: 'socialAccounts().update',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccount\nimport com.post_for_me.api.models.socialaccounts.SocialAccountUpdateParams\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccount: SocialAccount = client.socialAccounts().update("id")\n}',
+      },
+      go: {
+        method: 'client.SocialAccounts.Update',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccount, err := client.SocialAccounts.Update(\n\t\tcontext.TODO(),\n\t\t"id",\n\t\tpostforme.SocialAccountUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccount.ID)\n}\n',
+      },
       ruby: {
         method: 'social_accounts.update',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_account = post_for_me.social_accounts.update("id")\n\nputs(social_account)',
       },
-      typescript: {
-        method: 'client.socialAccounts.update',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccount = await client.socialAccounts.update('id');\n\nconsole.log(socialAccount.id);",
+          "curl https://api.postforme.dev/v1/social-accounts/$ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $POST_FOR_ME_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -659,34 +659,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create_auth_url\n\n`client.socialAccounts.createAuthURL(platform: string, external_id?: string, permissions?: 'posts' | 'feeds'[], platform_data?: { bluesky?: { app_password: string; handle: string; }; facebook?: { permission_overrides?: object[][]; }; instagram?: { connection_type: 'instagram' | 'facebook'; permission_overrides?: object[][]; }; linkedin?: { connection_type: 'personal' | 'organization'; permission_overrides?: object[][]; }; pinterest?: { permission_overrides?: object[][]; }; threads?: { permission_overrides?: object[][]; }; tiktok?: { permission_overrides?: object[][]; }; tiktok_business?: { permission_overrides?: object[][]; }; youtube?: { permission_overrides?: object[][]; }; }, redirect_url_override?: string): { platform: string; url: string; }`\n\n**post** `/v1/social-accounts/auth-url`\n\nGenerates a URL that initiates the authentication flow for a user's social media account. When visited, the user is redirected to the selected social platform's login/authorization page. Upon successful authentication, they are redirected back to your application\n\n### Parameters\n\n- `platform: string`\n  The social account provider\n\n- `external_id?: string`\n  Your unique identifier for the social account\n\n- `permissions?: 'posts' | 'feeds'[]`\n  List of permissions you want to allow. Will default to only post permissions. You must include the \"feeds\" permission to request an account feed and metrics\n\n- `platform_data?: { bluesky?: { app_password: string; handle: string; }; facebook?: { permission_overrides?: object[][]; }; instagram?: { connection_type: 'instagram' | 'facebook'; permission_overrides?: object[][]; }; linkedin?: { connection_type: 'personal' | 'organization'; permission_overrides?: object[][]; }; pinterest?: { permission_overrides?: object[][]; }; threads?: { permission_overrides?: object[][]; }; tiktok?: { permission_overrides?: object[][]; }; tiktok_business?: { permission_overrides?: object[][]; }; youtube?: { permission_overrides?: object[][]; }; }`\n  Additional data needed for the provider\n  - `bluesky?: { app_password: string; handle: string; }`\n    Additional data needed for connecting bluesky accounts\n  - `facebook?: { permission_overrides?: object[][]; }`\n    Additional data for connecting facebook accounts\n  - `instagram?: { connection_type: 'instagram' | 'facebook'; permission_overrides?: object[][]; }`\n    Additional data for connecting instagram accounts\n  - `linkedin?: { connection_type: 'personal' | 'organization'; permission_overrides?: object[][]; }`\n    Additional data for connecting linkedin accounts\n  - `pinterest?: { permission_overrides?: object[][]; }`\n    Additional data for connecting Pinterest accounts\n  - `threads?: { permission_overrides?: object[][]; }`\n    Additional data for connecting Threads accounts\n  - `tiktok?: { permission_overrides?: object[][]; }`\n    Additional data for connecting TikTok accounts\n  - `tiktok_business?: { permission_overrides?: object[][]; }`\n    Additional data for connecting TikTok Business accounts\n  - `youtube?: { permission_overrides?: object[][]; }`\n    Additional data for connecting YouTube accounts\n\n- `redirect_url_override?: string`\n  Override the default redirect URL for the OAuth flow. If provided, this URL will be used instead of our redirect URL. Make sure this URL is included in your app's authorized redirect urls. This override will not work when using our system credientals.\n\n### Returns\n\n- `{ platform: string; url: string; }`\n\n  - `platform: string`\n  - `url: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst response = await client.socialAccounts.createAuthURL({ platform: 'platform' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialAccounts.NewAuthURL',
+      typescript: {
+        method: 'client.socialAccounts.createAuthURL',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.SocialAccounts.NewAuthURL(context.TODO(), postforme.SocialAccountNewAuthURLParams{\n\t\tPlatform: "platform",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Platform)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-accounts/auth-url \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "platform": "platform",\n          "permissions": [\n            "posts",\n            "feeds"\n          ]\n        }\'',
-      },
-      kotlin: {
-        method: 'socialAccounts().createAuthUrl',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlParams\nimport com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: SocialAccountCreateAuthUrlParams = SocialAccountCreateAuthUrlParams.builder()\n        .platform("platform")\n        .build()\n    val response: SocialAccountCreateAuthUrlResponse = client.socialAccounts().createAuthUrl(params)\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.socialAccounts.createAuthURL({ platform: 'platform' });\n\nconsole.log(response.platform);",
       },
       python: {
         method: 'social_accounts.create_auth_url',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.social_accounts.create_auth_url(\n    platform="platform",\n)\nprint(response.platform)',
       },
+      kotlin: {
+        method: 'socialAccounts().createAuthUrl',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlParams\nimport com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val params: SocialAccountCreateAuthUrlParams = SocialAccountCreateAuthUrlParams.builder()\n        .platform("platform")\n        .build()\n    val response: SocialAccountCreateAuthUrlResponse = client.socialAccounts().createAuthUrl(params)\n}',
+      },
+      go: {
+        method: 'client.SocialAccounts.NewAuthURL',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.SocialAccounts.NewAuthURL(context.TODO(), postforme.SocialAccountNewAuthURLParams{\n\t\tPlatform: "platform",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.Platform)\n}\n',
+      },
       ruby: {
         method: 'social_accounts.create_auth_url',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nresponse = post_for_me.social_accounts.create_auth_url(platform: "platform")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.socialAccounts.createAuthURL',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.socialAccounts.createAuthURL({ platform: 'platform' });\n\nconsole.log(response.platform);",
+          'curl https://api.postforme.dev/v1/social-accounts/auth-url \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY" \\\n    -d \'{\n          "platform": "platform",\n          "permissions": [\n            "posts",\n            "feeds"\n          ]\n        }\'',
       },
     },
   },
@@ -705,34 +705,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## disconnect\n\n`client.socialAccounts.disconnect(id: string): { id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'disconnected'; user_id: string; username: string; }`\n\n**post** `/v1/social-accounts/{id}/disconnect`\n\nDisconnecting an account with remove all auth tokens and mark the account as disconnected. The record of the account will be kept and can be retrieved and reconnected by the owner of the account.\n\n### Parameters\n\n- `id: string`\n\n### Returns\n\n- `{ id: string; access_token: string; access_token_expires_at: string; external_id: string; metadata: object; platform: string; profile_photo_url: string; refresh_token: string; refresh_token_expires_at: string; status: 'disconnected'; user_id: string; username: string; }`\n\n  - `id: string`\n  - `access_token: string`\n  - `access_token_expires_at: string`\n  - `external_id: string`\n  - `metadata: object`\n  - `platform: string`\n  - `profile_photo_url: string`\n  - `refresh_token: string`\n  - `refresh_token_expires_at: string`\n  - `status: 'disconnected'`\n  - `user_id: string`\n  - `username: string`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst response = await client.socialAccounts.disconnect('id');\n\nconsole.log(response);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialAccounts.Disconnect',
+      typescript: {
+        method: 'client.socialAccounts.disconnect',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.SocialAccounts.Disconnect(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-accounts/$ID/disconnect \\\n    -X POST \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialAccounts().disconnect',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectParams\nimport com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val response: SocialAccountDisconnectResponse = client.socialAccounts().disconnect("id")\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.socialAccounts.disconnect('id');\n\nconsole.log(response.id);",
       },
       python: {
         method: 'social_accounts.disconnect',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.social_accounts.disconnect(\n    "id",\n)\nprint(response.id)',
       },
+      kotlin: {
+        method: 'socialAccounts().disconnect',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectParams\nimport com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val response: SocialAccountDisconnectResponse = client.socialAccounts().disconnect("id")\n}',
+      },
+      go: {
+        method: 'client.SocialAccounts.Disconnect',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.SocialAccounts.Disconnect(context.TODO(), "id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ID)\n}\n',
+      },
       ruby: {
         method: 'social_accounts.disconnect',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nresponse = post_for_me.social_accounts.disconnect("id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.socialAccounts.disconnect',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.socialAccounts.disconnect('id');\n\nconsole.log(response.id);",
+          'curl https://api.postforme.dev/v1/social-accounts/$ID/disconnect \\\n    -X POST \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
@@ -758,34 +758,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.socialAccountFeeds.list(social_account_id: string, cursor?: string, expand?: 'metrics'[], external_post_id?: string[], limit?: number, platform_post_id?: string[], social_post_id?: string[]): { data: platform_post[]; meta: object; }`\n\n**get** `/v1/social-account-feeds/{social_account_id}`\n\nGet a paginated result for the social account based on the applied filters\n\n### Parameters\n\n- `social_account_id: string`\n\n- `cursor?: string`\n  Cursor identifying next page of results\n\n- `expand?: 'metrics'[]`\n  Expand additional data in the response. Currently supports: \"metrics\" to include post analytics data.\n\n- `external_post_id?: string[]`\n  Filter by Post for Me Social Postexternal ID. Multiple values imply OR logic (e.g., ?external_post_id=xxxxxx&external_post_id=yyyyyy).\n\n- `limit?: number`\n  Number of items to return; Note: some platforms will have different max limits, in the case the provided limit is over the platform's limit we will return the max allowed by the platform.\n\n- `platform_post_id?: string[]`\n  Filter by the platform's id(s). Multiple values imply OR logic (e.g., ?social_post_id=spr_xxxxxx&social_post_id=spr_yyyyyy).\n\n- `social_post_id?: string[]`\n  Filter by Post for Me Social Post id(s). Multiple values imply OR logic (e.g., ?social_post_id=sp_xxxxxx&social_post_id=sp_yyyyyy).\n\n### Returns\n\n- `{ data: { caption: string; media: object[][]; platform: string; platform_account_id: string; platform_post_id: string; platform_url: string; social_account_id: string; external_account_id?: string; external_post_id?: string; metrics?: object | object | object | object | object | object | object | object | object | object; platform_data?: object; posted_at?: string; social_post_id?: string; social_post_result_id?: string; }[]; meta: { cursor: string; limit: number; next: string; has_more?: boolean; }; }`\n\n  - `data: { caption: string; media: object[][]; platform: string; platform_account_id: string; platform_post_id: string; platform_url: string; social_account_id: string; external_account_id?: string; external_post_id?: string; metrics?: { address_clicks: number; app_download_clicks: number; audience_cities: { city_name: string; percentage: number; }[]; audience_countries: { country: string; percentage: number; }[]; audience_genders: { gender: string; percentage: number; }[]; audience_types: { percentage: number; type: string; }[]; average_time_watched: number; comments: number; email_clicks: number; engagement_likes: { percentage: number; second: string; }[]; favorites: number; full_video_watched_rate: number; impression_sources: { impression_source: string; percentage: number; }[]; lead_submissions: number; likes: number; new_followers: number; phone_number_clicks: number; profile_views: number; reach: number; shares: number; total_time_watched: number; video_view_retention: { percentage: number; second: string; }[]; video_views: number; website_clicks: number; } | { comment_count: number; like_count: number; share_count: number; view_count: number; } | { comments?: number; follows?: number; ig_reels_avg_watch_time?: number; ig_reels_video_view_total_time?: number; likes?: number; navigation?: number; profile_activity?: number; profile_visits?: number; reach?: number; replies?: number; saved?: number; shares?: number; total_interactions?: number; views?: number; } | { comments: number; dislikes: number; likes: number; views: number; annotationClickableImpressions?: number; annotationClicks?: number; annotationClickThroughRate?: number; annotationClosableImpressions?: number; annotationCloseRate?: number; annotationCloses?: number; annotationImpressions?: number; averageViewDuration?: number; averageViewPercentage?: number; cardClickRate?: number; cardClicks?: number; cardImpressions?: number; cardTeaserClickRate?: number; cardTeaserClicks?: number; cardTeaserImpressions?: number; engagedViews?: number; estimatedMinutesWatched?: number; estimatedRedMinutesWatched?: number; redViews?: number; shares?: number; subscribersGained?: number; subscribersLost?: number; videosAddedToPlaylists?: number; videosRemovedFromPlaylists?: number; } | { activity_by_action_type?: { action_type: string; value: number; }[]; activity_by_action_type_unique?: { action_type: string; value: number; }[]; comments?: number; fan_reach?: number; media_views?: number; nonviral_reach?: number; organic_reach?: number; paid_reach?: number; reach?: number; reactions_anger?: number; reactions_by_type?: object; reactions_haha?: number; reactions_like?: number; reactions_love?: number; reactions_sorry?: number; reactions_total?: number; reactions_wow?: number; shares?: number; video_avg_time_watched?: number; video_complete_views_organic?: number; video_complete_views_organic_unique?: number; video_complete_views_paid?: number; video_complete_views_paid_unique?: number; video_length?: number; video_retention_graph_autoplayed?: { rate: number; time: number; }[]; video_retention_graph_clicked_to_play?: { rate: number; time: number; }[]; video_social_actions_unique?: number; video_view_time?: number; video_view_time_by_age_gender?: { key: string; value: number; }[]; video_view_time_by_country?: { key: string; value: number; }[]; video_view_time_by_distribution_type?: object; video_view_time_by_region?: { key: string; value: number; }[]; video_view_time_organic?: number; video_views?: number; video_views_15s?: number; video_views_60s?: number; video_views_autoplayed?: number; video_views_by_distribution_type?: object; video_views_clicked_to_play?: number; video_views_organic?: number; video_views_organic_unique?: number; video_views_paid?: number; video_views_paid_unique?: number; video_views_sound_on?: number; video_views_unique?: number; viral_reach?: number; } | { non_public_metrics?: { impression_count: number; url_link_clicks: number; user_profile_clicks: number; }; organic_metrics?: { impression_count: number; like_count: number; reply_count: number; retweet_count: number; url_link_clicks: number; user_profile_clicks: number; }; public_metrics?: { bookmark_count: number; impression_count: number; like_count: number; quote_count: number; reply_count: number; retweet_count: number; }; } | { likes: number; quotes: number; replies: number; reposts: number; shares: number; views: number; } | { clickCount?: number; commentCount?: number; engagement?: number; impressionCount?: number; likeCount?: number; shareCount?: number; timeWatched?: number; timeWatchedForVideoViews?: number; videoView?: number; viewer?: number; } | { likeCount: number; quoteCount: number; replyCount: number; repostCount: number; } | { 90d?: { comment?: number; impression?: number; last_updated?: string; outbound_click?: number; pin_click?: number; profile_visit?: object; reaction?: number; save?: number; user_follow?: object; video_10s_views?: number; video_average_time?: number; video_p95_views?: number; video_total_time?: number; video_views?: number; }; lifetime_metrics?: { comment?: number; impression?: number; last_updated?: string; outbound_click?: number; pin_click?: number; profile_visit?: object; reaction?: number; save?: number; user_follow?: object; video_10s_views?: number; video_average_time?: number; video_p95_views?: number; video_total_time?: number; video_views?: number; }; }; platform_data?: { title: string; }; posted_at?: string; social_post_id?: string; social_post_result_id?: string; }[]`\n  - `meta: { cursor: string; limit: number; next: string; has_more?: boolean; }`\n\n### Example\n\n```typescript\nimport PostForMe from 'post-for-me';\n\nconst client = new PostForMe();\n\nconst socialAccountFeeds = await client.socialAccountFeeds.list('social_account_id');\n\nconsole.log(socialAccountFeeds);\n```",
     perLanguage: {
-      go: {
-        method: 'client.SocialAccountFeeds.List',
+      typescript: {
+        method: 'client.socialAccountFeeds.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccountFeeds, err := client.SocialAccountFeeds.List(\n\t\tcontext.TODO(),\n\t\t"social_account_id",\n\t\tpostforme.SocialAccountFeedListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccountFeeds.Data)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://api.postforme.dev/v1/social-account-feeds/$SOCIAL_ACCOUNT_ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
-      },
-      kotlin: {
-        method: 'socialAccountFeeds().list',
-        example:
-          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccountfeeds.SocialAccountFeedListParams\nimport com.post_for_me.api.models.socialaccountfeeds.SocialAccountFeedListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccountFeeds: SocialAccountFeedListResponse = client.socialAccountFeeds().list("social_account_id")\n}',
+          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccountFeeds = await client.socialAccountFeeds.list('social_account_id');\n\nconsole.log(socialAccountFeeds.data);",
       },
       python: {
         method: 'social_account_feeds.list',
         example:
           'import os\nfrom post_for_me import PostForMe\n\nclient = PostForMe(\n    api_key=os.environ.get("POST_FOR_ME_API_KEY"),  # This is the default and can be omitted\n)\nsocial_account_feeds = client.social_account_feeds.list(\n    social_account_id="social_account_id",\n)\nprint(social_account_feeds.data)',
       },
+      kotlin: {
+        method: 'socialAccountFeeds().list',
+        example:
+          'package com.post_for_me.api.example\n\nimport com.post_for_me.api.client.PostForMeClient\nimport com.post_for_me.api.client.okhttp.PostForMeOkHttpClient\nimport com.post_for_me.api.models.socialaccountfeeds.SocialAccountFeedListParams\nimport com.post_for_me.api.models.socialaccountfeeds.SocialAccountFeedListResponse\n\nfun main() {\n    val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()\n\n    val socialAccountFeeds: SocialAccountFeedListResponse = client.socialAccountFeeds().list("social_account_id")\n}',
+      },
+      go: {
+        method: 'client.SocialAccountFeeds.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/DayMoonDevelopment/post-for-me-go"\n\t"github.com/DayMoonDevelopment/post-for-me-go/option"\n)\n\nfunc main() {\n\tclient := postforme.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tsocialAccountFeeds, err := client.SocialAccountFeeds.List(\n\t\tcontext.TODO(),\n\t\t"social_account_id",\n\t\tpostforme.SocialAccountFeedListParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", socialAccountFeeds.Data)\n}\n',
+      },
       ruby: {
         method: 'social_account_feeds.list',
         example:
           'require "post_for_me"\n\npost_for_me = PostForMe::Client.new(api_key: "My API Key")\n\nsocial_account_feeds = post_for_me.social_account_feeds.list("social_account_id")\n\nputs(social_account_feeds)',
       },
-      typescript: {
-        method: 'client.socialAccountFeeds.list',
+      http: {
         example:
-          "import PostForMe from 'post-for-me';\n\nconst client = new PostForMe({\n  apiKey: process.env['POST_FOR_ME_API_KEY'], // This is the default and can be omitted\n});\n\nconst socialAccountFeeds = await client.socialAccountFeeds.list('social_account_id');\n\nconsole.log(socialAccountFeeds.data);",
+          'curl https://api.postforme.dev/v1/social-account-feeds/$SOCIAL_ACCOUNT_ID \\\n    -H "Authorization: Bearer $POST_FOR_ME_API_KEY"',
       },
     },
   },
