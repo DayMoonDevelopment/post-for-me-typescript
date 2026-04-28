@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.8.0 (2026-04-28)
+
+Full Changelog: [v2.7.2...v2.8.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.2...v2.8.0)
+
+### Features
+
+* **api:** api update ([2f5e674](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2f5e674f79dd8abdf8af091b300abda66152bf68))
+* **api:** api update ([d2396ce](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d2396cece1884ad50d9f76b8932237a3d0e591f1))
+* support setting headers via env ([5511ee7](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5511ee7337193739dc1a363b982cc3524c5a8004))
+
+
+### Chores
+
+* **internal:** codegen related update ([cdfbf10](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cdfbf1066b71caefd293d9836c78930f24cfcd00))
+* **internal:** codegen related update ([5c28d3f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5c28d3fc31980c1941ab3f6ac5f9d979c03ca077))
+* **internal:** more robust bootstrap script ([d2e9a2e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d2e9a2edf297b174fab7e91e613a630315a06f56))
+* **internal:** update docs ordering ([66678e0](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/66678e0cfeab7c66d9229e806a1f6c86e5764412))
+* restructure docs search code ([9f2a12c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9f2a12c4c06fec4590fb264623a346a983e46115))
+
 ## 2.7.2 (2026-04-10)
 
 Full Changelog: [v2.7.1...v2.7.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.1...v2.7.2)
