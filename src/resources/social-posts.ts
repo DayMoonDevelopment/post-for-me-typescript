@@ -303,12 +303,18 @@ export namespace CreateSocialPost {
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 
       /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
+
+      /**
        * If false Instagram video posts will only be shown in the Reels tab
        */
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
@@ -491,6 +497,12 @@ export interface FacebookConfigurationDto {
    * Facebook post placement
    */
   placement?: 'reels' | 'stories' | 'timeline' | null;
+
+  /**
+   * If true, include the caption on each image in a carousel upload; if false, only
+   * include it on the final carousel post
+   */
+  set_caption_for_each_image?: boolean | null;
 }
 
 export namespace FacebookConfigurationDto {
@@ -753,6 +765,11 @@ export interface PinterestConfigurationDto {
    * Overrides the `media` from the post
    */
   media?: Array<PinterestConfigurationDto.Media> | null;
+
+  /**
+   * Overrides the `title` from the post for Pinterest
+   */
+  title?: string | null;
 }
 
 export namespace PinterestConfigurationDto {
@@ -1055,12 +1072,18 @@ export namespace SocialPost {
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 
       /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
+
+      /**
        * If false Instagram video posts will only be shown in the Reels tab
        */
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
@@ -1838,12 +1861,18 @@ export namespace SocialPostCreateParams {
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 
       /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
+
+      /**
        * If false Instagram video posts will only be shown in the Reels tab
        */
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
@@ -2173,12 +2202,18 @@ export namespace SocialPostUpdateParams {
       reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 
       /**
+       * If true, include the caption on each image in a Facebook carousel upload; if
+       * false, only include it on the final carousel post
+       */
+      set_caption_for_each_image?: boolean | null;
+
+      /**
        * If false Instagram video posts will only be shown in the Reels tab
        */
       share_to_feed?: boolean | null;
 
       /**
-       * Overrides the `title` from the post
+       * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
        */
       title?: string | null;
 
