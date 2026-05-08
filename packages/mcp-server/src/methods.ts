@@ -100,6 +100,42 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/v1/social-account-feeds/{social_account_id}',
   },
+  {
+    clientCallName: 'client.webhooks.create',
+    fullyQualifiedName: 'webhooks.create',
+    httpMethod: 'post',
+    httpPath: '/v1/webhooks',
+  },
+  {
+    clientCallName: 'client.webhooks.retrieve',
+    fullyQualifiedName: 'webhooks.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v1/webhooks/{id}',
+  },
+  {
+    clientCallName: 'client.webhooks.update',
+    fullyQualifiedName: 'webhooks.update',
+    httpMethod: 'patch',
+    httpPath: '/v1/webhooks/{id}',
+  },
+  {
+    clientCallName: 'client.webhooks.list',
+    fullyQualifiedName: 'webhooks.list',
+    httpMethod: 'get',
+    httpPath: '/v1/webhooks',
+  },
+  {
+    clientCallName: 'client.webhooks.delete',
+    fullyQualifiedName: 'webhooks.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/webhooks/{id}',
+  },
+  {
+    clientCallName: 'client.socialPostPreviews.create',
+    fullyQualifiedName: 'socialPostPreviews.create',
+    httpMethod: 'post',
+    httpPath: '/v1/social-post-previews',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
