@@ -133,7 +133,7 @@ export interface SocialAccount {
   /**
    * The metadata of the social account
    */
-  metadata: unknown | null;
+  metadata: SocialAccountMetadata | null;
 
   /**
    * The platform of the social account
@@ -170,6 +170,8 @@ export interface SocialAccount {
    */
   username: string | null;
 }
+
+export type SocialAccountMetadata = unknown;
 
 export interface SocialAccountListResponse {
   data: Array<SocialAccount>;
@@ -237,7 +239,7 @@ export interface SocialAccountDisconnectResponse {
   /**
    * The metadata of the social account
    */
-  metadata: unknown | null;
+  metadata: SocialAccountMetadata | null;
 
   /**
    * The platform of the social account
@@ -314,7 +316,7 @@ export interface SocialAccountCreateParams {
   /**
    * The metadata of the social account
    */
-  metadata?: unknown;
+  metadata?: SocialAccountMetadata;
 
   /**
    * The refresh token of the social account
@@ -601,6 +603,7 @@ export namespace SocialAccountCreateAuthURLParams {
 export declare namespace SocialAccounts {
   export {
     type SocialAccount as SocialAccount,
+    type SocialAccountMetadata as SocialAccountMetadata,
     type SocialAccountListResponse as SocialAccountListResponse,
     type SocialAccountCreateAuthURLResponse as SocialAccountCreateAuthURLResponse,
     type SocialAccountDisconnectResponse as SocialAccountDisconnectResponse,
