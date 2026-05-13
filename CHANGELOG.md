@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.8.0 (2026-05-13)
+
+Full Changelog: [v2.7.2...v2.8.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.2...v2.8.0)
+
+### Features
+
+* **api:** api update ([2f5e674](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2f5e674f79dd8abdf8af091b300abda66152bf68))
+* **api:** api update ([d2396ce](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d2396cece1884ad50d9f76b8932237a3d0e591f1))
+* **api:** manual updates ([4a81000](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4a81000884574cc5ab3bcf6308ce7d944c6f99e3))
+* support setting headers via env ([5511ee7](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5511ee7337193739dc1a363b982cc3524c5a8004))
+
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([4f2a681](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4f2a681929d0381b84aff9db63b19a53ebef8aef))
+* **format:** run eslint and prettier separately ([a9464b1](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a9464b14f441f38c32177fb64e0a87169286d4ee))
+* **internal:** codegen related update ([14d6b7e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/14d6b7e89154e069d8e60597a4453b618aad5fc1))
+* **internal:** codegen related update ([cdfbf10](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cdfbf1066b71caefd293d9836c78930f24cfcd00))
+* **internal:** codegen related update ([5c28d3f](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/5c28d3fc31980c1941ab3f6ac5f9d979c03ca077))
+* **internal:** more robust bootstrap script ([d2e9a2e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/d2e9a2edf297b174fab7e91e613a630315a06f56))
+* **internal:** update docs ordering ([66678e0](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/66678e0cfeab7c66d9229e806a1f6c86e5764412))
+* redact api-key headers in debug logs ([0b5f4f7](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/0b5f4f76d0bcd8785cb6c8e07ad046f8eb1bd575))
+* restructure docs search code ([9f2a12c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/9f2a12c4c06fec4590fb264623a346a983e46115))
+
+
+### Documentation
+
+* clarify forwards compat behavior ([50e15fc](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/50e15fc4e6177ba35337967c2670caf84317038a))
+* update logging docs ([c98e80c](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/c98e80c22686df78ae33da7ea5e83c086be76b47))
+* update with proxy auth info ([862d088](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/862d0887c4ba0153d80781fac6637fa8a54e4c4f))
+
 ## 2.7.2 (2026-04-10)
 
 Full Changelog: [v2.7.1...v2.7.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.1...v2.7.2)
