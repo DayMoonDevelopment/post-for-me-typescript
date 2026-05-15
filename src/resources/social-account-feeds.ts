@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as SocialAccountFeedsAPI from './social-account-feeds';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -37,6 +38,114 @@ export class SocialAccountFeeds extends APIResource {
   ): APIPromise<SocialAccountFeedListResponse> {
     return this._client.get(path`/v1/social-account-feeds/${socialAccountID}`, { query, ...options });
   }
+}
+
+export interface FacebookActivityByActionType {
+  /**
+   * Action type (e.g., like, comment, share)
+   */
+  action_type: string;
+
+  /**
+   * Number of actions
+   */
+  value: number;
+}
+
+export interface FacebookVideoRetentionGraph {
+  /**
+   * Percentage of viewers at this time
+   */
+  rate: number;
+
+  /**
+   * Time in seconds
+   */
+  time: number;
+}
+
+export interface FacebookVideoViewTimeByDemographic {
+  /**
+   * Demographic key (e.g., age_gender, region, country)
+   */
+  key: string;
+
+  /**
+   * Total view time in milliseconds
+   */
+  value: number;
+}
+
+export interface PinterestMetricsWindow {
+  /**
+   * Number of comments on the Pin
+   */
+  comment?: number;
+
+  /**
+   * Number of times the Pin was shown (impressions)
+   */
+  impression?: number;
+
+  /**
+   * The last time Pinterest updated these metrics
+   */
+  last_updated?: string;
+
+  /**
+   * Number of clicks from the Pin to an external destination (outbound clicks)
+   */
+  outbound_click?: number;
+
+  /**
+   * Number of clicks on the Pin to view it in closeup (Pin clicks)
+   */
+  pin_click?: number;
+
+  /**
+   * Number of visits to the author's profile driven from the Pin
+   */
+  profile_visit?: unknown | null;
+
+  /**
+   * Total number of reactions on the Pin
+   */
+  reaction?: number;
+
+  /**
+   * Number of saves of the Pin
+   */
+  save?: number;
+
+  /**
+   * Number of follows driven from the Pin
+   */
+  user_follow?: unknown | null;
+
+  /**
+   * Number of video views of at least 10 seconds
+   */
+  video_10s_views?: number;
+
+  /**
+   * Average watch time for the video
+   */
+  video_average_time?: number;
+
+  /**
+   * Number of video views that reached 95% completion
+   */
+  video_p95_views?: number;
+
+  /**
+   * Total watch time for the video
+   */
+  video_total_time?: number;
+
+  /**
+   * Number of video views
+   */
+  video_views?: number;
 }
 
 export interface PlatformPost {
@@ -103,7 +212,7 @@ export interface PlatformPost {
   /**
    * Platform-specific data for the post
    */
-  platform_data?: PlatformPost.PlatformData;
+  platform_data?: YoutubePostPlatformData;
 
   /**
    * Date the post was published
@@ -171,7 +280,7 @@ export namespace PlatformPost {
     /**
      * Engagement likes data by percentage and time
      */
-    engagement_likes: Array<TikTokBusinessMetricsDto.EngagementLike>;
+    engagement_likes: Array<SocialAccountFeedsAPI.TiktokBusinessVideoMetricPercentage>;
 
     /**
      * Number of favorites on the post
@@ -231,7 +340,7 @@ export namespace PlatformPost {
     /**
      * Video view retention data by percentage and time
      */
-    video_view_retention: Array<TikTokBusinessMetricsDto.VideoViewRetention>;
+    video_view_retention: Array<SocialAccountFeedsAPI.TiktokBusinessVideoMetricPercentage>;
 
     /**
      * Total number of video views
@@ -293,18 +402,6 @@ export namespace PlatformPost {
       type: string;
     }
 
-    export interface EngagementLike {
-      /**
-       * Percentage value for the metric
-       */
-      percentage: number;
-
-      /**
-       * Time in seconds for the metric
-       */
-      second: string;
-    }
-
     export interface ImpressionSource {
       /**
        * Name of the impression source
@@ -315,18 +412,6 @@ export namespace PlatformPost {
        * Percentage of impressions from this source
        */
       percentage: number;
-    }
-
-    export interface VideoViewRetention {
-      /**
-       * Percentage value for the metric
-       */
-      percentage: number;
-
-      /**
-       * Time in seconds for the metric
-       */
-      second: string;
     }
   }
 
@@ -570,12 +655,12 @@ export namespace PlatformPost {
     /**
      * Total activity breakdown by action type
      */
-    activity_by_action_type?: Array<FacebookPostMetricsDto.ActivityByActionType>;
+    activity_by_action_type?: Array<SocialAccountFeedsAPI.FacebookActivityByActionType>;
 
     /**
      * Unique users activity breakdown by action type
      */
-    activity_by_action_type_unique?: Array<FacebookPostMetricsDto.ActivityByActionTypeUnique>;
+    activity_by_action_type_unique?: Array<SocialAccountFeedsAPI.FacebookActivityByActionType>;
 
     /**
      * Number of comments (from post object)
@@ -690,12 +775,12 @@ export namespace PlatformPost {
     /**
      * Video retention graph for autoplayed views
      */
-    video_retention_graph_autoplayed?: Array<FacebookPostMetricsDto.VideoRetentionGraphAutoplayed>;
+    video_retention_graph_autoplayed?: Array<SocialAccountFeedsAPI.FacebookVideoRetentionGraph>;
 
     /**
      * Video retention graph for clicked-to-play views
      */
-    video_retention_graph_clicked_to_play?: Array<FacebookPostMetricsDto.VideoRetentionGraphClickedToPlay>;
+    video_retention_graph_clicked_to_play?: Array<SocialAccountFeedsAPI.FacebookVideoRetentionGraph>;
 
     /**
      * Number of unique people who performed social actions on the video
@@ -710,12 +795,12 @@ export namespace PlatformPost {
     /**
      * Video view time breakdown by age and gender
      */
-    video_view_time_by_age_gender?: Array<FacebookPostMetricsDto.VideoViewTimeByAgeGender>;
+    video_view_time_by_age_gender?: Array<SocialAccountFeedsAPI.FacebookVideoViewTimeByDemographic>;
 
     /**
      * Video view time breakdown by country
      */
-    video_view_time_by_country?: Array<FacebookPostMetricsDto.VideoViewTimeByCountry>;
+    video_view_time_by_country?: Array<SocialAccountFeedsAPI.FacebookVideoViewTimeByDemographic>;
 
     /**
      * Video view time breakdown by distribution type
@@ -725,7 +810,7 @@ export namespace PlatformPost {
     /**
      * Video view time breakdown by region
      */
-    video_view_time_by_region?: Array<FacebookPostMetricsDto.VideoViewTimeByRegion>;
+    video_view_time_by_region?: Array<SocialAccountFeedsAPI.FacebookVideoViewTimeByDemographic>;
 
     /**
      * Total time video was viewed in milliseconds via organic distribution
@@ -798,92 +883,6 @@ export namespace PlatformPost {
      * Number of people who saw the post in News Feed via viral reach
      */
     viral_reach?: number;
-  }
-
-  export namespace FacebookPostMetricsDto {
-    export interface ActivityByActionType {
-      /**
-       * Action type (e.g., like, comment, share)
-       */
-      action_type: string;
-
-      /**
-       * Number of actions
-       */
-      value: number;
-    }
-
-    export interface ActivityByActionTypeUnique {
-      /**
-       * Action type (e.g., like, comment, share)
-       */
-      action_type: string;
-
-      /**
-       * Number of actions
-       */
-      value: number;
-    }
-
-    export interface VideoRetentionGraphAutoplayed {
-      /**
-       * Percentage of viewers at this time
-       */
-      rate: number;
-
-      /**
-       * Time in seconds
-       */
-      time: number;
-    }
-
-    export interface VideoRetentionGraphClickedToPlay {
-      /**
-       * Percentage of viewers at this time
-       */
-      rate: number;
-
-      /**
-       * Time in seconds
-       */
-      time: number;
-    }
-
-    export interface VideoViewTimeByAgeGender {
-      /**
-       * Demographic key (e.g., age_gender, region, country)
-       */
-      key: string;
-
-      /**
-       * Total view time in milliseconds
-       */
-      value: number;
-    }
-
-    export interface VideoViewTimeByCountry {
-      /**
-       * Demographic key (e.g., age_gender, region, country)
-       */
-      key: string;
-
-      /**
-       * Total view time in milliseconds
-       */
-      value: number;
-    }
-
-    export interface VideoViewTimeByRegion {
-      /**
-       * Demographic key (e.g., age_gender, region, country)
-       */
-      key: string;
-
-      /**
-       * Total view time in milliseconds
-       */
-      value: number;
-    }
   }
 
   export interface TwitterPostMetricsDto {
@@ -1115,175 +1114,32 @@ export namespace PlatformPost {
     /**
      * Last 90 days of Pin metrics
      */
-    '90d'?: PinterestPostMetricsDto._90d;
+    '90d'?: SocialAccountFeedsAPI.PinterestMetricsWindow;
 
     /**
      * Lifetime Pin metrics
      */
-    lifetime_metrics?: PinterestPostMetricsDto.LifetimeMetrics;
+    lifetime_metrics?: SocialAccountFeedsAPI.PinterestMetricsWindow;
   }
+}
 
-  export namespace PinterestPostMetricsDto {
-    /**
-     * Last 90 days of Pin metrics
-     */
-    export interface _90d {
-      /**
-       * Number of comments on the Pin
-       */
-      comment?: number;
-
-      /**
-       * Number of times the Pin was shown (impressions)
-       */
-      impression?: number;
-
-      /**
-       * The last time Pinterest updated these metrics
-       */
-      last_updated?: string;
-
-      /**
-       * Number of clicks from the Pin to an external destination (outbound clicks)
-       */
-      outbound_click?: number;
-
-      /**
-       * Number of clicks on the Pin to view it in closeup (Pin clicks)
-       */
-      pin_click?: number;
-
-      /**
-       * Number of visits to the author's profile driven from the Pin
-       */
-      profile_visit?: unknown | null;
-
-      /**
-       * Total number of reactions on the Pin
-       */
-      reaction?: number;
-
-      /**
-       * Number of saves of the Pin
-       */
-      save?: number;
-
-      /**
-       * Number of follows driven from the Pin
-       */
-      user_follow?: unknown | null;
-
-      /**
-       * Number of video views of at least 10 seconds
-       */
-      video_10s_views?: number;
-
-      /**
-       * Average watch time for the video
-       */
-      video_average_time?: number;
-
-      /**
-       * Number of video views that reached 95% completion
-       */
-      video_p95_views?: number;
-
-      /**
-       * Total watch time for the video
-       */
-      video_total_time?: number;
-
-      /**
-       * Number of video views
-       */
-      video_views?: number;
-    }
-
-    /**
-     * Lifetime Pin metrics
-     */
-    export interface LifetimeMetrics {
-      /**
-       * Number of comments on the Pin
-       */
-      comment?: number;
-
-      /**
-       * Number of times the Pin was shown (impressions)
-       */
-      impression?: number;
-
-      /**
-       * The last time Pinterest updated these metrics
-       */
-      last_updated?: string;
-
-      /**
-       * Number of clicks from the Pin to an external destination (outbound clicks)
-       */
-      outbound_click?: number;
-
-      /**
-       * Number of clicks on the Pin to view it in closeup (Pin clicks)
-       */
-      pin_click?: number;
-
-      /**
-       * Number of visits to the author's profile driven from the Pin
-       */
-      profile_visit?: unknown | null;
-
-      /**
-       * Total number of reactions on the Pin
-       */
-      reaction?: number;
-
-      /**
-       * Number of saves of the Pin
-       */
-      save?: number;
-
-      /**
-       * Number of follows driven from the Pin
-       */
-      user_follow?: unknown | null;
-
-      /**
-       * Number of video views of at least 10 seconds
-       */
-      video_10s_views?: number;
-
-      /**
-       * Average watch time for the video
-       */
-      video_average_time?: number;
-
-      /**
-       * Number of video views that reached 95% completion
-       */
-      video_p95_views?: number;
-
-      /**
-       * Total watch time for the video
-       */
-      video_total_time?: number;
-
-      /**
-       * Number of video views
-       */
-      video_views?: number;
-    }
-  }
+export interface TiktokBusinessVideoMetricPercentage {
+  /**
+   * Percentage value for the metric
+   */
+  percentage: number;
 
   /**
-   * Platform-specific data for the post
+   * Time in seconds for the metric
    */
-  export interface PlatformData {
-    /**
-     * Title of the post
-     */
-    title: string;
-  }
+  second: string;
+}
+
+export interface YoutubePostPlatformData {
+  /**
+   * Title of the post
+   */
+  title: string;
 }
 
 export interface SocialAccountFeedListResponse {
@@ -1356,7 +1212,13 @@ export interface SocialAccountFeedListParams {
 
 export declare namespace SocialAccountFeeds {
   export {
+    type FacebookActivityByActionType as FacebookActivityByActionType,
+    type FacebookVideoRetentionGraph as FacebookVideoRetentionGraph,
+    type FacebookVideoViewTimeByDemographic as FacebookVideoViewTimeByDemographic,
+    type PinterestMetricsWindow as PinterestMetricsWindow,
     type PlatformPost as PlatformPost,
+    type TiktokBusinessVideoMetricPercentage as TiktokBusinessVideoMetricPercentage,
+    type YoutubePostPlatformData as YoutubePostPlatformData,
     type SocialAccountFeedListResponse as SocialAccountFeedListResponse,
     type SocialAccountFeedListParams as SocialAccountFeedListParams,
   };

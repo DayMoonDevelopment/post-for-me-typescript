@@ -123,6 +123,12 @@ const fuse = new Fuse(
     'client.socialAccounts.retrieve',
     'client.socialAccounts.update',
     'client.socialAccountFeeds.list',
+    'client.webhooks.create',
+    'client.webhooks.delete',
+    'client.webhooks.list',
+    'client.webhooks.retrieve',
+    'client.webhooks.update',
+    'client.socialPostPreviews.create',
   ],
   { threshold: 1, shouldSort: true },
 );

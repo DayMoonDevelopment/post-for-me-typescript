@@ -19,10 +19,16 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { Media, MediaCreateUploadURLResponse } from './resources/media';
 import {
+  FacebookActivityByActionType,
+  FacebookVideoRetentionGraph,
+  FacebookVideoViewTimeByDemographic,
+  PinterestMetricsWindow,
   PlatformPost,
   SocialAccountFeedListParams,
   SocialAccountFeedListResponse,
   SocialAccountFeeds,
+  TiktokBusinessVideoMetricPercentage,
+  YoutubePostPlatformData,
 } from './resources/social-account-feeds';
 import {
   SocialAccount,
@@ -32,9 +38,17 @@ import {
   SocialAccountDisconnectResponse,
   SocialAccountListParams,
   SocialAccountListResponse,
+  SocialAccountMetadata,
   SocialAccountUpdateParams,
   SocialAccounts,
 } from './resources/social-accounts';
+import {
+  CreateSocialPostPreview,
+  SocialPostPreview,
+  SocialPostPreviewCreateParams,
+  SocialPostPreviewCreateResponse,
+  SocialPostPreviews,
+} from './resources/social-post-previews';
 import {
   SocialPostResult,
   SocialPostResultListParams,
@@ -42,8 +56,10 @@ import {
   SocialPostResults,
 } from './resources/social-post-results';
 import {
+  AccountConfiguration,
   BlueskyConfigurationDto,
   CreateSocialPost,
+  DeleteEntityResponse,
   FacebookConfigurationDto,
   InstagramConfigurationDto,
   LinkedinConfigurationDto,
@@ -51,16 +67,25 @@ import {
   PlatformConfigurationsDto,
   SocialPost,
   SocialPostCreateParams,
-  SocialPostDeleteResponse,
   SocialPostListParams,
   SocialPostListResponse,
+  SocialPostMedia,
   SocialPostUpdateParams,
   SocialPosts,
   ThreadsConfigurationDto,
   TiktokConfiguration,
   TwitterConfigurationDto,
+  TwitterPoll,
   YoutubeConfigurationDto,
 } from './resources/social-posts';
+import {
+  Webhook,
+  WebhookCreateParams,
+  WebhookListParams,
+  WebhookListResponse,
+  WebhookUpdateParams,
+  Webhooks,
+} from './resources/webhooks';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -210,6 +235,18 @@ export class PostForMe {
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
     this.#encoder = Opts.FallbackEncoder;
+
+    const customHeadersEnv = readEnv('POST_FOR_ME_CUSTOM_HEADERS');
+    if (customHeadersEnv) {
+      const parsed: Record<string, string> = {};
+      for (const line of customHeadersEnv.split('\n')) {
+        const colon = line.indexOf(':');
+        if (colon >= 0) {
+          parsed[line.substring(0, colon).trim()] = line.substring(colon + 1).trim();
+        }
+      }
+      options.defaultHeaders = { ...parsed, ...options.defaultHeaders };
+    }
 
     this._options = options;
 
@@ -819,6 +856,39 @@ export class PostForMe {
    *
    */
   socialAccountFeeds: API.SocialAccountFeeds = new API.SocialAccountFeeds(this);
+  /**
+   *
+   * Webhooks enable you to subscribe to certain events. This involves Post for Me making a POST request to the URL of any webhooks you create.
+   * Only the events you subscribe to will be sent to your webhook URL.
+   *
+   * ## Payload
+   * When an event happens that your webhook is subscribed to, we will make a POST request with the following JSON body
+   *
+   * ```
+   *     {
+   *         "event_type": "",
+   *         "data": {}
+   *     }
+   * ```
+   *
+   * The event_type will be the event that triggered the webhook POST, data will be the resulting entity from the event
+   *
+   * ## Security
+   * To verify the POST to your webhook URL is from us we will include a secret in the header "Post-For-Me-Webhook-Secret".
+   * When you create a webhook you will receive the secret in the response.
+   *
+   * ## Retries
+   * If your server fails to respond with a 2XX code, requests to it will be retried with exponential backoff around 8 times over the course of just over a day.
+   *
+   *
+   */
+  webhooks: API.Webhooks = new API.Webhooks(this);
+  /**
+   *
+   * Social Post Previews allow you to see what a Social Post will create for each account in the post.
+   *
+   */
+  socialPostPreviews: API.SocialPostPreviews = new API.SocialPostPreviews(this);
 }
 
 PostForMe.Media = Media;
@@ -826,6 +896,8 @@ PostForMe.SocialPosts = SocialPosts;
 PostForMe.SocialPostResults = SocialPostResults;
 PostForMe.SocialAccounts = SocialAccounts;
 PostForMe.SocialAccountFeeds = SocialAccountFeeds;
+PostForMe.Webhooks = Webhooks;
+PostForMe.SocialPostPreviews = SocialPostPreviews;
 
 export declare namespace PostForMe {
   export type RequestOptions = Opts.RequestOptions;
@@ -834,20 +906,23 @@ export declare namespace PostForMe {
 
   export {
     SocialPosts as SocialPosts,
+    type AccountConfiguration as AccountConfiguration,
     type BlueskyConfigurationDto as BlueskyConfigurationDto,
     type CreateSocialPost as CreateSocialPost,
+    type DeleteEntityResponse as DeleteEntityResponse,
     type FacebookConfigurationDto as FacebookConfigurationDto,
     type InstagramConfigurationDto as InstagramConfigurationDto,
     type LinkedinConfigurationDto as LinkedinConfigurationDto,
     type PinterestConfigurationDto as PinterestConfigurationDto,
     type PlatformConfigurationsDto as PlatformConfigurationsDto,
     type SocialPost as SocialPost,
+    type SocialPostMedia as SocialPostMedia,
     type ThreadsConfigurationDto as ThreadsConfigurationDto,
     type TiktokConfiguration as TiktokConfiguration,
     type TwitterConfigurationDto as TwitterConfigurationDto,
+    type TwitterPoll as TwitterPoll,
     type YoutubeConfigurationDto as YoutubeConfigurationDto,
     type SocialPostListResponse as SocialPostListResponse,
-    type SocialPostDeleteResponse as SocialPostDeleteResponse,
     type SocialPostCreateParams as SocialPostCreateParams,
     type SocialPostUpdateParams as SocialPostUpdateParams,
     type SocialPostListParams as SocialPostListParams,
@@ -863,6 +938,7 @@ export declare namespace PostForMe {
   export {
     SocialAccounts as SocialAccounts,
     type SocialAccount as SocialAccount,
+    type SocialAccountMetadata as SocialAccountMetadata,
     type SocialAccountListResponse as SocialAccountListResponse,
     type SocialAccountCreateAuthURLResponse as SocialAccountCreateAuthURLResponse,
     type SocialAccountDisconnectResponse as SocialAccountDisconnectResponse,
@@ -874,8 +950,31 @@ export declare namespace PostForMe {
 
   export {
     SocialAccountFeeds as SocialAccountFeeds,
+    type FacebookActivityByActionType as FacebookActivityByActionType,
+    type FacebookVideoRetentionGraph as FacebookVideoRetentionGraph,
+    type FacebookVideoViewTimeByDemographic as FacebookVideoViewTimeByDemographic,
+    type PinterestMetricsWindow as PinterestMetricsWindow,
     type PlatformPost as PlatformPost,
+    type TiktokBusinessVideoMetricPercentage as TiktokBusinessVideoMetricPercentage,
+    type YoutubePostPlatformData as YoutubePostPlatformData,
     type SocialAccountFeedListResponse as SocialAccountFeedListResponse,
     type SocialAccountFeedListParams as SocialAccountFeedListParams,
+  };
+
+  export {
+    Webhooks as Webhooks,
+    type Webhook as Webhook,
+    type WebhookListResponse as WebhookListResponse,
+    type WebhookCreateParams as WebhookCreateParams,
+    type WebhookUpdateParams as WebhookUpdateParams,
+    type WebhookListParams as WebhookListParams,
+  };
+
+  export {
+    SocialPostPreviews as SocialPostPreviews,
+    type CreateSocialPostPreview as CreateSocialPostPreview,
+    type SocialPostPreview as SocialPostPreview,
+    type SocialPostPreviewCreateResponse as SocialPostPreviewCreateResponse,
+    type SocialPostPreviewCreateParams as SocialPostPreviewCreateParams,
   };
 }

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as SocialPostsAPI from './social-posts';
 import * as SocialAccountsAPI from './social-accounts';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
@@ -51,8 +52,159 @@ export class SocialPosts extends APIResource {
   /**
    * Delete Post
    */
-  delete(id: string, options?: RequestOptions): APIPromise<SocialPostDeleteResponse> {
+  delete(id: string, options?: RequestOptions): APIPromise<DeleteEntityResponse> {
     return this._client.delete(path`/v1/social-posts/${id}`, options);
+  }
+}
+
+export interface AccountConfiguration {
+  /**
+   * Configuration for the social account
+   */
+  configuration: AccountConfiguration.Configuration;
+
+  /**
+   * ID of the social account, you want to apply the configuration to
+   */
+  social_account_id: string;
+}
+
+export namespace AccountConfiguration {
+  /**
+   * Configuration for the social account
+   */
+  export interface Configuration {
+    /**
+     * Allow comments on TikTok
+     */
+    allow_comment?: boolean | null;
+
+    /**
+     * Allow duets on TikTok
+     */
+    allow_duet?: boolean | null;
+
+    /**
+     * Allow stitch on TikTok
+     */
+    allow_stitch?: boolean | null;
+
+    /**
+     * Will automatically add music to photo posts on TikTok
+     */
+    auto_add_music?: boolean | null;
+
+    /**
+     * Pinterest board IDs
+     */
+    board_ids?: Array<string> | null;
+
+    /**
+     * Overrides the `caption` from the post
+     */
+    caption?: unknown | null;
+
+    /**
+     * List of page ids or users to invite as collaborators for a Video Reel (Instagram
+     * and Facebook)
+     */
+    collaborators?: Array<Array<unknown>> | null;
+
+    /**
+     * Id of the twitter community to post to
+     */
+    community_id?: string;
+
+    /**
+     * Disclose branded content on TikTok
+     */
+    disclose_branded_content?: boolean | null;
+
+    /**
+     * Disclose your brand on TikTok
+     */
+    disclose_your_brand?: boolean | null;
+
+    /**
+     * Flag content as AI generated on TikTok
+     */
+    is_ai_generated?: boolean | null;
+
+    /**
+     * Will create a draft upload to TikTok, posting will need to be completed from
+     * within the app
+     */
+    is_draft?: boolean | null;
+
+    /**
+     * Pinterest post link
+     */
+    link?: string | null;
+
+    /**
+     * Page id with a location that you want to tag the image or video with (Instagram
+     * and Facebook)
+     */
+    location?: string | null;
+
+    /**
+     * If true will notify YouTube the video is intended for kids, defaults to false
+     */
+    made_for_kids?: boolean | null;
+
+    /**
+     * Overrides the `media` from the post
+     */
+    media?: Array<SocialPostsAPI.SocialPostMedia> | null;
+
+    /**
+     * Post placement for Facebook/Instagram/Threads
+     */
+    placement?: 'reels' | 'timeline' | 'stories' | null;
+
+    /**
+     * Poll options for the twitter
+     */
+    poll?: SocialPostsAPI.TwitterPoll;
+
+    /**
+     * Sets the privacy status for TikTok (private, public), or YouTube (private,
+     * public, unlisted)
+     */
+    privacy_status?: 'public' | 'private' | 'unlisted' | null;
+
+    /**
+     * Id of the tweet you want to quote
+     */
+    quote_tweet_id?: string;
+
+    /**
+     * Who can reply to the tweet
+     */
+    reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+    /**
+     * If true, include the caption on each image in a Facebook carousel upload; if
+     * false, only include it on the final carousel post
+     */
+    set_caption_for_each_image?: boolean | null;
+
+    /**
+     * If false Instagram video posts will only be shown in the Reels tab
+     */
+    share_to_feed?: boolean | null;
+
+    /**
+     * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
+     */
+    title?: string | null;
+
+    /**
+     * Instagram trial reel type, when passed will be created as a trial reel. If
+     * manual the trial reel can be manually graduated in the native app. If perfomance
+     * the trial reel will be automatically graduated if the trial reel performs well.
+     */
+    trial_reel_type?: 'manual' | 'performance' | null;
   }
 }
 
@@ -65,70 +217,7 @@ export interface BlueskyConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<BlueskyConfigurationDto.Media> | null;
-}
-
-export namespace BlueskyConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
+  media?: Array<SocialPostMedia> | null;
 }
 
 export interface CreateSocialPost {
@@ -145,7 +234,7 @@ export interface CreateSocialPost {
   /**
    * Account-specific configurations for the post
    */
-  account_configurations?: Array<CreateSocialPost.AccountConfiguration> | null;
+  account_configurations?: Array<AccountConfiguration> | null;
 
   /**
    * Array of social account IDs for posting
@@ -161,7 +250,7 @@ export interface CreateSocialPost {
    * Array of media associated with the post. If multiple media items are provided
    * and the placement is `stories`, individual posts are created per media item.
    */
-  media?: Array<CreateSocialPost.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Platform-specific configurations for the post
@@ -175,295 +264,11 @@ export interface CreateSocialPost {
   scheduled_at?: string | null;
 }
 
-export namespace CreateSocialPost {
-  export interface AccountConfiguration {
-    /**
-     * Configuration for the social account
-     */
-    configuration: AccountConfiguration.Configuration;
-
-    /**
-     * ID of the social account, you want to apply the configuration to
-     */
-    social_account_id: string;
-  }
-
-  export namespace AccountConfiguration {
-    /**
-     * Configuration for the social account
-     */
-    export interface Configuration {
-      /**
-       * Allow comments on TikTok
-       */
-      allow_comment?: boolean | null;
-
-      /**
-       * Allow duets on TikTok
-       */
-      allow_duet?: boolean | null;
-
-      /**
-       * Allow stitch on TikTok
-       */
-      allow_stitch?: boolean | null;
-
-      /**
-       * Will automatically add music to photo posts on TikTok
-       */
-      auto_add_music?: boolean | null;
-
-      /**
-       * Pinterest board IDs
-       */
-      board_ids?: Array<string> | null;
-
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
-       * and Facebook)
-       */
-      collaborators?: Array<Array<unknown>> | null;
-
-      /**
-       * Id of the twitter community to post to
-       */
-      community_id?: string;
-
-      /**
-       * Disclose branded content on TikTok
-       */
-      disclose_branded_content?: boolean | null;
-
-      /**
-       * Disclose your brand on TikTok
-       */
-      disclose_your_brand?: boolean | null;
-
-      /**
-       * Flag content as AI generated on TikTok
-       */
-      is_ai_generated?: boolean | null;
-
-      /**
-       * Will create a draft upload to TikTok, posting will need to be completed from
-       * within the app
-       */
-      is_draft?: boolean | null;
-
-      /**
-       * Pinterest post link
-       */
-      link?: string | null;
-
-      /**
-       * Page id with a location that you want to tag the image or video with (Instagram
-       * and Facebook)
-       */
-      location?: string | null;
-
-      /**
-       * If true will notify YouTube the video is intended for kids, defaults to false
-       */
-      made_for_kids?: boolean | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<Configuration.Media> | null;
-
-      /**
-       * Post placement for Facebook/Instagram/Threads
-       */
-      placement?: 'reels' | 'timeline' | 'stories' | null;
-
-      /**
-       * Poll options for the twitter
-       */
-      poll?: Configuration.Poll;
-
-      /**
-       * Sets the privacy status for TikTok (private, public), or YouTube (private,
-       * public, unlisted)
-       */
-      privacy_status?: 'public' | 'private' | 'unlisted' | null;
-
-      /**
-       * Id of the tweet you want to quote
-       */
-      quote_tweet_id?: string;
-
-      /**
-       * Who can reply to the tweet
-       */
-      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
-
-      /**
-       * If false Instagram video posts will only be shown in the Reels tab
-       */
-      share_to_feed?: boolean | null;
-
-      /**
-       * Overrides the `title` from the post
-       */
-      title?: string | null;
-
-      /**
-       * Instagram trial reel type, when passed will be created as a trial reel. If
-       * manual the trial reel can be manually graduated in the native app. If perfomance
-       * the trial reel will be automatically graduated if the trial reel performs well.
-       */
-      trial_reel_type?: 'manual' | 'performance' | null;
-    }
-
-    export namespace Configuration {
-      export interface Media {
-        /**
-         * Public URL of the media
-         */
-        url: string;
-
-        /**
-         * If true the media will not be processed at all and instead be posted as is, this
-         * may increase chance of post failure if media does not meet platform's
-         * requirements. Best used for larger files.
-         */
-        skip_processing?: boolean | null;
-
-        /**
-         * List of tags to attach to the media
-         */
-        tags?: Array<Media.Tag> | null;
-
-        /**
-         * Timestamp in milliseconds of frame to use as thumbnail for the media
-         */
-        thumbnail_timestamp_ms?: unknown | null;
-
-        /**
-         * Public URL of the thumbnail for the media
-         */
-        thumbnail_url?: unknown | null;
-      }
-
-      export namespace Media {
-        export interface Tag {
-          /**
-           * Facebook User ID, Instagram Username or Instagram product id to tag
-           */
-          id: string;
-
-          /**
-           * The platform for the tags
-           */
-          platform: 'facebook' | 'instagram';
-
-          /**
-           * The type of tag, user to tag accounts, product to tag products (only supported
-           * for instagram)
-           */
-          type: 'user' | 'product';
-
-          /**
-           * Percentage distance from left edge of the image, Not required for videos or
-           * stories
-           */
-          x?: number;
-
-          /**
-           * Percentage distance from top edge of the image, Not required for videos or
-           * stories
-           */
-          y?: number;
-        }
-      }
-
-      /**
-       * Poll options for the twitter
-       */
-      export interface Poll {
-        /**
-         * Duration of the poll in minutes
-         */
-        duration_minutes: number;
-
-        /**
-         * The choices of the poll, requiring 2-4 options
-         */
-        options: Array<string>;
-
-        /**
-         * Who can reply to the tweet
-         */
-        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
-      }
-    }
-  }
-
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
+export interface DeleteEntityResponse {
+  /**
+   * Whether or not the entity was deleted
+   */
+  success: boolean;
 }
 
 export interface FacebookConfigurationDto {
@@ -485,75 +290,18 @@ export interface FacebookConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<FacebookConfigurationDto.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Facebook post placement
    */
   placement?: 'reels' | 'stories' | 'timeline' | null;
-}
 
-export namespace FacebookConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
+  /**
+   * If true, include the caption on each image in a carousel upload; if false, only
+   * include it on the final carousel post
+   */
+  set_caption_for_each_image?: boolean | null;
 }
 
 export interface InstagramConfigurationDto {
@@ -575,7 +323,7 @@ export interface InstagramConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<InstagramConfigurationDto.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Instagram post placement
@@ -595,69 +343,6 @@ export interface InstagramConfigurationDto {
   trial_reel_type?: 'manual' | 'performance' | null;
 }
 
-export namespace InstagramConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
-}
-
 export interface LinkedinConfigurationDto {
   /**
    * Overrides the `caption` from the post
@@ -667,70 +352,7 @@ export interface LinkedinConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<LinkedinConfigurationDto.Media> | null;
-}
-
-export namespace LinkedinConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
+  media?: Array<SocialPostMedia> | null;
 }
 
 export interface PinterestConfigurationDto {
@@ -752,70 +374,12 @@ export interface PinterestConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<PinterestConfigurationDto.Media> | null;
-}
+  media?: Array<SocialPostMedia> | null;
 
-export namespace PinterestConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
+  /**
+   * Overrides the `title` from the post for Pinterest
+   */
+  title?: string | null;
 }
 
 export interface PlatformConfigurationsDto {
@@ -879,7 +443,7 @@ export interface SocialPost {
   /**
    * Account-specific configurations for the post
    */
-  account_configurations: Array<SocialPost.AccountConfiguration> | null;
+  account_configurations: Array<AccountConfiguration> | null;
 
   /**
    * Caption text for the post
@@ -899,7 +463,7 @@ export interface SocialPost {
   /**
    * Array of media associated with the post
    */
-  media: Array<SocialPost.Media> | null;
+  media: Array<SocialPostMedia> | null;
 
   /**
    * Platform-specific configurations for the post
@@ -927,294 +491,64 @@ export interface SocialPost {
   updated_at: string;
 }
 
-export namespace SocialPost {
-  export interface AccountConfiguration {
+export interface SocialPostMedia {
+  /**
+   * Public URL of the media
+   */
+  url: string;
+
+  /**
+   * If true the media will not be processed at all and instead be posted as is, this
+   * may increase chance of post failure if media does not meet platform's
+   * requirements. Best used for larger files.
+   */
+  skip_processing?: boolean | null;
+
+  /**
+   * List of tags to attach to the media
+   */
+  tags?: Array<SocialPostMedia.Tag> | null;
+
+  /**
+   * Timestamp in milliseconds of frame to use as thumbnail for the media
+   */
+  thumbnail_timestamp_ms?: unknown | null;
+
+  /**
+   * Public URL of the thumbnail for the media
+   */
+  thumbnail_url?: unknown | null;
+}
+
+export namespace SocialPostMedia {
+  export interface Tag {
     /**
-     * Configuration for the social account
+     * Facebook User ID, Instagram Username or Instagram product id to tag
      */
-    configuration: AccountConfiguration.Configuration;
-
-    /**
-     * ID of the social account, you want to apply the configuration to
-     */
-    social_account_id: string;
-  }
-
-  export namespace AccountConfiguration {
-    /**
-     * Configuration for the social account
-     */
-    export interface Configuration {
-      /**
-       * Allow comments on TikTok
-       */
-      allow_comment?: boolean | null;
-
-      /**
-       * Allow duets on TikTok
-       */
-      allow_duet?: boolean | null;
-
-      /**
-       * Allow stitch on TikTok
-       */
-      allow_stitch?: boolean | null;
-
-      /**
-       * Will automatically add music to photo posts on TikTok
-       */
-      auto_add_music?: boolean | null;
-
-      /**
-       * Pinterest board IDs
-       */
-      board_ids?: Array<string> | null;
-
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
-       * and Facebook)
-       */
-      collaborators?: Array<Array<unknown>> | null;
-
-      /**
-       * Id of the twitter community to post to
-       */
-      community_id?: string;
-
-      /**
-       * Disclose branded content on TikTok
-       */
-      disclose_branded_content?: boolean | null;
-
-      /**
-       * Disclose your brand on TikTok
-       */
-      disclose_your_brand?: boolean | null;
-
-      /**
-       * Flag content as AI generated on TikTok
-       */
-      is_ai_generated?: boolean | null;
-
-      /**
-       * Will create a draft upload to TikTok, posting will need to be completed from
-       * within the app
-       */
-      is_draft?: boolean | null;
-
-      /**
-       * Pinterest post link
-       */
-      link?: string | null;
-
-      /**
-       * Page id with a location that you want to tag the image or video with (Instagram
-       * and Facebook)
-       */
-      location?: string | null;
-
-      /**
-       * If true will notify YouTube the video is intended for kids, defaults to false
-       */
-      made_for_kids?: boolean | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<Configuration.Media> | null;
-
-      /**
-       * Post placement for Facebook/Instagram/Threads
-       */
-      placement?: 'reels' | 'timeline' | 'stories' | null;
-
-      /**
-       * Poll options for the twitter
-       */
-      poll?: Configuration.Poll;
-
-      /**
-       * Sets the privacy status for TikTok (private, public), or YouTube (private,
-       * public, unlisted)
-       */
-      privacy_status?: 'public' | 'private' | 'unlisted' | null;
-
-      /**
-       * Id of the tweet you want to quote
-       */
-      quote_tweet_id?: string;
-
-      /**
-       * Who can reply to the tweet
-       */
-      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
-
-      /**
-       * If false Instagram video posts will only be shown in the Reels tab
-       */
-      share_to_feed?: boolean | null;
-
-      /**
-       * Overrides the `title` from the post
-       */
-      title?: string | null;
-
-      /**
-       * Instagram trial reel type, when passed will be created as a trial reel. If
-       * manual the trial reel can be manually graduated in the native app. If perfomance
-       * the trial reel will be automatically graduated if the trial reel performs well.
-       */
-      trial_reel_type?: 'manual' | 'performance' | null;
-    }
-
-    export namespace Configuration {
-      export interface Media {
-        /**
-         * Public URL of the media
-         */
-        url: string;
-
-        /**
-         * If true the media will not be processed at all and instead be posted as is, this
-         * may increase chance of post failure if media does not meet platform's
-         * requirements. Best used for larger files.
-         */
-        skip_processing?: boolean | null;
-
-        /**
-         * List of tags to attach to the media
-         */
-        tags?: Array<Media.Tag> | null;
-
-        /**
-         * Timestamp in milliseconds of frame to use as thumbnail for the media
-         */
-        thumbnail_timestamp_ms?: unknown | null;
-
-        /**
-         * Public URL of the thumbnail for the media
-         */
-        thumbnail_url?: unknown | null;
-      }
-
-      export namespace Media {
-        export interface Tag {
-          /**
-           * Facebook User ID, Instagram Username or Instagram product id to tag
-           */
-          id: string;
-
-          /**
-           * The platform for the tags
-           */
-          platform: 'facebook' | 'instagram';
-
-          /**
-           * The type of tag, user to tag accounts, product to tag products (only supported
-           * for instagram)
-           */
-          type: 'user' | 'product';
-
-          /**
-           * Percentage distance from left edge of the image, Not required for videos or
-           * stories
-           */
-          x?: number;
-
-          /**
-           * Percentage distance from top edge of the image, Not required for videos or
-           * stories
-           */
-          y?: number;
-        }
-      }
-
-      /**
-       * Poll options for the twitter
-       */
-      export interface Poll {
-        /**
-         * Duration of the poll in minutes
-         */
-        duration_minutes: number;
-
-        /**
-         * The choices of the poll, requiring 2-4 options
-         */
-        options: Array<string>;
-
-        /**
-         * Who can reply to the tweet
-         */
-        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
-      }
-    }
-  }
-
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
+    id: string;
 
     /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
+     * The platform for the tags
      */
-    skip_processing?: boolean | null;
+    platform: 'facebook' | 'instagram';
 
     /**
-     * List of tags to attach to the media
+     * The type of tag, user to tag accounts, product to tag products (only supported
+     * for instagram)
      */
-    tags?: Array<Media.Tag> | null;
+    type: 'user' | 'product';
 
     /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
+     * Percentage distance from left edge of the image, Not required for videos or
+     * stories
      */
-    thumbnail_timestamp_ms?: unknown | null;
+    x?: number;
 
     /**
-     * Public URL of the thumbnail for the media
+     * Percentage distance from top edge of the image, Not required for videos or
+     * stories
      */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
+    y?: number;
   }
 }
 
@@ -1227,75 +561,12 @@ export interface ThreadsConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<ThreadsConfigurationDto.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Threads post placement
    */
   placement?: 'reels' | 'timeline' | null;
-}
-
-export namespace ThreadsConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
 }
 
 export interface TiktokConfiguration {
@@ -1348,7 +619,7 @@ export interface TiktokConfiguration {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<TiktokConfiguration.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Sets the privacy status for TikTok (private, public)
@@ -1359,69 +630,6 @@ export interface TiktokConfiguration {
    * Overrides the `title` from the post
    */
   title?: string | null;
-}
-
-export namespace TiktokConfiguration {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
 }
 
 export interface TwitterConfigurationDto {
@@ -1438,12 +646,12 @@ export interface TwitterConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<TwitterConfigurationDto.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Poll options for the tweet
    */
-  poll?: TwitterConfigurationDto.Poll;
+  poll?: TwitterPoll;
 
   /**
    * Id of the tweet you want to quote
@@ -1456,87 +664,21 @@ export interface TwitterConfigurationDto {
   reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 }
 
-export namespace TwitterConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
+export interface TwitterPoll {
+  /**
+   * Duration of the poll in minutes
+   */
+  duration_minutes: number;
 
   /**
-   * Poll options for the tweet
+   * The choices of the poll, requiring 2-4 options
    */
-  export interface Poll {
-    /**
-     * Duration of the poll in minutes
-     */
-    duration_minutes: number;
+  options: Array<string>;
 
-    /**
-     * The choices of the poll, requiring 2-4 options
-     */
-    options: Array<string>;
-
-    /**
-     * Who can reply to the tweet
-     */
-    reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
-  }
+  /**
+   * Who can reply to the tweet
+   */
+  reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
 }
 
 export interface YoutubeConfigurationDto {
@@ -1553,7 +695,7 @@ export interface YoutubeConfigurationDto {
   /**
    * Overrides the `media` from the post
    */
-  media?: Array<YoutubeConfigurationDto.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Sets the privacy status of the video, will default to public
@@ -1564,69 +706,6 @@ export interface YoutubeConfigurationDto {
    * Overrides the `title` from the post
    */
   title?: string | null;
-}
-
-export namespace YoutubeConfigurationDto {
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
 }
 
 export interface SocialPostListResponse {
@@ -1659,13 +738,6 @@ export namespace SocialPostListResponse {
   }
 }
 
-export interface SocialPostDeleteResponse {
-  /**
-   * Whether or not the entity was deleted
-   */
-  success: boolean;
-}
-
 export interface SocialPostCreateParams {
   /**
    * Caption text for the post
@@ -1680,7 +752,7 @@ export interface SocialPostCreateParams {
   /**
    * Account-specific configurations for the post
    */
-  account_configurations?: Array<SocialPostCreateParams.AccountConfiguration> | null;
+  account_configurations?: Array<AccountConfiguration> | null;
 
   /**
    * Array of social account IDs for posting
@@ -1696,7 +768,7 @@ export interface SocialPostCreateParams {
    * Array of media associated with the post. If multiple media items are provided
    * and the placement is `stories`, individual posts are created per media item.
    */
-  media?: Array<SocialPostCreateParams.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Platform-specific configurations for the post
@@ -1708,297 +780,6 @@ export interface SocialPostCreateParams {
    * instantly
    */
   scheduled_at?: string | null;
-}
-
-export namespace SocialPostCreateParams {
-  export interface AccountConfiguration {
-    /**
-     * Configuration for the social account
-     */
-    configuration: AccountConfiguration.Configuration;
-
-    /**
-     * ID of the social account, you want to apply the configuration to
-     */
-    social_account_id: string;
-  }
-
-  export namespace AccountConfiguration {
-    /**
-     * Configuration for the social account
-     */
-    export interface Configuration {
-      /**
-       * Allow comments on TikTok
-       */
-      allow_comment?: boolean | null;
-
-      /**
-       * Allow duets on TikTok
-       */
-      allow_duet?: boolean | null;
-
-      /**
-       * Allow stitch on TikTok
-       */
-      allow_stitch?: boolean | null;
-
-      /**
-       * Will automatically add music to photo posts on TikTok
-       */
-      auto_add_music?: boolean | null;
-
-      /**
-       * Pinterest board IDs
-       */
-      board_ids?: Array<string> | null;
-
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
-       * and Facebook)
-       */
-      collaborators?: Array<Array<unknown>> | null;
-
-      /**
-       * Id of the twitter community to post to
-       */
-      community_id?: string;
-
-      /**
-       * Disclose branded content on TikTok
-       */
-      disclose_branded_content?: boolean | null;
-
-      /**
-       * Disclose your brand on TikTok
-       */
-      disclose_your_brand?: boolean | null;
-
-      /**
-       * Flag content as AI generated on TikTok
-       */
-      is_ai_generated?: boolean | null;
-
-      /**
-       * Will create a draft upload to TikTok, posting will need to be completed from
-       * within the app
-       */
-      is_draft?: boolean | null;
-
-      /**
-       * Pinterest post link
-       */
-      link?: string | null;
-
-      /**
-       * Page id with a location that you want to tag the image or video with (Instagram
-       * and Facebook)
-       */
-      location?: string | null;
-
-      /**
-       * If true will notify YouTube the video is intended for kids, defaults to false
-       */
-      made_for_kids?: boolean | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<Configuration.Media> | null;
-
-      /**
-       * Post placement for Facebook/Instagram/Threads
-       */
-      placement?: 'reels' | 'timeline' | 'stories' | null;
-
-      /**
-       * Poll options for the twitter
-       */
-      poll?: Configuration.Poll;
-
-      /**
-       * Sets the privacy status for TikTok (private, public), or YouTube (private,
-       * public, unlisted)
-       */
-      privacy_status?: 'public' | 'private' | 'unlisted' | null;
-
-      /**
-       * Id of the tweet you want to quote
-       */
-      quote_tweet_id?: string;
-
-      /**
-       * Who can reply to the tweet
-       */
-      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
-
-      /**
-       * If false Instagram video posts will only be shown in the Reels tab
-       */
-      share_to_feed?: boolean | null;
-
-      /**
-       * Overrides the `title` from the post
-       */
-      title?: string | null;
-
-      /**
-       * Instagram trial reel type, when passed will be created as a trial reel. If
-       * manual the trial reel can be manually graduated in the native app. If perfomance
-       * the trial reel will be automatically graduated if the trial reel performs well.
-       */
-      trial_reel_type?: 'manual' | 'performance' | null;
-    }
-
-    export namespace Configuration {
-      export interface Media {
-        /**
-         * Public URL of the media
-         */
-        url: string;
-
-        /**
-         * If true the media will not be processed at all and instead be posted as is, this
-         * may increase chance of post failure if media does not meet platform's
-         * requirements. Best used for larger files.
-         */
-        skip_processing?: boolean | null;
-
-        /**
-         * List of tags to attach to the media
-         */
-        tags?: Array<Media.Tag> | null;
-
-        /**
-         * Timestamp in milliseconds of frame to use as thumbnail for the media
-         */
-        thumbnail_timestamp_ms?: unknown | null;
-
-        /**
-         * Public URL of the thumbnail for the media
-         */
-        thumbnail_url?: unknown | null;
-      }
-
-      export namespace Media {
-        export interface Tag {
-          /**
-           * Facebook User ID, Instagram Username or Instagram product id to tag
-           */
-          id: string;
-
-          /**
-           * The platform for the tags
-           */
-          platform: 'facebook' | 'instagram';
-
-          /**
-           * The type of tag, user to tag accounts, product to tag products (only supported
-           * for instagram)
-           */
-          type: 'user' | 'product';
-
-          /**
-           * Percentage distance from left edge of the image, Not required for videos or
-           * stories
-           */
-          x?: number;
-
-          /**
-           * Percentage distance from top edge of the image, Not required for videos or
-           * stories
-           */
-          y?: number;
-        }
-      }
-
-      /**
-       * Poll options for the twitter
-       */
-      export interface Poll {
-        /**
-         * Duration of the poll in minutes
-         */
-        duration_minutes: number;
-
-        /**
-         * The choices of the poll, requiring 2-4 options
-         */
-        options: Array<string>;
-
-        /**
-         * Who can reply to the tweet
-         */
-        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
-      }
-    }
-  }
-
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
 }
 
 export interface SocialPostUpdateParams {
@@ -2015,7 +796,7 @@ export interface SocialPostUpdateParams {
   /**
    * Account-specific configurations for the post
    */
-  account_configurations?: Array<SocialPostUpdateParams.AccountConfiguration> | null;
+  account_configurations?: Array<AccountConfiguration> | null;
 
   /**
    * Array of social account IDs for posting
@@ -2031,7 +812,7 @@ export interface SocialPostUpdateParams {
    * Array of media associated with the post. If multiple media items are provided
    * and the placement is `stories`, individual posts are created per media item.
    */
-  media?: Array<SocialPostUpdateParams.Media> | null;
+  media?: Array<SocialPostMedia> | null;
 
   /**
    * Platform-specific configurations for the post
@@ -2043,297 +824,6 @@ export interface SocialPostUpdateParams {
    * instantly
    */
   scheduled_at?: string | null;
-}
-
-export namespace SocialPostUpdateParams {
-  export interface AccountConfiguration {
-    /**
-     * Configuration for the social account
-     */
-    configuration: AccountConfiguration.Configuration;
-
-    /**
-     * ID of the social account, you want to apply the configuration to
-     */
-    social_account_id: string;
-  }
-
-  export namespace AccountConfiguration {
-    /**
-     * Configuration for the social account
-     */
-    export interface Configuration {
-      /**
-       * Allow comments on TikTok
-       */
-      allow_comment?: boolean | null;
-
-      /**
-       * Allow duets on TikTok
-       */
-      allow_duet?: boolean | null;
-
-      /**
-       * Allow stitch on TikTok
-       */
-      allow_stitch?: boolean | null;
-
-      /**
-       * Will automatically add music to photo posts on TikTok
-       */
-      auto_add_music?: boolean | null;
-
-      /**
-       * Pinterest board IDs
-       */
-      board_ids?: Array<string> | null;
-
-      /**
-       * Overrides the `caption` from the post
-       */
-      caption?: unknown | null;
-
-      /**
-       * List of page ids or users to invite as collaborators for a Video Reel (Instagram
-       * and Facebook)
-       */
-      collaborators?: Array<Array<unknown>> | null;
-
-      /**
-       * Id of the twitter community to post to
-       */
-      community_id?: string;
-
-      /**
-       * Disclose branded content on TikTok
-       */
-      disclose_branded_content?: boolean | null;
-
-      /**
-       * Disclose your brand on TikTok
-       */
-      disclose_your_brand?: boolean | null;
-
-      /**
-       * Flag content as AI generated on TikTok
-       */
-      is_ai_generated?: boolean | null;
-
-      /**
-       * Will create a draft upload to TikTok, posting will need to be completed from
-       * within the app
-       */
-      is_draft?: boolean | null;
-
-      /**
-       * Pinterest post link
-       */
-      link?: string | null;
-
-      /**
-       * Page id with a location that you want to tag the image or video with (Instagram
-       * and Facebook)
-       */
-      location?: string | null;
-
-      /**
-       * If true will notify YouTube the video is intended for kids, defaults to false
-       */
-      made_for_kids?: boolean | null;
-
-      /**
-       * Overrides the `media` from the post
-       */
-      media?: Array<Configuration.Media> | null;
-
-      /**
-       * Post placement for Facebook/Instagram/Threads
-       */
-      placement?: 'reels' | 'timeline' | 'stories' | null;
-
-      /**
-       * Poll options for the twitter
-       */
-      poll?: Configuration.Poll;
-
-      /**
-       * Sets the privacy status for TikTok (private, public), or YouTube (private,
-       * public, unlisted)
-       */
-      privacy_status?: 'public' | 'private' | 'unlisted' | null;
-
-      /**
-       * Id of the tweet you want to quote
-       */
-      quote_tweet_id?: string;
-
-      /**
-       * Who can reply to the tweet
-       */
-      reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
-
-      /**
-       * If false Instagram video posts will only be shown in the Reels tab
-       */
-      share_to_feed?: boolean | null;
-
-      /**
-       * Overrides the `title` from the post
-       */
-      title?: string | null;
-
-      /**
-       * Instagram trial reel type, when passed will be created as a trial reel. If
-       * manual the trial reel can be manually graduated in the native app. If perfomance
-       * the trial reel will be automatically graduated if the trial reel performs well.
-       */
-      trial_reel_type?: 'manual' | 'performance' | null;
-    }
-
-    export namespace Configuration {
-      export interface Media {
-        /**
-         * Public URL of the media
-         */
-        url: string;
-
-        /**
-         * If true the media will not be processed at all and instead be posted as is, this
-         * may increase chance of post failure if media does not meet platform's
-         * requirements. Best used for larger files.
-         */
-        skip_processing?: boolean | null;
-
-        /**
-         * List of tags to attach to the media
-         */
-        tags?: Array<Media.Tag> | null;
-
-        /**
-         * Timestamp in milliseconds of frame to use as thumbnail for the media
-         */
-        thumbnail_timestamp_ms?: unknown | null;
-
-        /**
-         * Public URL of the thumbnail for the media
-         */
-        thumbnail_url?: unknown | null;
-      }
-
-      export namespace Media {
-        export interface Tag {
-          /**
-           * Facebook User ID, Instagram Username or Instagram product id to tag
-           */
-          id: string;
-
-          /**
-           * The platform for the tags
-           */
-          platform: 'facebook' | 'instagram';
-
-          /**
-           * The type of tag, user to tag accounts, product to tag products (only supported
-           * for instagram)
-           */
-          type: 'user' | 'product';
-
-          /**
-           * Percentage distance from left edge of the image, Not required for videos or
-           * stories
-           */
-          x?: number;
-
-          /**
-           * Percentage distance from top edge of the image, Not required for videos or
-           * stories
-           */
-          y?: number;
-        }
-      }
-
-      /**
-       * Poll options for the twitter
-       */
-      export interface Poll {
-        /**
-         * Duration of the poll in minutes
-         */
-        duration_minutes: number;
-
-        /**
-         * The choices of the poll, requiring 2-4 options
-         */
-        options: Array<string>;
-
-        /**
-         * Who can reply to the tweet
-         */
-        reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified';
-      }
-    }
-  }
-
-  export interface Media {
-    /**
-     * Public URL of the media
-     */
-    url: string;
-
-    /**
-     * If true the media will not be processed at all and instead be posted as is, this
-     * may increase chance of post failure if media does not meet platform's
-     * requirements. Best used for larger files.
-     */
-    skip_processing?: boolean | null;
-
-    /**
-     * List of tags to attach to the media
-     */
-    tags?: Array<Media.Tag> | null;
-
-    /**
-     * Timestamp in milliseconds of frame to use as thumbnail for the media
-     */
-    thumbnail_timestamp_ms?: unknown | null;
-
-    /**
-     * Public URL of the thumbnail for the media
-     */
-    thumbnail_url?: unknown | null;
-  }
-
-  export namespace Media {
-    export interface Tag {
-      /**
-       * Facebook User ID, Instagram Username or Instagram product id to tag
-       */
-      id: string;
-
-      /**
-       * The platform for the tags
-       */
-      platform: 'facebook' | 'instagram';
-
-      /**
-       * The type of tag, user to tag accounts, product to tag products (only supported
-       * for instagram)
-       */
-      type: 'user' | 'product';
-
-      /**
-       * Percentage distance from left edge of the image, Not required for videos or
-       * stories
-       */
-      x?: number;
-
-      /**
-       * Percentage distance from top edge of the image, Not required for videos or
-       * stories
-       */
-      y?: number;
-    }
-  }
 }
 
 export interface SocialPostListParams {
@@ -2372,20 +862,23 @@ export interface SocialPostListParams {
 
 export declare namespace SocialPosts {
   export {
+    type AccountConfiguration as AccountConfiguration,
     type BlueskyConfigurationDto as BlueskyConfigurationDto,
     type CreateSocialPost as CreateSocialPost,
+    type DeleteEntityResponse as DeleteEntityResponse,
     type FacebookConfigurationDto as FacebookConfigurationDto,
     type InstagramConfigurationDto as InstagramConfigurationDto,
     type LinkedinConfigurationDto as LinkedinConfigurationDto,
     type PinterestConfigurationDto as PinterestConfigurationDto,
     type PlatformConfigurationsDto as PlatformConfigurationsDto,
     type SocialPost as SocialPost,
+    type SocialPostMedia as SocialPostMedia,
     type ThreadsConfigurationDto as ThreadsConfigurationDto,
     type TiktokConfiguration as TiktokConfiguration,
     type TwitterConfigurationDto as TwitterConfigurationDto,
+    type TwitterPoll as TwitterPoll,
     type YoutubeConfigurationDto as YoutubeConfigurationDto,
     type SocialPostListResponse as SocialPostListResponse,
-    type SocialPostDeleteResponse as SocialPostDeleteResponse,
     type SocialPostCreateParams as SocialPostCreateParams,
     type SocialPostUpdateParams as SocialPostUpdateParams,
     type SocialPostListParams as SocialPostListParams,
