@@ -68,8 +68,11 @@ RUN chown -R nodejs:nodejs /deno-dir
 # Switch to non-root user
 USER nodejs
 
-# The MCP server uses stdio transport by default
-# No exposed ports needed for stdio communication
+# Default to hosted HTTP transport so the container is ready for Unkey
+ENV MCP_SERVER_TRANSPORT=http
+ENV MCP_SERVER_PORT=8080
+
+EXPOSE 8080
 
 # Set the entrypoint to the MCP server
 ENTRYPOINT ["node", "index.js"]
