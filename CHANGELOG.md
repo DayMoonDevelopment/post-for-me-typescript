@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.8.1 (2026-05-19)
+
+Full Changelog: [v2.8.0...v2.8.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.8.0...v2.8.1)
+
+### Bug Fixes
+
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([206f798](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/206f798375a765344d1938e0bb40d66472c3d2c6))
+
+
+### Chores
+
+* **tests:** remove redundant File import ([4e03418](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4e03418ea827fa73887313f50a4ad2a1cd98dd3c))
+
 ## 2.8.0 (2026-05-13)
 
 Full Changelog: [v2.7.2...v2.8.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.2...v2.8.0)
