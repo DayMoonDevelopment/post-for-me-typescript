@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from 'post-for-me/internal/to-file';
 import { toFile } from 'post-for-me/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
