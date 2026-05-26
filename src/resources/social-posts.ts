@@ -123,6 +123,14 @@ export namespace AccountConfiguration {
     community_id?: string;
 
     /**
+     * If true, marks the YouTube video as containing altered or synthetic content per
+     * YouTube's disclosure policy. Sets status.containsSyntheticMedia on the
+     * videos.insert call; YouTube adds a "How this content was made" label to the
+     * description automatically.
+     */
+    contains_synthetic_media?: boolean | null;
+
+    /**
      * Disclose branded content on TikTok
      */
     disclose_branded_content?: boolean | null;
@@ -700,6 +708,14 @@ export interface YoutubeConfigurationDto {
    * Overrides the `caption` from the post
    */
   caption?: unknown | null;
+
+  /**
+   * If true, marks the video as containing altered or synthetic content per
+   * YouTube's disclosure policy. Sets status.containsSyntheticMedia on the YouTube
+   * Data API videos.insert call; YouTube adds a "How this content was made" label to
+   * the description automatically.
+   */
+  contains_synthetic_media?: boolean | null;
 
   /**
    * If true will notify YouTube the video is intended for kids, defaults to false
