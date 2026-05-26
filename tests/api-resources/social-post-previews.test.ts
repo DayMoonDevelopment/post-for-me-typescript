@@ -40,6 +40,7 @@ describe('resource socialPostPreviews', () => {
             allow_comment: true,
             allow_duet: true,
             allow_stitch: true,
+            audio_name: 'audio_name',
             auto_add_music: true,
             board_ids: ['string'],
             caption: {},
@@ -149,6 +150,7 @@ describe('resource socialPostPreviews', () => {
           set_caption_for_each_image: true,
         },
         instagram: {
+          audio_name: 'audio_name',
           caption: {},
           collaborators: ['string'],
           location: 'location',
