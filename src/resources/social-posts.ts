@@ -90,6 +90,13 @@ export namespace AccountConfiguration {
     allow_stitch?: boolean | null;
 
     /**
+     * Display name for the audio track on Instagram Reels. Only honored on Reels
+     * uploads, and only when the audio is original (Meta silently ignores it on
+     * licensed/fingerprinted tracks).
+     */
+    audio_name?: string | null;
+
+    /**
      * Will automatically add music to photo posts on TikTok
      */
     auto_add_music?: boolean | null;
@@ -305,6 +312,13 @@ export interface FacebookConfigurationDto {
 }
 
 export interface InstagramConfigurationDto {
+  /**
+   * Display name for the audio track on Instagram Reels. Only honored on Reels
+   * uploads, and only when the audio is original (Meta silently ignores it on
+   * licensed/fingerprinted tracks).
+   */
+  audio_name?: string | null;
+
   /**
    * Overrides the `caption` from the post
    */
