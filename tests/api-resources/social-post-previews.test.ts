@@ -46,6 +46,7 @@ describe('resource socialPostPreviews', () => {
             caption: {},
             collaborators: [[{}]],
             community_id: 'community_id',
+            contains_synthetic_media: true,
             disclose_branded_content: true,
             disclose_your_brand: true,
             is_ai_generated: true,
@@ -329,6 +330,7 @@ describe('resource socialPostPreviews', () => {
         },
         youtube: {
           caption: {},
+          contains_synthetic_media: true,
           made_for_kids: true,
           media: [
             {
