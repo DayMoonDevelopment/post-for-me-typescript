@@ -248,6 +248,11 @@ export namespace AccountConfiguration {
     reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
 
     /**
+     * LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+     */
+    reshare_post_id?: string | null;
+
+    /**
      * If true, include the caption on each image in a Facebook carousel upload; if
      * false, only include it on the final carousel post
      */
@@ -429,6 +434,11 @@ export interface LinkedinConfigurationDto {
    * Overrides the `media` from the post
    */
   media?: Array<SocialPostMedia> | null;
+
+  /**
+   * LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+   */
+  reshare_post_id?: string | null;
 }
 
 export interface PinterestConfigurationDto {
