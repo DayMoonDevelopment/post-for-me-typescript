@@ -669,32 +669,12 @@ export namespace PlatformPost {
     comments?: number;
 
     /**
-     * Number of fans who saw the post
-     */
-    fan_reach?: number;
-
-    /**
      * Number of times the photo or video was viewed
      */
     media_views?: number;
 
     /**
-     * Number of people who saw the post via non-viral distribution
-     */
-    nonviral_reach?: number;
-
-    /**
-     * Number of people who saw the post via organic distribution
-     */
-    organic_reach?: number;
-
-    /**
-     * Number of people who saw the post via paid distribution
-     */
-    paid_reach?: number;
-
-    /**
-     * Total number of unique people who saw the post
+     * Total number of unique people who viewed the post media
      */
     reach?: number;
 
@@ -855,35 +835,14 @@ export namespace PlatformPost {
     video_views_organic?: number;
 
     /**
-     * Number of unique people who viewed the video for 3+ seconds organically
-     */
-    video_views_organic_unique?: number;
-
-    /**
      * Number of times video was viewed for 3+ seconds via paid distribution
      */
     video_views_paid?: number;
 
     /**
-     * Number of unique people who viewed the video for 3+ seconds via paid
-     * distribution
-     */
-    video_views_paid_unique?: number;
-
-    /**
      * Number of times video was viewed with sound on
      */
     video_views_sound_on?: number;
-
-    /**
-     * Number of unique people who viewed the video for 3+ seconds
-     */
-    video_views_unique?: number;
-
-    /**
-     * Number of people who saw the post in News Feed via viral reach
-     */
-    viral_reach?: number;
   }
 
   export interface TwitterPostMetricsDto {
