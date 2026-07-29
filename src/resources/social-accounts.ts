@@ -76,7 +76,11 @@ export class SocialAccounts extends APIResource {
    * Generates a URL that initiates the authentication flow for a user's social media
    * account. When visited, the user is redirected to the selected social platform's
    * login/authorization page. Upon successful authentication, they are redirected
-   * back to your application
+   * back to your application.
+   *
+   * For Quickstart projects using Post for Me system credentials,
+   * `redirect_url_override` is not accepted. Configure the project redirect URL in
+   * the dashboard instead.
    *
    * @example
    * ```ts
@@ -414,7 +418,7 @@ export interface SocialAccountCreateAuthURLParams {
    * Override the default redirect URL for the OAuth flow. If provided, this URL will
    * be used instead of our redirect URL. Make sure this URL is included in your
    * app's authorized redirect urls. This override will not work when using our
-   * system credientals.
+   * system credentials; configure the project redirect URL in the dashboard instead.
    */
   redirect_url_override?: string;
 }
@@ -465,6 +469,11 @@ export namespace SocialAccountCreateAuthURLParams {
     tiktok_business?: PlatformData.TiktokBusiness;
 
     /**
+     * Additional data for connecting X accounts
+     */
+    x?: PlatformData.X;
+
+    /**
      * Additional data for connecting YouTube accounts
      */
     youtube?: PlatformData.Youtube;
@@ -495,7 +504,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * public_profile, pages_show_list, pages_read_engagement, pages_manage_posts,
        * business_management
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -514,7 +523,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Default facebook scopes: instagram_basic, instagram_content_publish,
        * pages_show_list, public_profile, business_management
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -523,7 +532,7 @@ export namespace SocialAccountCreateAuthURLParams {
     export interface Linkedin {
       /**
        * The type of connection; If using our provided credentials always use
-       * "organization". If using your own crednetials then only use "organization" if
+       * "organization". If using your own credentials then only use "organization" if
        * you are using the Community API
        */
       connection_type: 'personal' | 'organization';
@@ -534,7 +543,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * r_basicprofile, w_member_social, r_organization_social, w_organization_social,
        * rw_organization_admin
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -545,7 +554,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Override the default permissions/scopes requested during OAuth. Default scopes:
        * boards:read, boards:write, pins:read, pins:write, user_accounts:read
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -556,7 +565,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Override the default permissions/scopes requested during OAuth. Default scopes:
        * threads_basic, threads_content_publish
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -567,7 +576,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Override the default permissions/scopes requested during OAuth. Default scopes:
        * user.info.basic, video.list, video.upload, video.publish
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -581,7 +590,18 @@ export namespace SocialAccountCreateAuthURLParams {
        * comment.list.manage, video.publish, video.upload, biz.spark.auth,
        * discovery.search.words
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
+    }
+
+    /**
+     * Additional data for connecting X accounts
+     */
+    export interface X {
+      /**
+       * The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+       * 2.0 app credentials.
+       */
+      connection_type: 'oauth1' | 'oauth2';
     }
 
     /**
@@ -595,7 +615,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * https://www.googleapis.com/auth/youtube.readonly,
        * https://www.googleapis.com/auth/userinfo.profile
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
   }
 }

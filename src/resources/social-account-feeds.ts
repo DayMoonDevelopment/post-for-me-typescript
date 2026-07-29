@@ -12,8 +12,9 @@ import { path } from '../internal/utils/path';
  * Use this endpoint to get the platform details for any post made under the connected account. To use this endpoint accounts must be connected with the **"feeds" permission**.
  *
  * Details will include:
- *  - Post information including caption, url, media, etc..
- *  - When passing **expand=metrics**, Metrics information including views, likes, follows, etc..
+ *   - Post information including caption, url, media, etc..
+ *   - When passing **expand=metrics**, Metrics information including views, likes, follows, etc..
+ *   - For **Facebook** feeds with **expand=metrics**, page size is capped by the server-side **FacebookFeedMetricsLimitCap** setting (default: **10**) to protect API memory usage.
  *
  * Note: Currently the following platforms are supported:
  *  - **Instagram**, may take up to 48 hours for some metrics to be avaialbe
@@ -668,32 +669,12 @@ export namespace PlatformPost {
     comments?: number;
 
     /**
-     * Number of fans who saw the post
-     */
-    fan_reach?: number;
-
-    /**
      * Number of times the photo or video was viewed
      */
     media_views?: number;
 
     /**
-     * Number of people who saw the post via non-viral distribution
-     */
-    nonviral_reach?: number;
-
-    /**
-     * Number of people who saw the post via organic distribution
-     */
-    organic_reach?: number;
-
-    /**
-     * Number of people who saw the post via paid distribution
-     */
-    paid_reach?: number;
-
-    /**
-     * Total number of unique people who saw the post
+     * Total number of unique people who viewed the post media
      */
     reach?: number;
 
@@ -854,35 +835,14 @@ export namespace PlatformPost {
     video_views_organic?: number;
 
     /**
-     * Number of unique people who viewed the video for 3+ seconds organically
-     */
-    video_views_organic_unique?: number;
-
-    /**
      * Number of times video was viewed for 3+ seconds via paid distribution
      */
     video_views_paid?: number;
 
     /**
-     * Number of unique people who viewed the video for 3+ seconds via paid
-     * distribution
-     */
-    video_views_paid_unique?: number;
-
-    /**
      * Number of times video was viewed with sound on
      */
     video_views_sound_on?: number;
-
-    /**
-     * Number of unique people who viewed the video for 3+ seconds
-     */
-    video_views_unique?: number;
-
-    /**
-     * Number of people who saw the post in News Feed via viral reach
-     */
-    viral_reach?: number;
   }
 
   export interface TwitterPostMetricsDto {

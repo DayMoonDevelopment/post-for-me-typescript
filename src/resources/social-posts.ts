@@ -75,6 +75,13 @@ export namespace AccountConfiguration {
    */
   export interface Configuration {
     /**
+     * Per-language localizations for the video title and description. Keys are BCP-47
+     * language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
+     * videos resource.
+     */
+    localizations: { [key: string]: Configuration.Localizations } | null;
+
+    /**
      * Allow comments on TikTok
      */
     allow_comment?: boolean | null;
@@ -88,6 +95,13 @@ export namespace AccountConfiguration {
      * Allow stitch on TikTok
      */
     allow_stitch?: boolean | null;
+
+    /**
+     * Display name for the audio track on Instagram Reels. Only honored on Reels
+     * uploads, and only when the audio is original (Meta silently ignores it on
+     * licensed/fingerprinted tracks).
+     */
+    audio_name?: string | null;
 
     /**
      * Will automatically add music to photo posts on TikTok
@@ -105,6 +119,12 @@ export namespace AccountConfiguration {
     caption?: unknown | null;
 
     /**
+     * YouTube video category id (maps to snippet.categoryId; see YouTube Data API
+     * videoCategories.list)
+     */
+    category_id?: string | null;
+
+    /**
      * List of page ids or users to invite as collaborators for a Video Reel (Instagram
      * and Facebook)
      */
@@ -114,6 +134,20 @@ export namespace AccountConfiguration {
      * Id of the twitter community to post to
      */
     community_id?: string;
+
+    /**
+     * If true, marks the YouTube video as containing altered or synthetic content per
+     * YouTube's disclosure policy. Sets status.containsSyntheticMedia on the
+     * videos.insert call; YouTube adds a "How this content was made" label to the
+     * description automatically.
+     */
+    contains_synthetic_media?: boolean | null;
+
+    /**
+     * Default language of the video (BCP-47 language tag, e.g. "en"). Maps to
+     * snippet.defaultLanguage.
+     */
+    default_language?: string | null;
 
     /**
      * Disclose branded content on TikTok
@@ -126,6 +160,12 @@ export namespace AccountConfiguration {
     disclose_your_brand?: boolean | null;
 
     /**
+     * If true the video can be embedded on other websites (maps to status.embeddable).
+     * Defaults to true.
+     */
+    embeddable?: boolean | null;
+
+    /**
      * Flag content as AI generated on TikTok
      */
     is_ai_generated?: boolean | null;
@@ -135,6 +175,12 @@ export namespace AccountConfiguration {
      * within the app
      */
     is_draft?: boolean | null;
+
+    /**
+     * The video's license (maps to status.license). "youtube" is the standard YouTube
+     * license; "creativeCommon" is Creative Commons.
+     */
+    license?: 'youtube' | 'creativeCommon' | null;
 
     /**
      * Pinterest post link
@@ -174,14 +220,37 @@ export namespace AccountConfiguration {
     privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
     /**
+     * If true, the extended video statistics are publicly viewable (maps to
+     * status.publicStatsViewable). Defaults to true.
+     */
+    public_stats_viewable?: boolean | null;
+
+    /**
+     * ISO 8601 datetime at which the video should be published. Only honoured when
+     * privacy_status is "private" (maps to status.publishAt).
+     */
+    publish_at?: string | null;
+
+    /**
      * Id of the tweet you want to quote
      */
     quote_tweet_id?: string;
 
     /**
+     * ISO 8601 date (YYYY-MM-DD) or datetime when the video was recorded (maps to
+     * recordingDetails.recordingDate).
+     */
+    recording_date?: string | null;
+
+    /**
      * Who can reply to the tweet
      */
     reply_settings?: 'following' | 'mentionedUsers' | 'subscribers' | 'verified' | null;
+
+    /**
+     * LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+     */
+    reshare_post_id?: string | null;
 
     /**
      * If true, include the caption on each image in a Facebook carousel upload; if
@@ -195,6 +264,11 @@ export namespace AccountConfiguration {
     share_to_feed?: boolean | null;
 
     /**
+     * YouTube video tags
+     */
+    tags?: Array<string> | null;
+
+    /**
      * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
      */
     title?: string | null;
@@ -205,6 +279,14 @@ export namespace AccountConfiguration {
      * the trial reel will be automatically graduated if the trial reel performs well.
      */
     trial_reel_type?: 'manual' | 'performance' | null;
+  }
+
+  export namespace Configuration {
+    export interface Localizations {
+      description?: string | null;
+
+      title?: string | null;
+    }
   }
 }
 
@@ -306,6 +388,13 @@ export interface FacebookConfigurationDto {
 
 export interface InstagramConfigurationDto {
   /**
+   * Display name for the audio track on Instagram Reels. Only honored on Reels
+   * uploads, and only when the audio is original (Meta silently ignores it on
+   * licensed/fingerprinted tracks).
+   */
+  audio_name?: string | null;
+
+  /**
    * Overrides the `caption` from the post
    */
   caption?: unknown | null;
@@ -353,6 +442,11 @@ export interface LinkedinConfigurationDto {
    * Overrides the `media` from the post
    */
   media?: Array<SocialPostMedia> | null;
+
+  /**
+   * LinkedIn UGC post id to reshare. The caption is used as the reshare commentary.
+   */
+  reshare_post_id?: string | null;
 }
 
 export interface PinterestConfigurationDto {
@@ -683,12 +777,57 @@ export interface TwitterPoll {
 
 export interface YoutubeConfigurationDto {
   /**
+   * Per-language localizations for the video title and description. Keys are BCP-47
+   * language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
+   * videos resource.
+   */
+  localizations: { [key: string]: YoutubeConfigurationDto.Localizations } | null;
+
+  /**
    * Overrides the `caption` from the post
    */
   caption?: unknown | null;
 
   /**
-   * If true will notify YouTube the video is intended for kids, defaults to false
+   * YouTube video category id (maps to snippet.categoryId; see YouTube Data API
+   * videoCategories.list)
+   */
+  category_id?: string | null;
+
+  /**
+   * If true, marks the video as containing altered or synthetic content per
+   * YouTube's disclosure policy (maps to status.containsSyntheticMedia). YouTube
+   * adds a "How this content was made" label to the description automatically.
+   */
+  contains_synthetic_media?: boolean | null;
+
+  /**
+   * Default language of the video (BCP-47 language tag, e.g. "en"). Maps to
+   * snippet.defaultLanguage.
+   */
+  default_language?: string | null;
+
+  /**
+   * Description for the YouTube video (maps to snippet.description). Falls back to
+   * the post caption when not provided.
+   */
+  description?: string | null;
+
+  /**
+   * If true the video can be embedded on other websites (maps to status.embeddable).
+   * Defaults to true.
+   */
+  embeddable?: boolean | null;
+
+  /**
+   * The video's license (maps to status.license). "youtube" is the standard YouTube
+   * license; "creativeCommon" is Creative Commons.
+   */
+  license?: 'youtube' | 'creativeCommon' | null;
+
+  /**
+   * If true will notify YouTube the video is intended for kids (maps to
+   * status.selfDeclaredMadeForKids), defaults to false
    */
   made_for_kids?: boolean | null;
 
@@ -698,14 +837,46 @@ export interface YoutubeConfigurationDto {
   media?: Array<SocialPostMedia> | null;
 
   /**
-   * Sets the privacy status of the video, will default to public
+   * Sets the privacy status of the video (maps to status.privacyStatus), will
+   * default to public
    */
   privacy_status?: 'public' | 'private' | 'unlisted' | null;
 
   /**
-   * Overrides the `title` from the post
+   * If true, the extended video statistics are publicly viewable (maps to
+   * status.publicStatsViewable). Defaults to true.
+   */
+  public_stats_viewable?: boolean | null;
+
+  /**
+   * ISO 8601 datetime at which the video should be published. Only honoured when
+   * privacy_status is "private" (maps to status.publishAt).
+   */
+  publish_at?: string | null;
+
+  /**
+   * ISO 8601 date (YYYY-MM-DD) or datetime when the video was recorded (maps to
+   * recordingDetails.recordingDate).
+   */
+  recording_date?: string | null;
+
+  /**
+   * YouTube video tags (maps to snippet.tags)
+   */
+  tags?: Array<string> | null;
+
+  /**
+   * Overrides the `title` from the post (maps to snippet.title)
    */
   title?: string | null;
+}
+
+export namespace YoutubeConfigurationDto {
+  export interface Localizations {
+    description?: string | null;
+
+    title?: string | null;
+  }
 }
 
 export interface SocialPostListResponse {

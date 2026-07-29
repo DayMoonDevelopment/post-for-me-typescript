@@ -1,5 +1,35 @@
 # Changelog
 
+## 2.9.0 (2026-07-29)
+
+Full Changelog: [v2.8.0...v2.9.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.8.0...v2.9.0)
+
+### Features
+
+* **api:** api update ([3e96512](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3e96512831aceba16ed224aa25c1d66dba9d68f6))
+* **api:** api update ([86a2b08](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/86a2b08089c02d909ec02851e2a0fcbe6b87548d))
+* **api:** api update ([3dd19af](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3dd19af28899826b58d2922906c1836cd87ef8ac))
+* **api:** api update ([91beba7](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/91beba7ffb724a8c75504189f73776dedee7e900))
+* **api:** api update ([2abbb5e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/2abbb5e618b6a59ca1ded5b2bd610f339d4dfe52))
+* **api:** api update ([5652693](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/56526937dc045cc9b5dd297b81aeccccf779218f))
+* **api:** api update ([21e9488](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/21e9488f63102e92e75200acb4343b77f8765485))
+* **api:** api update ([cc28a78](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/cc28a7832f0c56fd07817ed386871a9779a4fdc0))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([e8a8060](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/e8a8060d9a6b67f3b8987d54fdfddc17fb65f22e))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([7b9a9b2](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/7b9a9b2904ea68bef2fd18c408671d4bdc7dbaa9))
+* **client:** send content-type header for requests with an omitted optional body ([4f26e8e](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4f26e8e7cf86948a6cd6ee90f4645e4a8e91ff0f))
+* **mcp:** use `pure-lockfile` when building mcp server ([3d5a8d0](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3d5a8d041457afffa047e23a904f8e49835f0e11))
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([206f798](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/206f798375a765344d1938e0bb40d66472c3d2c6))
+
+
+### Chores
+
+* **internal:** codegen related update ([3a47c78](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3a47c787ed0a361b97dbf9b8d55040a39f6354de))
+* **tests:** remove redundant File import ([4e03418](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/4e03418ea827fa73887313f50a4ad2a1cd98dd3c))
+
 ## 2.8.0 (2026-05-13)
 
 Full Changelog: [v2.7.2...v2.8.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.7.2...v2.8.0)
