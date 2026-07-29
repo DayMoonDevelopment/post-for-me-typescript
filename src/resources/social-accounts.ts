@@ -504,7 +504,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * public_profile, pages_show_list, pages_read_engagement, pages_manage_posts,
        * business_management
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -523,7 +523,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Default facebook scopes: instagram_basic, instagram_content_publish,
        * pages_show_list, public_profile, business_management
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -543,7 +543,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * r_basicprofile, w_member_social, r_organization_social, w_organization_social,
        * rw_organization_admin
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -554,7 +554,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Override the default permissions/scopes requested during OAuth. Default scopes:
        * boards:read, boards:write, pins:read, pins:write, user_accounts:read
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -565,7 +565,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Override the default permissions/scopes requested during OAuth. Default scopes:
        * threads_basic, threads_content_publish
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -576,7 +576,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * Override the default permissions/scopes requested during OAuth. Default scopes:
        * user.info.basic, video.list, video.upload, video.publish
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -590,7 +590,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * comment.list.manage, video.publish, video.upload, biz.spark.auth,
        * discovery.search.words
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
 
     /**
@@ -615,7 +615,7 @@ export namespace SocialAccountCreateAuthURLParams {
        * https://www.googleapis.com/auth/youtube.readonly,
        * https://www.googleapis.com/auth/userinfo.profile
        */
-      permission_overrides?: Array<Array<unknown>>;
+      permission_overrides?: Array<string>;
     }
   }
 }

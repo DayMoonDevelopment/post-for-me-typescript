@@ -37,7 +37,7 @@ describe('resource socialPostPreviews', () => {
       account_configurations: [
         {
           configuration: {
-            localizations: { foo: 'bar' },
+            localizations: { foo: { description: 'description', title: 'title' } },
             allow_comment: true,
             allow_duet: true,
             allow_stitch: true,
@@ -340,7 +340,7 @@ describe('resource socialPostPreviews', () => {
           reply_settings: 'following',
         },
         youtube: {
-          localizations: { foo: 'bar' },
+          localizations: { foo: { description: 'description', title: 'title' } },
           caption: {},
           category_id: 'category_id',
           contains_synthetic_media: true,
