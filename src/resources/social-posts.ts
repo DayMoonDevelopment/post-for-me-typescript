@@ -79,7 +79,7 @@ export namespace AccountConfiguration {
      * language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
      * videos resource.
      */
-    localizations: { [key: string]: unknown } | null;
+    localizations: { [key: string]: Configuration.Localizations } | null;
 
     /**
      * Allow comments on TikTok
@@ -279,6 +279,14 @@ export namespace AccountConfiguration {
      * the trial reel will be automatically graduated if the trial reel performs well.
      */
     trial_reel_type?: 'manual' | 'performance' | null;
+  }
+
+  export namespace Configuration {
+    export interface Localizations {
+      description?: string | null;
+
+      title?: string | null;
+    }
   }
 }
 
@@ -773,7 +781,7 @@ export interface YoutubeConfigurationDto {
    * language tags (e.g. "fr", "es"). Maps to localizations on the YouTube Data API
    * videos resource.
    */
-  localizations: { [key: string]: unknown } | null;
+  localizations: { [key: string]: YoutubeConfigurationDto.Localizations } | null;
 
   /**
    * Overrides the `caption` from the post
@@ -861,6 +869,14 @@ export interface YoutubeConfigurationDto {
    * Overrides the `title` from the post (maps to snippet.title)
    */
   title?: string | null;
+}
+
+export namespace YoutubeConfigurationDto {
+  export interface Localizations {
+    description?: string | null;
+
+    title?: string | null;
+  }
 }
 
 export interface SocialPostListResponse {
