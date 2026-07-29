@@ -122,6 +122,7 @@ describe('resource socialAccounts', () => {
         threads: { permission_overrides: [[{}]] },
         tiktok: { permission_overrides: [[{}]] },
         tiktok_business: { permission_overrides: [[{}]] },
+        x: { connection_type: 'oauth1' },
         youtube: { permission_overrides: [[{}]] },
       },
       redirect_url_override: 'redirect_url_override',

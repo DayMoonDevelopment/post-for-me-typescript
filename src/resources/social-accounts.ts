@@ -469,6 +469,11 @@ export namespace SocialAccountCreateAuthURLParams {
     tiktok_business?: PlatformData.TiktokBusiness;
 
     /**
+     * Additional data for connecting X accounts
+     */
+    x?: PlatformData.X;
+
+    /**
      * Additional data for connecting YouTube accounts
      */
     youtube?: PlatformData.Youtube;
@@ -586,6 +591,17 @@ export namespace SocialAccountCreateAuthURLParams {
        * discovery.search.words
        */
       permission_overrides?: Array<Array<unknown>>;
+    }
+
+    /**
+     * Additional data for connecting X accounts
+     */
+    export interface X {
+      /**
+       * The type of connection; oauth1 for OAuth 1.0a app credentials, oauth2 for OAuth
+       * 2.0 app credentials.
+       */
+      connection_type: 'oauth1' | 'oauth2';
     }
 
     /**
