@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.1 (2026-07-30)
+
+Full Changelog: [v2.9.0...v2.9.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.9.0...v2.9.1)
+
 ## 2.9.0 (2026-07-29)
 
 Full Changelog: [v2.8.0...v2.9.0](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.8.0...v2.9.0)
