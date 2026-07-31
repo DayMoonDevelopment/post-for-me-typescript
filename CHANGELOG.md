@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.9.2 (2026-07-31)
+
+Full Changelog: [v2.9.1...v2.9.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.9.1...v2.9.2)
+
+### Bug Fixes
+
+* **stlc:** stop hand-edited CI workflows from blocking seals and builds ([48fbe7d](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/48fbe7d02e501440c742525887026e47b0675d6d))
+
 ## 2.9.1 (2026-07-30)
 
 Full Changelog: [v2.9.0...v2.9.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.9.0...v2.9.1)
