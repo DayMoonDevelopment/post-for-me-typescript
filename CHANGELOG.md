@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.9.2 (2026-09-01)
+
+Full Changelog: [v2.9.1...v2.9.2](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.9.1...v2.9.2)
+
+### Bug Fixes
+
+* **stlc:** stop hand-edited CI workflows from blocking seals and builds ([48fbe7d](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/48fbe7d02e501440c742525887026e47b0675d6d))
+
+
+### Chores
+
+* **internal:** codegen related update ([a1f80bf](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/a1f80bf9a5d96d3c8fc12b5c07f66a6f3f339665))
+
+
+### Documentation
+
+* **mcp:** document code execution modes and the local code runner ([3ff96fa](https://github.com/DayMoonDevelopment/post-for-me-typescript/commit/3ff96fa156b94628168f0158cc9008e04d09a87d))
+
 ## 2.9.1 (2026-07-30)
 
 Full Changelog: [v2.9.0...v2.9.1](https://github.com/DayMoonDevelopment/post-for-me-typescript/compare/v2.9.0...v2.9.1)
