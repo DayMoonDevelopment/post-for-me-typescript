@@ -18,6 +18,7 @@ import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from 'post-for-me';
 import {
   workerEnvironment,
+  workerReadPaths,
   MAX_LOCAL_EXECUTIONS,
   LOCAL_EXECUTION_TIMEOUT_MS,
   MAX_LOCAL_OUTPUT_BYTES,
@@ -226,6 +227,7 @@ const localDenoHandler = async ({
   const fs = await import('node:fs');
   const path = await import('node:path');
   const url = await import('node:url');
+  const { createRequire } = await import('node:module');
   const { newDenoHTTPWorker } = await import('@valtown/deno-http-worker');
   const { getWorkerPath } = await import('./code-tool-paths.cjs');
   const workerPath = getWorkerPath();
@@ -236,8 +238,14 @@ const localDenoHandler = async ({
 
   let denoPath: string;
 
-  const packageRoot = path.resolve(path.dirname(workerPath), '..');
-  const packageNodeModulesPath = path.resolve(packageRoot, 'node_modules');
+  const workerDirectory = path.dirname(workerPath);
+  const workerRequire = createRequire(url.pathToFileURL(workerPath));
+  // Resolve installed dependencies in both Docker's flattened /app layout and
+  // npm's hoisted layout without granting read access to the worker's parent.
+  const packageNodeModulesPath = path.resolve(
+    path.dirname(workerRequire.resolve('typescript/package.json')),
+    '..',
+  );
 
   // Check if deno is in PATH
   const { execSync } = await import('node:child_process');
@@ -258,25 +266,13 @@ const localDenoHandler = async ({
     }
   }
 
-  const allowReadPaths = [
-    'code-tool-worker.mjs',
-    `${workerPath.replace(/([\/\\]node_modules)[\/\\].+$/, '$1')}/`,
-    packageRoot,
-  ];
+  const allowReadPaths = workerReadPaths(workerPath, packageNodeModulesPath);
 
-  // Follow symlinks in node_modules to allow read access to workspace-linked packages
-  try {
-    const sdkPkgName = 'post-for-me';
-    const sdkDir = path.resolve(packageNodeModulesPath, sdkPkgName);
-    const realSdkDir = fs.realpathSync(sdkDir);
-    if (realSdkDir !== sdkDir) {
-      allowReadPaths.push(realSdkDir);
-    }
-  } catch {
-    // Ignore if symlink resolution fails
-  }
+  // Also permit the SDK's actual location when workspace links or pnpm put it elsewhere.
+  const sdkDirectory = path.dirname(fs.realpathSync(workerRequire.resolve('post-for-me')));
+  allowReadPaths.push(...workerReadPaths(workerPath, sdkDirectory));
 
-  const allowRead = allowReadPaths.join(',');
+  const allowRead = [...new Set(allowReadPaths)].join(',');
 
   const worker = await newDenoHTTPWorker(url.pathToFileURL(workerPath), {
     denoExecutable: denoPath,
@@ -316,7 +312,7 @@ const localDenoHandler = async ({
       child.stderr?.resume();
     },
     spawnOptions: {
-      cwd: path.dirname(workerPath),
+      cwd: workerDirectory,
       detached: process.platform !== 'win32',
       env: workerEnvironment(process.env),
     },

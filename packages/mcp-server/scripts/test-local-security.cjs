@@ -37,6 +37,26 @@ async function main() {
     }),
   );
 
+  const filesystem = await execute(
+    'caller-a',
+    `async function run(client) {
+      const denied: Record<string, boolean> = {};
+      for (const target of ['/etc/passwd', '/proc/self/environ']) {
+        try { await (globalThis as any).Deno.readTextFile(target); denied[target] = false; }
+        catch (error) {
+          if ((error as any).name !== 'NotCapable' && (error as any).name !== 'PermissionDenied') throw error;
+          denied[target] = true;
+        }
+      }
+      return denied;
+    }`,
+  );
+  assert.ok(!filesystem.isError, JSON.stringify(filesystem));
+  assert.deepEqual(JSON.parse(filesystem.content[0].text), {
+    '/etc/passwd': true,
+    '/proc/self/environ': true,
+  });
+
   await assert.rejects(
     execute('caller-a', `async function run(client) { return 'x'.repeat(1100000); }`),
     /output exceeded/,
@@ -52,7 +72,9 @@ async function main() {
   assert.ok(Date.now() - start >= 4500, 'Worker should be stopped by the execution deadline');
   assert.ok(Date.now() - start < 10000, 'Deadline should stop even an infinite loop');
 
-  console.log('Passed: concurrent key isolation, secret isolation, output limit, and execution deadline.');
+  console.log(
+    'Passed: concurrent key isolation, secret isolation, filesystem restriction, output limit, and execution deadline.',
+  );
 }
 
 main().catch((error) => {

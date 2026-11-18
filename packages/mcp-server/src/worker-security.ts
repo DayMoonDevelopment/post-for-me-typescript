@@ -1,3 +1,13 @@
+import path from 'node:path';
+
+export function workerReadPaths(workerPath: string, nodeModulesPath: string): string[] {
+  const paths = [path.dirname(path.resolve(workerPath)), path.resolve(nodeModulesPath)];
+  if (paths.some((directory) => directory === path.parse(directory).root)) {
+    throw new Error('Refusing to grant filesystem-root read access to a local worker.');
+  }
+  return [...new Set(paths)];
+}
+
 // Local workers must never inherit deployment secrets or another caller's credentials.
 export function workerEnvironment(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   return {
