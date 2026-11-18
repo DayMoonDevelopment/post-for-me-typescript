@@ -3,6 +3,8 @@ export function workerEnvironment(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   return {
     ...(env['PATH'] !== undefined && { PATH: env['PATH'] }),
     ...(env['DENO_DIR'] !== undefined && { DENO_DIR: env['DENO_DIR'] }),
+    // Alpine's Deno binary needs the container's configured shared-library paths.
+    ...(env['LD_LIBRARY_PATH'] !== undefined && { LD_LIBRARY_PATH: env['LD_LIBRARY_PATH'] }),
     DENO_NO_UPDATE_CHECK: '1',
   };
 }

@@ -88,7 +88,7 @@ container. `/health` remains available without credentials.
 
 HTTP callers cannot override the worker environment or server method restrictions
 through `x-stainless-mcp-client-envs` or `x-stainless-mcp-client-permissions`.
-Local workers receive only runtime configuration (`PATH`, `DENO_DIR`, and the
+Local workers receive only runtime configuration (`PATH`, `DENO_DIR`, `LD_LIBRARY_PATH`, and the
 disabled-update-check setting), with request credentials passed explicitly to the
 SDK. Worker stdout/stderr is not forwarded to shared server logs.
 
