@@ -76,6 +76,37 @@ and repeatably.
 
 ## Running remotely
 
+### Self-hosting on Unkey
+
+The Docker image uses local Deno execution, embedded documentation search, and
+`instructions.md`. These defaults avoid the Stainless runtime endpoints.
+
+Every HTTP MCP request must include `Authorization: Bearer <key>` or
+`x-post-for-me-api-key`. The API validates the key and enforces tenant permissions
+and API rate limits. Do not configure a shared `POST_FOR_ME_API_KEY` in the hosted
+container. `/health` remains available without credentials.
+
+HTTP callers cannot override the worker environment or server method restrictions
+through `x-stainless-mcp-client-envs` or `x-stainless-mcp-client-permissions`.
+Local workers receive only runtime configuration (`PATH`, `DENO_DIR`, and the
+disabled-update-check setting), with request credentials passed explicitly to the
+SDK. Worker stdout/stderr is not forwarded to shared server logs.
+
+Each server process permits eight concurrent executions. Workers are killed after
+five minutes, including startup, and responses larger than 1 MiB are rejected.
+These are safeguards, not a complete resource-isolation boundary: configure
+container memory/CPU limits on the host. A worker can still allocate memory before
+producing a response. Keep unrelated secrets and sensitive files out of the image.
+
+Local execution permits network access to the configured API hostname and read
+access to the application/dependencies. It does not permit uploading media to
+external storage hosts. Method restrictions are best-effort checks, not a substitute
+for API authorization.
+
+After building the SDK and MCP server, run `node scripts/test-local-security.cjs`
+from `packages/mcp-server` with Deno 2.7.1 on `PATH` to exercise real worker
+isolation, output limits, and forced termination. This test does not call the API.
+
 Launching the client with `--transport=http` launches the server as a remote server using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket.
 
 Authorization can be provided via the `Authorization` header using the Bearer scheme.

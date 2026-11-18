@@ -16,6 +16,14 @@ import { getLogger } from './logger';
 import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
 import { ClientOptions } from 'post-for-me';
+import {
+  workerEnvironment,
+  MAX_LOCAL_EXECUTIONS,
+  LOCAL_EXECUTION_TIMEOUT_MS,
+  MAX_LOCAL_OUTPUT_BYTES,
+} from './worker-security';
+
+let activeLocalExecutions = 0;
 
 const prompt = `Runs JavaScript code to interact with the Post For Me API.
 
@@ -113,8 +121,16 @@ export function codeTool({
     const startTime = Date.now();
 
     if (codeExecutionMode === 'local') {
+      if (activeLocalExecutions >= MAX_LOCAL_EXECUTIONS) {
+        return asErrorResult('Local execution capacity reached. Please retry later.');
+      }
       logger.debug('Executing code in local Deno environment');
-      result = await localDenoHandler({ reqContext, args });
+      activeLocalExecutions++;
+      try {
+        result = await localDenoHandler({ reqContext, args });
+      } finally {
+        activeLocalExecutions--;
+      }
     } else {
       logger.debug('Executing code in remote Stainless environment');
       result = await remoteStainlessHandler({ reqContext, args });
@@ -268,16 +284,41 @@ const localDenoHandler = async ({
       `--node-modules-dir=manual`,
       `--allow-read=${allowRead}`,
       `--allow-net=${baseURLHostname}`,
-      // Allow environment variables because instantiating the client will try to read from them,
-      // even though they are not set.
+      // TypeScript and the SDK probe optional variables. Only the sanitized
+      // runtime environment below is visible; credentials are passed explicitly.
       '--allow-env',
+      '--no-prompt',
     ],
-    printOutput: true,
+    printOutput: false,
+    onSpawn(child) {
+      const terminate = () => {
+        if (process.platform !== 'win32' && child.pid !== undefined) {
+          try {
+            // Kill the whole group: npm-installed Deno can launch a child binary.
+            process.kill(-child.pid, 'SIGKILL');
+          } catch (error) {
+            if ((error as NodeJS.ErrnoException).code !== 'ESRCH') throw error;
+          }
+        } else {
+          child.kill('SIGKILL');
+        }
+      };
+      // Include startup in the deadline, and force termination even for infinite loops.
+      const timer = setTimeout(terminate, LOCAL_EXECUTION_TIMEOUT_MS);
+      timer.unref();
+      child.on('exit', () => {
+        clearTimeout(timer);
+        terminate();
+      });
+      child.on('error', () => clearTimeout(timer));
+      // Drain output without putting user-controlled code output into shared server logs.
+      child.stdout?.resume();
+      child.stderr?.resume();
+    },
     spawnOptions: {
       cwd: path.dirname(workerPath),
-      // Merge any upstream client envs into the Deno subprocess environment,
-      // with the upstream env vars taking precedence.
-      env: { ...process.env, ...reqContext.upstreamClientEnvs },
+      detached: process.platform !== 'win32',
+      env: workerEnvironment(process.env),
     },
   });
 
@@ -287,8 +328,7 @@ const localDenoHandler = async ({
         reject(new Error(`Worker exited with code ${exitCode}`));
       });
 
-      // Strip null/undefined values so that the worker SDK client can fall back to
-      // reading from environment variables (including any upstreamClientEnvs).
+      // Supply only this request's credentials, never a shared environment fallback.
       const opts = {
         ...(client.baseURL != null ? { baseURL: client.baseURL } : undefined),
         ...(client.apiKey != null ? { apiKey: client.apiKey } : undefined),
@@ -307,10 +347,18 @@ const localDenoHandler = async ({
         },
         (resp) => {
           const body: Uint8Array[] = [];
+          let outputBytes = 0;
           resp.on('error', (err) => {
             reject(err);
           });
           resp.on('data', (chunk) => {
+            outputBytes += chunk.length;
+            if (outputBytes > MAX_LOCAL_OUTPUT_BYTES) {
+              reject(new Error('Local execution output exceeded 1 MiB.'));
+              resp.destroy();
+              worker.terminate();
+              return;
+            }
             body.push(chunk);
           });
           resp.on('end', () => {
@@ -323,6 +371,8 @@ const localDenoHandler = async ({
           });
         },
       );
+
+      req.on('error', reject);
 
       const body = JSON.stringify({
         opts,
