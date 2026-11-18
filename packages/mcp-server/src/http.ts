@@ -26,48 +26,9 @@ const newServer = async ({
   const customInstructionsPath = mcpOptions.customInstructionsPath;
   const server = await newMcpServer({ stainlessApiKey, customInstructionsPath });
 
-  const authOptions = parseClientAuthHeaders(req, false);
-
-  let upstreamClientEnvs: Record<string, string> | undefined;
-  const clientEnvsHeader = req.headers['x-stainless-mcp-client-envs'];
-  if (typeof clientEnvsHeader === 'string') {
-    try {
-      const parsed = JSON.parse(clientEnvsHeader);
-      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
-        upstreamClientEnvs = parsed;
-      }
-    } catch {
-      // Ignore malformed header
-    }
-  }
-
-  // Parse x-stainless-mcp-client-permissions header to override permission options
-  //
-  // Note: Permissions are best-effort and intended to prevent clients from doing unexpected things;
-  // they're not a hard security boundary, so we allow arbitrary, client-driven overrides.
-  //
-  // See the Stainless MCP documentation for more details.
-  let effectiveMcpOptions = mcpOptions;
-  const clientPermissionsHeader = req.headers['x-stainless-mcp-client-permissions'];
-  if (typeof clientPermissionsHeader === 'string') {
-    try {
-      const parsed = JSON.parse(clientPermissionsHeader);
-      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
-        effectiveMcpOptions = {
-          ...mcpOptions,
-          ...(typeof parsed.allow_http_gets === 'boolean' && { codeAllowHttpGets: parsed.allow_http_gets }),
-          ...(Array.isArray(parsed.allowed_methods) && { codeAllowedMethods: parsed.allowed_methods }),
-          ...(Array.isArray(parsed.blocked_methods) && { codeBlockedMethods: parsed.blocked_methods }),
-        };
-        getLogger().info(
-          { clientPermissions: parsed },
-          'Overriding code execution permissions from x-stainless-mcp-client-permissions header',
-        );
-      }
-    } catch (error) {
-      getLogger().warn({ error }, 'Failed to parse x-stainless-mcp-client-permissions header');
-    }
-  }
+  // Credentials and permissions are request-scoped and server-controlled.
+  // Never accept environment or permission overrides from public HTTP callers.
+  const authOptions = parseClientAuthHeaders(req, true);
 
   const mcpClientInfo =
     typeof req.body?.params?.clientInfo?.name === 'string' ?
@@ -76,13 +37,12 @@ const newServer = async ({
 
   await initMcpServer({
     server: server,
-    mcpOptions: effectiveMcpOptions,
+    mcpOptions,
     clientOptions: {
       ...clientOptions,
       ...authOptions,
     },
     stainlessApiKey: stainlessApiKey,
-    upstreamClientEnvs,
     mcpSessionId: (req as any).mcpSessionId,
     mcpClientInfo,
   });
@@ -145,6 +105,15 @@ export const streamableHTTPApp = ({
 }): express.Express => {
   const app = express();
   app.set('query parser', 'extended');
+  app.use((req, res, next) => {
+    if (req.method !== 'POST' || req.path !== '/') return next();
+    try {
+      parseClientAuthHeaders(req, true);
+      next();
+    } catch {
+      res.status(401).json({ error: 'Provide Authorization: Bearer <key> or x-post-for-me-api-key.' });
+    }
+  });
   app.use(express.json());
   app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
     const existing = req.headers['mcp-session-id'];

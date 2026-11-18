@@ -61,6 +61,8 @@ COPY --from=builder /build/packages/mcp-server/node_modules ./node_modules
 # Copy the built post-for-me into node_modules
 COPY --from=builder /build/dist ./node_modules/post-for-me
 
+COPY packages/mcp-server/instructions.md /app/instructions.md
+
 # Change ownership to nodejs user
 RUN chown -R nodejs:nodejs /app
 RUN chown -R nodejs:nodejs /deno-dir
@@ -71,6 +73,9 @@ USER nodejs
 # Default to hosted HTTP transport so the container is ready for Unkey
 ENV MCP_SERVER_TRANSPORT=http
 ENV MCP_SERVER_PORT=8080
+ENV MCP_SERVER_CODE_EXECUTION_MODE=local
+ENV MCP_SERVER_DOCS_SEARCH_MODE=local
+ENV MCP_SERVER_CUSTOM_INSTRUCTIONS_PATH=/app/instructions.md
 
 EXPOSE 8080
 

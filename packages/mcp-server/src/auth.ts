@@ -10,20 +10,22 @@ export const parseClientAuthHeaders = (req: IncomingMessage, required?: boolean)
     const value = req.headers.authorization.slice(scheme.length + 1);
     switch (scheme) {
       case 'Bearer':
+        if (!value.trim()) throw new Error('Missing bearer token.');
         return { apiKey: req.headers.authorization.slice('Bearer '.length) };
       default:
         throw new Error(
           'Unsupported authorization scheme. Expected the "Authorization" header to be a supported scheme (Bearer).',
         );
     }
-  } else if (required) {
-    throw new Error('Missing required Authorization header; see WWW-Authenticate header for details.');
   }
 
   const apiKey =
     Array.isArray(req.headers['x-post-for-me-api-key']) ?
       req.headers['x-post-for-me-api-key'][0]
     : req.headers['x-post-for-me-api-key'];
+  if (required && !apiKey?.trim()) {
+    throw new Error('Missing API key. Provide Authorization: Bearer <key> or x-post-for-me-api-key.');
+  }
   return { apiKey };
 };
 
